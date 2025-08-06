@@ -40,22 +40,15 @@ $figure_items = tr_posts_field('figure_items', $pageID);
 // Mỗi item: ['figure_title', 'figure_des']
 
 // Địa điểm văn phòng
-$location_title_1 = tr_posts_field('location_title', $pageID);         // Lấy lần đầu
-$location_des_1 = tr_posts_field('location_des', $pageID);             // Lấy lần đầu
-$location_title_2 = tr_posts_field('location_title', $pageID, 1);      // Lần thứ 2
-$location_des_2 = tr_posts_field('location_des', $pageID, 1);          // Lần thứ 2
+$location1_des_top = tr_posts_field('location1_des_top', $pageID);
+$location1_des = tr_posts_field('location1_des', $pageID);
+$location1_des_inter = tr_posts_field('location1_des_inter', $pageID);
+$location2_subtitle = tr_posts_field('location2_subtitle', $pageID);
+$location2_des = tr_posts_field('location2_des', $pageID);
 
-$location_item1_percent = tr_posts_field('location_item1_percent', $pageID);         // Lấy lần đầu
-$location_item1_title = tr_posts_field('location_item1_title', $pageID);
-$location_item1_des = tr_posts_field('location_item1_des', $pageID);
+$location_item = tr_posts_field('location_item', $pageID); // ['location_map_item_name']
 
-$location_item2_percent = tr_posts_field('location_item2_percent', $pageID);         // Lấy lần đầu
-$location_item2_title = tr_posts_field('location_item2_title', $pageID);
-$location_item2_des = tr_posts_field('location_item2_des', $pageID);
 
-$location_item3_percent = tr_posts_field('location_item3_percent', $pageID);         // Lấy lần đầu
-$location_item3_title = tr_posts_field('location_item3_title', $pageID);
-$location_item3_des = tr_posts_field('location_item3_des', $pageID);
 
 $location_map_image = wp_get_attachment_url(tr_posts_field('location_map_image', $pageID));
 $location_map_title = tr_posts_field('location_map_title', $pageID);
@@ -194,38 +187,30 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
           <div class="industrial_location_left_top_wrap">
             <div class="industrial_location_left_top">
                 <div class="industrial_location_left_top_inner">
-                <div class="industrial_location_left_top_title txt_70 heading">top 3</div>
-                <div class="industrial_location_left_top_des txt_25 heading">sxcn thời trang</div>
-                <div class="industrial_location_left_top_smalltitle heading txt_30 txt_title_color">việt nam</div>
+                <div class="industrial_location_left_top_title txt_70 heading"> <?= wp_kses_post($location1_des_top) ?></div>
+                <div class="industrial_location_left_top_des txt_25 heading"><?= wp_kses_post($location1_des) ?></div>
+                <div class="industrial_location_left_top_smalltitle heading txt_30 txt_title_color"><?= wp_kses_post($location1_des_inter) ?></div>
               </div>
             </div>
             <div class="industrial_location_left_top">
               <div class="industrial_location_left_top_inner">
-                <div class="industrial_location_left_top_smalltitle1 txt_title_color heading txt_30">Xuất khẩu đến</div>
-                <div class="industrial_location_left_top_des1 txt_25 heading">hơn <span class="txt_70 heading">70</span>  quốc gia</div>
+                <div class="industrial_location_left_top_smalltitle1 txt_title_color heading txt_30"><?= wp_kses_post($location2_subtitle) ?></div>
+                <div class="industrial_location_left_top_des1 txt_25 heading"><?= wp_kses_post($location2_des) ?></div>
               </div>
             </div>
           </div>
-          <div class="industrial_location_left_content">
-            <div class="industrial_location_left_content_percent border1 title1 txt_40 heading"><?= wp_kses_post($location_item1_percent) ?> <span class="txt_30">%</span></div>
-            <div class="industrial_location_left_content_inner">
-              <div class="industrial_location_left_content_title heading txt_25 title1"><?= wp_kses_post($location_item1_title) ?></div>
-              <div class="industrial_location_left_content_des txt_17"><?= wp_kses_post($location_item1_des) ?></div>
+          <div class="industrial_location_left_content_wrap">
+            <?php if (!empty($figure_items)) : ?>
+                <?php foreach ($figure_items as $item): ?>
+            <div class="industrial_location_left_content">
+              <div class="industrial_location_left_content_percent border1 title1 txt_40 heading"> <?= esc_html($item['location_item1_percent']) ?><span class="txt_30">%</span></div>
+              <div class="industrial_location_left_content_inner">
+                <div class="industrial_location_left_content_title heading txt_25 title1"> <?= esc_html($item['location_item1_title']) ?></div>
+                <div class="industrial_location_left_content_des txt_17"> <?= esc_html($item['location_item1_des']) ?></div>
+              </div>
             </div>
-          </div>
-          <div class="industrial_location_left_content">
-            <div class="industrial_location_left_content_percent border2 title2 txt_40 heading"><?= wp_kses_post($location_item2_percent) ?><span class="txt_30">%</span></div>
-            <div class="industrial_location_left_content_inner">
-              <div class="industrial_location_left_content_title heading txt_25 title2"><?= wp_kses_post($location_item2_title) ?></div>
-              <div class="industrial_location_left_content_des txt_17"><?= wp_kses_post($location_item2_des) ?></div>
-            </div>
-          </div>
-          <div class="industrial_location_left_content">
-            <div class="industrial_location_left_content_percent border3 title3 txt_40 heading"><?= wp_kses_post($location_item3_percent) ?><span class="txt_30">%</span></div>
-            <div class="industrial_location_left_content_inner">
-              <div class="industrial_location_left_content_title heading txt_25 title3"><?= wp_kses_post($location_item3_title) ?></div>
-              <div class="industrial_location_left_content_des txt_17"><?= wp_kses_post($location_item3_des) ?></div>
-            </div>
+            <?php endforeach; ?>
+              <?php endif; ?>
           </div>
         </div>
         <div class="industrial_location_right">

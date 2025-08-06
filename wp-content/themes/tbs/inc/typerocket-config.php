@@ -162,36 +162,32 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
         echo beginBox("Địa điểm văn phòng",true);
                     echo $form->row(
-                        $form->text('location_title')->setLabel("Tiêu đề"),
-                        $form->text('location_des')->setLabel("Mô tả"),
+                        $form->text('location1_des_top')->setLabel("Top"),
+                        $form->text('location1_des')->setLabel("Mô tả"),
+                        $form->text('location1_des_inter')->setLabel("Quốc Gia"),
                         
                     );
                     echo $form->row(
-                        $form->text('location_title')->setLabel("Tiêu đề"),
-                        $form->text('location_des')->setLabel("Mô tả"),
+                        $form->text('location2_subtitle')->setLabel("Xuất khẩu đến"),
+                        $form->editor('location2_des')->setLabel("hơn 70 quốc gia"),
                         
                     );
-                    echo $form->row(
-                        $form->text('location_item1_percent')->setLabel("Phần trăm"),
-                        $form->text('location_item1_title')->setLabel("Tên thị trường"),
-                        $form->editor('location_item1_des')->setLabel("Mô tả"),
+                    echo $form->repeater('location_item')->setLabel("Số liệu")->setFields([
+                        $form->row(
+                            $form->text('location_item1_percent')->setLabel("Phần trăm"),
+                        ),
+                        $form->row(
+                            $form->text('location_item1_title')->setLabel("Tên thị trường"),
+                        ),
+                        $form->row(
+                            $form->editor('location_item1_des')->setLabel("Mô tả"),
+                        ),
                         
-                    );
-                    echo $form->row(
-                        $form->text('location_item2_percent')->setLabel("Phần trăm"),
-                        $form->text('location_item2_title')->setLabel("Tên thị trường"),
-                        $form->editor('location_item2_des')->setLabel("Mô tả"),
-                        
-                    );
-                    echo $form->row(
-                        $form->text('location_item3_percent')->setLabel("Phần trăm"),
-                        $form->text('location_item3_title')->setLabel("Tên thị trường"),
-                        $form->editor('location_item3_des')->setLabel("Mô tả"),
-                        
-                    );
+                    ]);
                 echo $form->row(
                         $form->image('location_map_image')->setLabel("ảnh bản đồ"),
                         $form->text('location_map_title')->setLabel("Tiêu đề"),
+                        $form->text('location_map_icon')->setLabel("Icon Location"),
                          $form->repeater('location_map_item')->setLabel("Quốc gia")->setFields([
                             $form->row(
                                 $form->text('location_map_item_name')->setLabel("Tên quốc gia"),                                
@@ -284,15 +280,15 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
                         $form->text('hotel_des_subtitle')->setLabel("tiêu đề phụ"),           
                         $form->repeater('hotel_des_item')->setLabel("Mô tả")->setFields([
                             $form->row(
-                                    $form->editor('hotel_des_item_desdes')->setLabel("Mô tả"),                                
+                                    $form->editor('hotel_des_item_des')->setLabel("Mô tả"),                                
                                 )
                         ])                     
                     )
             ])
         );
-        echo $form->row(
-            $form->image('hotel_image')->setLabel("Ảnh nổi dung"),
-        );
+        echo $form->repeater('hotel_image_item')->setLabel("Ảnh nội dung")->setFields([
+            $form->image('hotel_image_item_content')->setLabel("Ảnh nội dung"),
+        ]);
         echo endBox();
 
         echo beginBox("TBS Logistics",true);
@@ -343,7 +339,8 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo endBox();
 
         echo beginBox("Sức khỏe & An toàn lao động",true);
-        echo $form->editor('safe_title')->setLabel("Tiêu đề");
+        echo $form->editor('safe_title1')->setLabel("Tiêu đề");
+        echo $form->editor('safe_title2')->setLabel("Tiêu đề");
         echo $form->row(
             $form->repeater('safe_item')->setLabel("Mô tả")->setFields([
                 $form->row(

@@ -218,7 +218,7 @@
     background-color: #FCFFF6;
 }
 .estate_logistics_exper{
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
 }
 .estate_logistics_exper_item_title{
     color: #A6CE39;
@@ -270,8 +270,8 @@
     }
     .estate_logistics_exper{
         gap: 2.5rem;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
     }   
     .item1{
         grid-column: 1/2;

@@ -11,14 +11,64 @@
  */
 wp_enqueue_style('linh-vuc-cong-nghiep-style', get_template_directory_uri() . '/css/linh-vuc-cong-nghiep.css', [], SITE_VERSION, 'all');
 get_header();
+
+$pageID = get_queried_object_id(); // Lấy ID của trang hiện tại
+
+$banner_image = wp_get_attachment_url(tr_posts_field('banner_image', $pageID));
+$banner_title = tr_posts_field('banner_title', $pageID);
+
+// Giới thiệu
+$intro_logo = wp_get_attachment_url(tr_posts_field('intro_logo', $pageID));
+$intro_des = tr_posts_field('intro_des', $pageID);
+
+// Nhà máy
+$factory_items = tr_posts_field('factory_items', $pageID);
+// Mỗi item: ['factory_img', 'factory_title']
+
+// Sản phẩm
+$product_img = wp_get_attachment_url(tr_posts_field('product_img', $pageID));
+$product_title = tr_posts_field('product_title', $pageID);
+$product_text_items = tr_posts_field('product_text_items', $pageID);
+
+$product2_img = wp_get_attachment_url(tr_posts_field('product2_img', $pageID));
+$product2_title = tr_posts_field('product2_title', $pageID);
+$product2_text_items = tr_posts_field('product2_text_items', $pageID);
+// Mỗi item: ['product_img', 'product_title', 'product_text_items' => [['product_subtitle', 'product_des']]]
+
+// Số liệu
+$figure_items = tr_posts_field('figure_items', $pageID);
+// Mỗi item: ['figure_title', 'figure_des']
+
+// Địa điểm văn phòng
+$location_title_1 = tr_posts_field('location_title', $pageID);         // Lấy lần đầu
+$location_des_1 = tr_posts_field('location_des', $pageID);             // Lấy lần đầu
+$location_title_2 = tr_posts_field('location_title', $pageID, 1);      // Lần thứ 2
+$location_des_2 = tr_posts_field('location_des', $pageID, 1);          // Lần thứ 2
+
+$location_item1_percent = tr_posts_field('location_item1_percent', $pageID);         // Lấy lần đầu
+$location_item1_title = tr_posts_field('location_item1_title', $pageID);
+$location_item1_des = tr_posts_field('location_item1_des', $pageID);
+
+$location_item2_percent = tr_posts_field('location_item2_percent', $pageID);         // Lấy lần đầu
+$location_item2_title = tr_posts_field('location_item2_title', $pageID);
+$location_item2_des = tr_posts_field('location_item2_des', $pageID);
+
+$location_item3_percent = tr_posts_field('location_item3_percent', $pageID);         // Lấy lần đầu
+$location_item3_title = tr_posts_field('location_item3_title', $pageID);
+$location_item3_des = tr_posts_field('location_item3_des', $pageID);
+
+$location_map_image = wp_get_attachment_url(tr_posts_field('location_map_image', $pageID));
+$location_map_title = tr_posts_field('location_map_title', $pageID);
+$location_map_item = tr_posts_field('location_map_item', $pageID); // ['location_map_item_name']
+$location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location_map_item_name']
 ?>
 <section class="industrial_hero">
       <div class="industrial_hero_inner">
         <div class="industrial_hero_img img_full">
-          <img src="<?= get_template_directory_uri(); ?>/img/congnghiep-hero.webp" alt="" />
+          <img src="<?php echo $banner_image ?>" alt="" />
         </div>
         <h1 class="industrial_hero_title txt_55 heading">
-          Sản xuất Công nghiệp
+          <?= wp_kses_post($banner_title) ?>
         </h1>
       </div>
     </section>
@@ -26,64 +76,27 @@ get_header();
       <div class="kl_container">
         <div class="industrial_intro_txt">
           <div class="industrial_intro_txt_logo img_full">
-            <img src="<?= get_template_directory_uri(); ?>/img/logo_industrial.png" alt="" />
+            <img src="<?php echo $intro_logo ?>" alt="" />
           </div>
           <div class="industrial_intro_txt_des txt_20 txt_justify">
-            Được thành lập từ năm 1989, TBS Group hiện nay là một trong những
-            công ty sản xuất công nghiệp hàng đầu tại Việt Nam với 3 trụ cột
-            chính là: Giày - Đế - Túi xách, hệ thống sản xuất trải dài Bắc vào
-            Nam (từ Thái Bình, Đà Nẵng, Hội An, Bình Dương, Bình Phước, Kiên
-            Giang, An Giang và Trà Vinh và Indonesia). Ngoài văn phòng điều hành
-            tại Dĩ An, Bình Dương, TBS Group còn có các văn phòng đại diện tại
-            Hongkong, văn phòng sourcing tại Đông Quảng- Trung Quốc.
+            <?= wp_kses_post($intro_des) ?>
           </div>
         </div>
         <div class="industrial_swiper_wrap">
           <div class="swiper mySwiper">
             <div class="industrial_intro_slide swiper-wrapper">
+              <?php if (!empty($factory_items)) : ?>
+                <?php foreach ($factory_items as $item): ?>
               <div class="industrial_intro_slide_item swiper-slide">
                 <div class="industrial_intro_slide_item_img img_full">
-                  <img src="<?= get_template_directory_uri(); ?>/img/factory1.webp" alt="" />
+                  <img src="<?= esc_url(wp_get_attachment_url($item['factory_img'])) ?>" alt="" />
                 </div>
                 <div class="industrial_intro_slide_item_txt txt_20">
-                  nhà máy Mỹ Phong
+                  <?= esc_html($item['factory_title']) ?>
                 </div>
               </div>
-
-              <div class="industrial_intro_slide_item swiper-slide">
-                <div class="industrial_intro_slide_item_img img_full">
-                  <img src="<?= get_template_directory_uri(); ?>/img/factory2.webp" alt="" />
-                </div>
-                <div class="industrial_intro_slide_item_txt txt_20">
-                  Nhà Máy Túi Xách Thoại Sơn
-                </div>
-              </div>
-
-              <div class="industrial_intro_slide_item swiper-slide">
-                <div class="industrial_intro_slide_item_img img_full">
-                  <img src="<?= get_template_directory_uri(); ?>/img/factory3.webp" alt="" />
-                </div>
-                <div class="industrial_intro_slide_item_txt txt_20">
-                  Nhà Máy SX Giày TBS An Giang
-                </div>
-              </div>
-
-              <div class="industrial_intro_slide_item swiper-slide">
-                <div class="industrial_intro_slide_item_img img_full">
-                  <img src="<?= get_template_directory_uri(); ?>/img/factory4.webp" alt="" />
-                </div>
-                <div class="industrial_intro_slide_item_txt txt_20">
-                  Nhà máy TBS Sông Trà
-                </div>
-              </div>
-              <div class="industrial_intro_slide_item swiper-slide">
-                <div class="industrial_intro_slide_item_img img_full">
-                  <img src="<?= get_template_directory_uri(); ?>/img/factory1.webp" alt="" />
-                </div>
-                <div class="industrial_intro_slide_item_txt txt_20">
-                  nhà máy Mỹ Phong
-                </div>
-              </div>
+               <?php endforeach; ?>
+              <?php endif; ?>
             </div>
           </div>
           <div class="industrial_button">
@@ -101,37 +114,24 @@ get_header();
       <div class="kl_container">
         <div class="industrial_product_inner kl_grid">
           <div class="industrial_product_img img_full">
-            <img src="<?= get_template_directory_uri(); ?>/img/shoes.webp" alt="" />
+            <img src="<?php echo $product_img ?>" alt="" />
           </div>
           <div class="industrial_product_info bg_line">
             <h2
               class="industrial_product_info_name txt_title_color txt_55 heading"
             >
-              GIÀY
+              <?= wp_kses_post($product_title) ?>
           </h2>
+          <?php if (!empty($product_text_items)) : ?>
+                <?php foreach ($product_text_items as $item): ?>
             <div class="industrial_product_info_title heading txt_35">
-              60 triệu đôi
+              <?= esc_html($item['product_subtitle']) ?>
             </div>
             <div class="industrial_product_info_des txt_17">
-              Công suất: / 1 năm
+              <?= esc_html($item['product_des']) ?>
             </div>
-            <div class="industrial_product_info_title heading txt_35">
-              #1 toàn cầu
-            </div>
-            <div class="industrial_product_info_des txt_17">
-              Xếp <span class="txt_bold">thứ 1 toàn cầu</span> về quy mô sản
-              xuất của khách hàng Decathlon và <br /><span class="txt_bold"
-                >top 3</span
-              >
-              của khách hàng Skechers, Wolverine.
-            </div>
-            <div class="industrial_product_info_title heading txt_35">
-              Sản phẩm
-            </div>
-            <div class="industrial_product_info_des txt_17">
-              Hiking Shoes, Waterproof Shoes, Injection, Sandals, Kids shoes,
-              Running…
-            </div>
+             <?php endforeach; ?>
+              <?php endif; ?>
           </div>
         </div>
         <div class="industrial_product_inner bag kl_grid">
@@ -139,36 +139,21 @@ get_header();
             <h2
               class="industrial_product_info_name txt_title_color txt_55 heading"
             >
-              Túi
+              <?= wp_kses_post($product2_title) ?>
           </h2>
+          <?php if (!empty($product2_text_items)) : ?>
+                <?php foreach ($product2_text_items as $item): ?>
             <div class="industrial_product_info_title heading txt_35">
-              10 triệu túi da
+              <?= esc_html($item['product2_subtitle']) ?>
             </div>
             <div class="industrial_product_info_des txt_17">
-              Công suất: 10 triệu túi da/năm và 20 ba lô/năm
+               <?= esc_html($item['product2_des']) ?>
             </div>
-            <div class="industrial_product_info_title heading txt_35">
-              # 1 Việt Nam
-            </div>
-            <div class="industrial_product_info_des txt_17">
-              Xếp thứ 1 nhà cung cấp tại Việt Nam cho thương hiệu Coach, Kate
-              Spade và Titliest.
-            </div>
-            <div class="industrial_product_info_title heading txt_35">
-              Nhà máy sản xuất
-            </div>
-            <div class="industrial_product_info_des txt_17">
-              Nhà máy sản xuất tại: Bình Dương, Thái Bình, An Giang, Kiên Giang
-            </div>
-            <div class="industrial_product_info_title heading txt_35">
-              Sản phẩm
-            </div>
-            <div class="industrial_product_info_des txt_17">
-              Các mặt hàng da (túi xách và ví), Ba lô, Túi Golf, Túi chống thấm
-            </div>
+            <?php endforeach; ?>
+              <?php endif; ?>
           </div>
           <div class="industrial_product_img bag img_full">
-            <img src="<?= get_template_directory_uri(); ?>/img/bag.webp" alt="" />
+            <img src="<?php echo $product2_img ?>" alt="" />
           </div>
         </div>
       </div>
@@ -178,46 +163,18 @@ get_header();
         <div class="industrial_figure_inner">
           <div class="industrial_figure_slide_wrap swiper">
             <div class="industrial_figure_slide swiper-wrapper">
+               <?php if (!empty($figure_items)) : ?>
+                <?php foreach ($figure_items as $item): ?>
               <div class="industrial_figure_slide_item swiper-slide">
                 <div class="industrial_figure_slide_item_title txt_center heading tx txt_55">
-                  35+
+                  <?= esc_html($item['figure_title']) ?>
                 </div>
                 <div class="industrial_figure_slide_item_des txt_center txt_20">
-                  năm kinh nghiệm
+                  <?= esc_html($item['figure_des']) ?>
                 </div>
               </div>
-              <div class="industrial_figure_slide_item swiper-slide">
-                <div class="industrial_figure_slide_item_title txt_center heading tx txt_55">
-                  200+
-                </div>
-                <div class="industrial_figure_slide_item_des txt_center txt_20">
-                  Quốc gia xuất khẩu đến
-                </div>
-              </div>
-              <div class="industrial_figure_slide_item swiper-slide">
-                <div class="industrial_figure_slide_item_title txt_center heading tx txt_55">
-                  1.500.000 M2
-                </div>
-                <div class="industrial_figure_slide_item_des txt_center txt_20">
-                  diện tích nhà xưởng
-                </div>
-              </div>
-              <div class="industrial_figure_slide_item swiper-slide">
-                <div class="industrial_figure_slide_item_title txt_center heading tx txt_55">
-                  9
-                </div>
-                <div class="industrial_figure_slide_item_des txt_center txt_20">
-                  tổ hợp
-                </div>
-              </div>
-              <div class="industrial_figure_slide_item swiper-slide">
-                <div class="industrial_figure_slide_item_title txt_center heading tx txt_55">
-                  9
-                </div>
-                <div class="industrial_figure_slide_item_des txt_center txt_20">
-                  tổ hợp
-                </div>
-              </div>
+               <?php endforeach; ?>
+              <?php endif; ?>
             </div>
           </div>
           <div class="industrial_figure_button">
@@ -250,61 +207,47 @@ get_header();
             </div>
           </div>
           <div class="industrial_location_left_content">
-            <div class="industrial_location_left_content_percent border1 title1 txt_40 heading">46 <span class="txt_30">%</span></div>
+            <div class="industrial_location_left_content_percent border1 title1 txt_40 heading"><?= wp_kses_post($location_item1_percent) ?> <span class="txt_30">%</span></div>
             <div class="industrial_location_left_content_inner">
-              <div class="industrial_location_left_content_title heading txt_25 title1">Châu âu</div>
-              <div class="industrial_location_left_content_des txt_17">Một trong những đơn vị đi đầu trong ngành sản xuất công nghiệp thời trang tại thị trường </div>
+              <div class="industrial_location_left_content_title heading txt_25 title1"><?= wp_kses_post($location_item1_title) ?></div>
+              <div class="industrial_location_left_content_des txt_17"><?= wp_kses_post($location_item1_des) ?></div>
             </div>
           </div>
           <div class="industrial_location_left_content">
-            <div class="industrial_location_left_content_percent border2 title2 txt_40 heading">40<span class="txt_30">%</span></div>
+            <div class="industrial_location_left_content_percent border2 title2 txt_40 heading"><?= wp_kses_post($location_item2_percent) ?><span class="txt_30">%</span></div>
             <div class="industrial_location_left_content_inner">
-              <div class="industrial_location_left_content_title heading txt_25 title2">Châu mỹ</div>
-              <div class="industrial_location_left_content_des txt_17">Một trong những đơn vị đi đầu trong ngành sản xuất công nghiệp thời trang tại thị trường </div>
+              <div class="industrial_location_left_content_title heading txt_25 title2"><?= wp_kses_post($location_item2_title) ?></div>
+              <div class="industrial_location_left_content_des txt_17"><?= wp_kses_post($location_item2_des) ?></div>
             </div>
           </div>
           <div class="industrial_location_left_content">
-            <div class="industrial_location_left_content_percent border3 title3 txt_40 heading">14<span class="txt_30">%</span></div>
+            <div class="industrial_location_left_content_percent border3 title3 txt_40 heading"><?= wp_kses_post($location_item3_percent) ?><span class="txt_30">%</span></div>
             <div class="industrial_location_left_content_inner">
-              <div class="industrial_location_left_content_title heading txt_25 title3">Thị trường khác</div>
-              <div class="industrial_location_left_content_des txt_17">Một trong những đơn vị đi đầu trong ngành sản xuất công nghiệp thời trang tại thị trường </div>
+              <div class="industrial_location_left_content_title heading txt_25 title3"><?= wp_kses_post($location_item3_title) ?></div>
+              <div class="industrial_location_left_content_des txt_17"><?= wp_kses_post($location_item3_des) ?></div>
             </div>
           </div>
         </div>
         <div class="industrial_location_right">
           <div class="industrial_location_right_img img_full">
-            <img src="<?= get_template_directory_uri(); ?>/img/map.webp" alt="">
+            <img src="<?php echo $location_map_image ?>" alt="">
           </div>
           <div class="industrial_location_right_officer">
             <div class="industrial_location_right_officer_title">
-              <div class="industrial_location_right_officer_title_inner txt_30 heading">Văn phòng đại diện</div>
+              <div class="industrial_location_right_officer_title_inner txt_30 heading"><?= wp_kses_post($location_map_title) ?></div>
             </div>
             <div class="industrial_location_right_officer_content">
               <div class="industrial_location_right_officer_content_inner">
+                 <?php if (!empty($location_map_item)) : ?>
+                <?php foreach ($location_map_item as $item): ?>
                 <div class="industrial_location_right_officer_content_item" >
                   <div class="industrial_location_right_officer_content_item_img img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/icon_location.svg" alt="">
+                    <img src="<?php echo $location_map_icon ?>" alt="">
                   </div>
-                  <div class="industrial_location_right_officer_content_item_txt heading txt_25">Mỹ</div>
+                  <div class="industrial_location_right_officer_content_item_txt heading txt_25"> <?= esc_html($item['location_map_item_name']) ?></div>
                 </div>
-                <div class="industrial_location_right_officer_content_item" >
-                  <div class="industrial_location_right_officer_content_item_img img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/icon_location.svg" alt="">
-                  </div>
-                  <div class="industrial_location_right_officer_content_item_txt heading txt_25">Hồng kông</div>
-                </div>
-                <div class="industrial_location_right_officer_content_item" >
-                  <div class="industrial_location_right_officer_content_item_img img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/icon_location.svg" alt="">
-                  </div>
-                  <div class="industrial_location_right_officer_content_item_txt heading txt_25">trung quốc</div>
-                </div>
-                <div class="industrial_location_right_officer_content_item" >
-                  <div class="industrial_location_right_officer_content_item_img img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/icon_location.svg" alt="">
-                  </div>
-                  <div class="industrial_location_right_officer_content_item_txt heading txt_25">hàn quốc</div>
-                </div>
+                 <?php endforeach; ?>
+              <?php endif; ?>
               </div>
             </div>
           </div>

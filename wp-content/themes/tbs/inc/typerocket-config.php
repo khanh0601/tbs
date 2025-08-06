@@ -82,7 +82,314 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
 
     }
+    else if($post->post_type == 'page' && basename(get_page_template())=="linh-vuc-cong-nghiep.php"){
+        remove_post_type_support( 'page', 'editor' );
 
+
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->row(
+            $form->image('banner_image')->setLabel("Banner"),
+        );
+        echo $form->row(
+            $form->text('banner_title')->setLabel("Tiêu đề"),
+        );
+        echo endBox();
+
+         echo beginBox("Giới thiệu",true);
+        echo $form->row(
+            $form->image('intro_logo')->setLabel("Ảnh Logo"),
+        );
+        echo $form->row(
+            $form->text('intro_des')->setLabel("Mô tả"),
+        );
+        echo endBox();
+
+        echo beginBox("Nhà máy",true);
+        echo $form->repeater('factory_items')->setLabel("Nhà máy")->setFields([
+            $form->row(
+                $form->image('factory_img')->setLabel("Hình ảnh nhà máy"),
+                $form->text('factory_title')->setLabel("Tiêu đề"),
+            )
+        ]);
+        
+        echo endBox();
+
+         echo beginBox("Sản phẩm",true);
+           echo $form->row(
+                $form->image('product_img')->setLabel("Hình ảnh sản phẩm"),
+                $form->text('product_title')->setLabel("tên sản phẩm"),
+                     $form->repeater('product_text_items')->setLabel("Text Item")->setFields([
+                    $form->row(
+                        $form->text('product_subtitle')->setLabel("Tiêu đề"),
+                        $form->editor('product_des')->setLabel("Mô tả"),
+                        
+                    )
+                ])
+            );
+             echo $form->row(
+                $form->image('product2_img')->setLabel("Hình ảnh sản phẩm"),
+                $form->text('product2_title')->setLabel("tên sản phẩm"),
+                     $form->repeater('product2_text_items')->setLabel("Text Item")->setFields([
+                    $form->row(
+                        $form->text('product2_subtitle')->setLabel("Tiêu đề"),
+                        $form->editor('product2_des')->setLabel("Mô tả"),
+                        
+                    )
+                ])
+            );
+        echo endBox();
+
+        echo beginBox("Số liệu",true);
+                 echo $form->repeater('figure_items')->setLabel("Số liệu")->setFields([
+                    $form->row(
+                        $form->text('figure_title')->setLabel("Tiêu đề"),
+                        $form->text('figure_des')->setLabel("Mô tả"),
+                        
+                    )
+                ]);
+        echo endBox();
+
+        echo beginBox("Địa điểm văn phòng",true);
+                    echo $form->row(
+                        $form->text('location_title')->setLabel("Tiêu đề"),
+                        $form->text('location_des')->setLabel("Mô tả"),
+                        
+                    );
+                    echo $form->row(
+                        $form->text('location_title')->setLabel("Tiêu đề"),
+                        $form->text('location_des')->setLabel("Mô tả"),
+                        
+                    );
+                    echo $form->row(
+                        $form->text('location_item1_percent')->setLabel("Phần trăm"),
+                        $form->text('location_item1_title')->setLabel("Tên thị trường"),
+                        $form->editor('location_item1_des')->setLabel("Mô tả"),
+                        
+                    );
+                    echo $form->row(
+                        $form->text('location_item2_percent')->setLabel("Phần trăm"),
+                        $form->text('location_item2_title')->setLabel("Tên thị trường"),
+                        $form->editor('location_item2_des')->setLabel("Mô tả"),
+                        
+                    );
+                    echo $form->row(
+                        $form->text('location_item3_percent')->setLabel("Phần trăm"),
+                        $form->text('location_item3_title')->setLabel("Tên thị trường"),
+                        $form->editor('location_item3_des')->setLabel("Mô tả"),
+                        
+                    );
+                echo $form->row(
+                        $form->image('location_map_image')->setLabel("ảnh bản đồ"),
+                        $form->text('location_map_title')->setLabel("Tiêu đề"),
+                         $form->repeater('location_map_item')->setLabel("Quốc gia")->setFields([
+                            $form->row(
+                                $form->text('location_map_item_name')->setLabel("Tên quốc gia"),                                
+                            )
+                        ])
+                        
+                    );
+        echo endBox();
+
+
+    }
+     else if($post->post_type == 'page' && basename(get_page_template())=="linh-vuc-bat-dong-san.php"){
+        remove_post_type_support( 'page', 'editor' );
+
+
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->row(
+            $form->image('banner_image')->setLabel("Banner image desktop"),
+            $form->image('banner_image_mobile')->setLabel("Banner image mobile"),
+        );
+        echo $form->row(
+            $form->text('banner_title')->setLabel("Tiêu đề"),
+        );
+        echo endBox();
+
+        echo beginBox("Giới thiệu",true);
+        echo $form->row(
+            $form->image('intro_logo')->setLabel("Ảnh Logo desktop"),
+            $form->image('intro_logo_mobile')->setLabel("Ảnh Logo mobile"),
+        );
+        echo $form->row(
+            $form->editor('intro_des')->setLabel("Mô tả"),
+        );
+        echo endBox();
+
+        echo beginBox("Bất động sản công nghiệp",true);
+        echo $form->row(
+            $form->image('industrial_content')->setLabel("Ảnh nội dung"),
+        );
+        echo $form->row(
+            $form->editor('industrial_title')->setLabel("Tiêu đề"),
+            $form->repeater('industrial_des_item')->setLabel("Mô tả")->setFields([
+                $form->row(
+                        $form->editor('industrial_des_item_des')->setLabel("Mô tả"),                                
+                    )
+            ])
+        );
+        echo endBox();
+
+        echo beginBox("Bất động sản dân dụng",true);
+        echo $form->row(
+            $form->editor('residential_title')->setLabel("Tiêu đề"),
+            $form->repeater('residential_item')->setLabel("Mô tả")->setFields([
+                $form->row(
+                    $form->editor('residential_item_des')->setLabel("Mô tả"),                               
+                )
+            ]),
+            $form->text('residential_subtitle')->setLabel("Dự án tiêu biểu"),                                
+            $form->repeater('residential_des_item')->setLabel("Mô tả")->setFields([
+                $form->row(
+                    $form->text('residential_des_item_des')->setLabel("Tên dự án"),                                
+                )
+            ])
+        );
+        echo $form->repeater('residential_image_item')->setLabel("Ảnh nội dung")->setFields([
+            $form->image('residential_image_item_content')->setLabel("Ảnh nội dung"),
+        ]);
+        echo endBox();
+
+        echo beginBox("Thương mại Dịch vụ & Văn phòng cho thuê",true);
+        echo $form->row(
+            $form->image('economic_image')->setLabel("Ảnh nổi dung"),
+        );
+        echo $form->row(
+            $form->editor('economic_title')->setLabel("Tiêu đề"),
+            $form->repeater('economic_item')->setLabel("Mô tả")->setFields([
+                $form->row(
+                        $form->editor('economic_item_des')->setLabel("Mô tả"),                                
+                    )
+            ])
+        );
+        echo endBox();
+
+        echo beginBox("Nghỉ dưỡng & Khách sạn",true);
+        echo $form->row(
+            $form->editor('hotel_title')->setLabel("Tiêu đề"),
+            $form->repeater('hotel_des')->setLabel("Mô tả")->setFields([
+                $form->row(
+                        $form->text('hotel_des_subtitle')->setLabel("tiêu đề phụ"),           
+                        $form->repeater('hotel_des_item')->setLabel("Mô tả")->setFields([
+                            $form->row(
+                                    $form->editor('hotel_des_item_desdes')->setLabel("Mô tả"),                                
+                                )
+                        ])                     
+                    )
+            ])
+        );
+        echo $form->row(
+            $form->image('hotel_image')->setLabel("Ảnh nổi dung"),
+        );
+        echo endBox();
+
+        echo beginBox("TBS Logistics",true);
+        echo $form->row(
+            $form->image('logistics_logo')->setLabel("Ảnh logo"),
+            $form->editor('logistics_des')->setLabel("Mô tả")
+        );
+        echo $form->row(
+            $form->repeater('logistics_item')->setLabel("item")->setFields([
+                $form->row(
+                        $form->text('logistics_item_title')->setLabel("Tiêu đề"),                 
+                        $form->editor('logistics_item_des')->setLabel("Mô tả")                
+                )
+            ])
+        );
+        echo $form->image('logistics_image')->setLabel("Ảnh nổi dung");
+        echo $form->row(
+            $form->repeater('logistics_experiance_item')->setLabel("Kinh nghiệm")->setFields([
+                $form->row(
+                        $form->text('logistics_experiance_item_title')->setLabel("Tiêu đề"),                 
+                        $form->editor('logistics_experiance_item_des')->setLabel("Mô tả")                
+                )
+            ])
+        );
+        echo endBox();
+
+     }
+     else if($post->post_type == 'page' && basename(get_page_template())=="phat-trien.php"){
+         remove_post_type_support( 'page', 'editor' );
+
+
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->row(
+            $form->image('banner_image')->setLabel("Banner"),
+        );
+        echo $form->row(
+            $form->text('banner_title')->setLabel("Tiêu đề"),
+        );
+        echo endBox();
+
+        echo beginBox("Tầm nhìn",true);
+        echo $form->row(
+            $form->text('sight_title')->setLabel("Tiêu đề"),
+            $form->text('sight_des')->setLabel("Mô tả"),
+            $form->image('sight_image')->setLabel("Ảnh nội dung"),
+        );
+        echo endBox();
+
+        echo beginBox("Sức khỏe & An toàn lao động",true);
+        echo $form->editor('safe_title')->setLabel("Tiêu đề");
+        echo $form->row(
+            $form->repeater('safe_item')->setLabel("Mô tả")->setFields([
+                $form->row(
+                        $form->editor('safe_item_des')->setLabel("Mô tả"),                                
+                    )
+            ])
+        );
+        echo $form->image('safe_image')->setLabel("Ảnh nội dung");
+        echo endBox();
+
+        echo beginBox("Vì môi trường",true);
+        echo $form->editor('environment_title')->setLabel("Tiêu đề");
+        echo $form->image('environment_image')->setLabel("Ảnh nội dung");
+        echo $form->row(
+            $form->repeater('environment_item')->setLabel("Mô tả")->setFields([
+                $form->row(
+                        $form->editor('environment_item_des')->setLabel("Mô tả"),                                
+                    )
+            ])
+        );
+         echo $form->image('environment_image_logo')->setLabel("Ảnh logo");
+
+        echo endBox();
+
+        echo beginBox("Dự án xanh",true);
+        echo $form->repeater('project_item')->setLabel("Dự án")->setFields([
+            $form->image('project_item_image')->setLabel("Ảnh nội dung"),
+            $form->editor('project_item_title')->setLabel("Tiêu đề"),
+            $form->row(
+                $form->repeater('project_item_des')->setLabel("Mô tả")->setFields([
+                    $form->row(
+                            $form->editor('project_item_des_item')->setLabel("Mô tả"),                                
+                        )
+                ])
+            )
+        ]);
+
+        echo endBox();
+
+        echo beginBox("Trách nhiệm xã hội",true);
+        echo $form->editor('response_title')->setLabel("Tiêu đề");
+        echo $form->row(
+                $form->repeater('response_item_des')->setLabel("Mô tả")->setFields([
+                    $form->row(
+                        $form->editor('response_item_des_des')->setLabel("Mô tả"),                                
+                    )
+                ])
+                    );
+        echo $form->image('response_image')->setLabel("Ảnh nội dung");
+        echo $form->repeater('response_item')->setLabel("Trách nhiệm")->setFields([
+            $form->text('response_item_title')->setLabel("Tiêu đề"),
+            $form->editor('response_item_des')->setLabel("Mô tả"),                                
+        ]);
+
+        echo endBox();
+     }
 
     else if($post->post_type == 'page'){
         $form = tr_form();

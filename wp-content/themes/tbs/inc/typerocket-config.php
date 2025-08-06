@@ -33,7 +33,17 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo endBox();
 
     }
+ if($post->post_type == 'page' && basename(get_page_template())=="tin-tuc.php") {
+        remove_post_type_support( 'page', 'editor' );
 
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->image('news_banner_img')->setLabel("HÌnh ảnh banner");
+        echo $form->text('news_banner_txt')->setLabel("Tiêu đề");
+        echo endBox();
+
+
+    }
     else if($post->post_type == 'page' && basename(get_page_template())=="aboutus.php") {
         remove_post_type_support( 'page', 'editor' );
 

@@ -66,6 +66,89 @@ register_nav_menus( array(
 
 add_filter('next_posts_link_attributes', 'posts_link_attributes_next');
 add_filter('previous_posts_link_attributes', 'posts_link_attributes_prev');
+add_action('wp_ajax_load_related_posts', 'load_related_posts_callback');
+add_action('wp_ajax_nopriv_load_related_posts', 'load_related_posts_callback');
+
+function load_related_posts_callback() {
+    $post_id = intval($_GET['post_id']);
+    $paged = isset($_GET['page']) ? intval($_GET['page']) : 1;
+
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => 3,
+        'paged'          => $paged,
+        'post__not_in'   => array($post_id),
+    );
+
+    $query = new WP_Query($args);
+    $posts_html = '';
+    $pagination_html = '';
+
+    ob_start();
+    $i = 0;
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+            $i++;
+            $class = '';
+            if ($i == 2) $class = ' middle';
+            if ($i == 3) $class = ' desktop';
+            ?>
+            <a href="<?php the_permalink(); ?>" class="newsdetail_other_item<?php echo esc_attr($class); ?>">
+                <div class="newsdetail_other_item_img img_full">
+                    <?php if (has_post_thumbnail()) : the_post_thumbnail('medium');
+                    else : ?>
+                        <img src="<?= get_template_directory_uri(); ?>/img/news_content.webp" alt="">
+                    <?php endif; ?>
+                </div>
+                <div class="newsdetail_other_item_time txt_17"><?php echo get_the_date('d-m-Y'); ?></div>
+                <div class="newsdetail_other_item_txt">
+                    <div class="newsdetail_other_item_title txt_bold txt_18 txt_justify"><?php the_title(); ?></div>
+                    <div class="newsdetail_other_item_des txt_17 txt_justify"><?php echo wp_trim_words(get_the_excerpt(), 25); ?></div>
+                </div>
+                <div class="newsdetail_other_item_detail">
+                    <div class="newsdetail_other_item_detail_txt txt_17">Chi tiết</div>
+                    <div class="newsdetail_other_item_detail_img img_full">
+                        <img src="<?= get_template_directory_uri(); ?>/img/icon_next_detail.svg" alt="">
+                    </div>
+                </div>
+            </a>
+            <?php
+        endwhile;
+    endif;
+    wp_reset_postdata();
+    $posts_html = ob_get_clean();
+
+    // pagination
+    ob_start();
+    $total_pages = $query->max_num_pages;
+    if ($total_pages > 1) {
+        if ($paged > 1) {
+            echo '<a href="#" data-page="1" class="newsdetail_other_paging_prev2 active"><img src="' . get_template_directory_uri() . '/img/paging_prev2.svg" alt=""></a>';
+            echo '<a href="#" data-page="' . ($paged - 1) . '" class="newsdetail_other_paging_prev active"><img src="' . get_template_directory_uri() . '/img/paging_prev1.svg" alt=""></a>';
+        }
+
+        for ($i = 1; $i <= $total_pages; $i++) {
+            if ($i == $paged) {
+                echo '<a href="#" data-page="' . $i . '" class="newsdetail_other_paging_num txt_18 txt_bold active">' . $i . '</a>';
+            } elseif ($i <= 3 || $i == $total_pages || abs($i - $paged) <= 1) {
+                echo '<a href="#" data-page="' . $i . '" class="newsdetail_other_paging_num txt_18 txt_bold">' . $i . '</a>';
+            } elseif ($i == 4 || $i == $total_pages - 1) {
+                echo '<div class="newsdetail_other_paging_more txt_18 txt_bold">...</div>';
+            }
+        }
+
+        if ($paged < $total_pages) {
+            echo '<a href="#" data-page="' . ($paged + 1) . '" class="newsdetail_other_paging_next active"><img src="' . get_template_directory_uri() . '/img/paging_next1.svg" alt=""></a>';
+            echo '<a href="#" data-page="' . $total_pages . '" class="newsdetail_other_paging_next2 active"><img src="' . get_template_directory_uri() . '/img/paging_next2.svg" alt=""></a>';
+        }
+    }
+    $pagination_html = ob_get_clean();
+
+    wp_send_json(array(
+        'posts'     => $posts_html,
+        'pagination'=> $pagination_html,
+    ));
+}
 
 function posts_link_attributes_next() {
     return 'class="next"';

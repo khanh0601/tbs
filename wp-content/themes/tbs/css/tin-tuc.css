@@ -30,6 +30,15 @@
     text-decoration: none;
     color: #5C5C5C;
     position: relative;
+    &:hover {
+        color: #5C5C5C;
+        .news_content_item_img img {
+            transform: scale(1.15);
+        }
+        .news_content_item_detail {
+            transform: translateX(1rem);
+        }
+    }
 }
 .news_content_inner{
     grid-template-columns: repeat(3, 1fr);
@@ -42,6 +51,12 @@
 }
 .news_content_item_title{
     margin-bottom: 2.5rem;
+}
+.news_content_item_img {
+    overflow: hidden;
+    img {
+        transition: transform .4s ease;
+    }
 }
 .news_content_item_des{
     display: -webkit-box;
@@ -97,6 +112,7 @@
 .news_content_paging_more{
     color: #A6CE39;
     align-self: flex-end;
+    transition: transform .4s ease;
 }
 .news_content_item_time{
     position: absolute;
@@ -121,6 +137,7 @@
         background-color: #A6CE39;
         border-radius: .6rem;
         left: 3rem;
+        transition: transform .4s ease;
     }
     .news_content_item_detail_txt{
         color: #fff;

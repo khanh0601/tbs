@@ -23,10 +23,10 @@
 define('DB_NAME', 'tbstm_db');
 
 /** MySQL database username */
-define('DB_USER', 'tbstm_db');
+define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'HqytGjHQrt5UTgJGXxXc');
+define('DB_PASSWORD', 'khanhkhanh123');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');

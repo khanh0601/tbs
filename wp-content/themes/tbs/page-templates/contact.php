@@ -11,9 +11,6 @@
  */
 
 get_header();
-
-$pageID = $sectionId = get_queried_object_id();
-
 ?>
 
 <?php get_footer(); ?>

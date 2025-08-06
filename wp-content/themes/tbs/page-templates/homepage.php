@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/style.css?v=<?= SITE_VERSION ?>">
 <?php
 /**
  * Template Name: HomePage
@@ -9,7 +10,7 @@
  * @subpackage tbs
  * @since tbs 1.0
  */
-wp_enqueue_script('jquery', array(), SITE_VERSION, true);
+
 
   wp_enqueue_script('bootstrap_bundle', get_template_directory_uri() . '/plugin/bootstrap/js/bootstrap.bundle.min.js',array(),null,true);
   wp_enqueue_script('bootbox', get_template_directory_uri() . '/js/bootbox.min.js',array(),null,true);
@@ -36,7 +37,7 @@ wp_enqueue_script('jquery', array(), SITE_VERSION, true);
   wp_enqueue_script('plyr', get_template_directory_uri() . '/plugin/plyr/plyr.min.js',array(),null,true);
   wp_enqueue_script('nicescroll', get_template_directory_uri() . '/plugin/jquery.nicescroll/dist/jquery.nicescroll.min.js',array(),SITE_VERSION,true);
   wp_enqueue_script('inlineSVG', get_template_directory_uri() . '/js/inlineSVG.min.js',array(),SITE_VERSION,true);
-
+wp_enqueue_script('default', get_template_directory_uri() . '/js/default.js',array(),SITE_VERSION,true);
 get_header();
 
 

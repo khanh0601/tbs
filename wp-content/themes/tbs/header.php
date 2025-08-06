@@ -33,20 +33,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/style.css?v=<?= SITE_VERSION ?>">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
 
 <?php
   $currentLang = get_locale();
   $currentLang= explode("_",$currentLang)[0];
-  wp_enqueue_style( 'swiper', get_template_directory_uri() . '/plugin/swiper/swiper-bundle.min.css');
-  wp_enqueue_script('swiper', get_template_directory_uri() . '/plugin/swiper/swiper-bundle.min.js',array(),SITE_VERSION,true);
-  wp_enqueue_script('splitType', get_template_directory_uri() . '/js/split-type.js',array(),null,true);
-  wp_enqueue_script('default', get_template_directory_uri() . '/js/default.js',array(),SITE_VERSION,true);
-  if ( !is_page_template('page-homepage.php')){
-    wp_enqueue_style('global-style', get_template_directory_uri() . '/assets/css/global.css', [], filemtime(get_template_directory() . '/assets/css/non-homepage.css'), 'all');
-  }
+ 
 	wp_head();
 
 global $hotline; 

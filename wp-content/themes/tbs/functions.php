@@ -16,7 +16,19 @@ add_image_size( 'post-default', 900, 480, true ); // 480 pixels wide by 370 pixe
 
 
 add_action('init','theme_widgets_init');
+function theme_enqueue_assets() {
+  wp_enqueue_script('jquery-cus', "https://code.jquery.com/jquery-3.7.1.min.js", [], null, true);
+  wp_enqueue_style('swiper', get_template_directory_uri() . '/plugin/swiper/swiper-bundle.min.css');
+  wp_enqueue_script('swiper', get_template_directory_uri() . '/plugin/swiper/swiper-bundle.min.js', [], null, true);
+  wp_enqueue_script('split-type', get_template_directory_uri() . '/js/split-type.js', [], null, true);
+  wp_enqueue_script('global-js', get_template_directory_uri() . '/js/global.js', array('jquery-cus'), SITE_VERSION, true);
 
+  if (!is_page_template('page-homepage.php')) {
+    wp_enqueue_style('global-style', get_template_directory_uri() . '/css/global.css', [], SITE_VERSION);
+  }
+  
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 /**
  * Register widget area.
  *

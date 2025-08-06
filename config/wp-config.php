@@ -79,7 +79,7 @@ $table_prefix  = 'wp_tbcutoms_';
 //define('WP_DEBUG', false);
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
-define( 'WP_DEBUG_DISPLAY', false );
+define( 'WP_DEBUG_DISPLAY', true );
 @ini_set( 'display_errors', 0 );
 
 set_time_limit(300);

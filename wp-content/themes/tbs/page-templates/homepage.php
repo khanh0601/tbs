@@ -11,10 +11,9 @@
  * @since tbs 1.0
  */
 
-
+ 
   wp_enqueue_script('bootstrap_bundle', get_template_directory_uri() . '/plugin/bootstrap/js/bootstrap.bundle.min.js',array(),null,true);
   wp_enqueue_script('bootbox', get_template_directory_uri() . '/js/bootbox.min.js',array(),null,true);
-  
   wp_enqueue_style( 'bootstrapvalidator', get_template_directory_uri() . '/plugin/bootstrapvalidator/bootstrapValidator.min.css' );
   wp_enqueue_script('formValidation', get_template_directory_uri() . '/plugin/bootstrapvalidator/formValidation.min.js',array(),null,true);
   wp_enqueue_script('bootstrapvalidator', get_template_directory_uri() . '/plugin/bootstrapvalidator/bootstrap.min.js',array(),null,true);

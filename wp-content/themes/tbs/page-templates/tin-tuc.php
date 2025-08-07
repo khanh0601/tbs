@@ -13,8 +13,6 @@
 get_header();
 wp_enqueue_style('tin-tuc', get_template_directory_uri() . '/css/tin-tuc.css', [], SITE_VERSION, 'all');
 $pageID = get_queried_object_id();
-$pageID = get_queried_object_id(); // Lấy ID của trang hiện tại
-
 $banner_image = wp_get_attachment_url(tr_posts_field('news_banner_img', $pageID));
 $banner_title = tr_posts_field('news_banner_txt', $pageID);
 ?>

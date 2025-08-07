@@ -160,6 +160,9 @@ h1, h2{
 .txt_uppercase{
   text-transform: uppercase;
 }
+#header, .footer, .overlay-menu  {
+  display: none !important;
+}
 @media only screen and (max-width: 991px){
   .desktop{
     display: none !important;

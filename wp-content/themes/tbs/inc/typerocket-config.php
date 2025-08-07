@@ -462,6 +462,86 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
 
      }
+     else if($post->post_type == 'page' && basename(get_page_template())=="aboutus.php"){
+        remove_post_type_support( 'page', 'editor' );
+
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->image('banner_image')->setLabel("Hình banner");
+        echo $form->text('banner_subtitle1')->setLabel("Tiêu đề phụ");
+        echo $form->text('banner_title')->setLabel("Tiêu đề");
+        echo $form->text('banner_subtitle2')->setLabel("Tiêu đề phụ");
+        echo $form->text('banner_des')->setLabel("Mô tả");
+        echo endBox();
+
+        echo beginBox("Giới thiệu",true);
+        echo $form->image('intro_image')->setLabel("Hình ảnh");
+        echo $form->editor  ('intro_des')->setLabel("Mô tả");
+        echo endBox();
+
+         echo beginBox("Tầm Nhìn",true);
+        echo $form->image('sight_image')->setLabel("Hình ảnh");
+        echo $form->text('sight_title')->setLabel("Tiêu đề");
+        echo $form->editor  ('sight_des')->setLabel("Mô tả");
+        echo endBox();
+
+        echo beginBox("Sứ mệnh",true);
+        echo $form->image('assign_image')->setLabel("Hình ảnh");
+        echo $form->text('assign_title')->setLabel("Tiêu đề");
+        echo $form->editor  ('assign_des')->setLabel("Mô tả");
+        echo endBox();
+
+         echo beginBox("Giá trị cốt lõi",true);
+        echo $form->image('value_image')->setLabel("Hình ảnh");
+        echo $form->text('value_title')->setLabel("Tiêu đề");
+        echo $form->text('value_subtitle')->setLabel("Tiêu đề phụ");
+         echo $form->row(
+             $form->repeater('value_item')->setLabel("Item Value")->setFields([
+                $form->text('value_item_title')->setLabel("Tiêu đề"),
+                $form->editor('value_item_des')->setLabel("Mô tả"),                                
+            ])
+        );
+        echo $form->editor('value_des')->setLabel("Mô tả");
+        echo endBox();
+
+        echo beginBox("Lịch sử hình thành",true);
+        echo $form->text('history_title')->setLabel("Tiêu đề");
+        echo $form->editor('history_des')->setLabel("Mô tả");
+        echo $form->text('history_subtitle')->setLabel("Tiêu đề phụ");
+        echo $form->row(
+            $form->repeater('history_item')->setLabel("Item History")->setFields([
+                $form->text('history_item_year')->setLabel("Năm"),
+                $form->image('history_item_image')->setLabel("Hình ảnh"),
+                $form->text('history_item_des')->setLabel("Mô tả"),                                
+                ])
+            );
+        echo $form->image('history_image')->setLabel("Hình ảnh");
+        echo endBox();
+
+        echo beginBox("Câu chuyện hình thành",true);
+        echo $form->text('story_title')->setLabel("Tiêu đề");
+        echo $form->text('story_subtitle')->setLabel("Tiêu đề phụ");
+        echo $form->row(
+            $form->repeater('story_item')->setLabel("Item Story")->setFields([
+                $form->editor('story_item_des')->setLabel("Nội dung"),                                
+                $form->image('story_item_image')->setLabel("Hình ảnh"),
+                ])
+            );
+        echo endBox();
+
+        echo beginBox("Thành tựu",true);
+        echo $form->text('achieve_title')->setLabel("Tiêu đề");
+        echo $form->text('achieve_subtitle')->setLabel("Mô tả");
+        echo $form->row(
+            $form->repeater('achieve_item')->setLabel("Item achieve")->setFields([
+                $form->editor('achieve_item_des')->setLabel("Nội dung"),                                
+                $form->image('achieve_item_image')->setLabel("Hình ảnh"),
+                ])
+            );
+        echo endBox();
+
+
+     }
     else if($post->post_type == 'page'){
         $form = tr_form();
         echo beginBox("Banner Chính",true);

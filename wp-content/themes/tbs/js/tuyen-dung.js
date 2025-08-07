@@ -45,3 +45,28 @@ function recruitActive(){
   
 }
 recruitActive();
+
+function recruitForm(){
+   $(".recruit_resreach_list_card_item_link").on("click", function (e) {
+    e.stopPropagation();
+    $(".recruit__opportunity__form").addClass("active");
+  });
+$(".recruit__opportunity__form__close").on("click", function (e) {
+    e.stopPropagation();
+    $(".recruit__opportunity__form").removeClass("active");
+  });
+  // Ngăn không đóng khi click trong form
+  $(".recruit__opportunity__form__inner").on("click", function (e) {
+    e.stopPropagation();
+  });
+
+  // Click bên ngoài form => ẩn
+  $(document).on("click", function (e) {
+    // Nếu click KHÔNG nằm trong .recruit__opportunity__form__inner
+    if (!e.target.closest(".recruit__opportunity__form__inner")) {
+      $(".recruit__opportunity__form").removeClass("active");
+    }
+  });
+  }
+  
+  recruitForm()

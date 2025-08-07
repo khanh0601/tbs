@@ -397,7 +397,71 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
         echo endBox();
      }
+     else if($post->post_type == 'page' && basename(get_page_template())=="tuyen-dung.php"){
+         remove_post_type_support( 'page', 'editor' );
 
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->image('banner_image')->setLabel("Hình banner");
+        echo $form->image('banner_image_mobile')->setLabel("Hình banner");
+        echo $form->text('banner_title')->setLabel("Tiêu đề");
+        echo endBox();
+
+        echo beginBox("Văn hóa doanh nghiệp",true);
+        echo $form->text('culture_title')->setLabel("Tiêu đề");
+        echo $form->editor('culture_des')->setLabel("Nội dung");
+        echo $form->image('culture_image')->setLabel("Hình ảnh");
+        echo endBox();
+
+        echo beginBox("Hoạt động của TSB Group",true);
+        echo $form->text('active_title')->setLabel("Tiêu đề");
+         echo $form->row(
+                $form->repeater('active_item')->setLabel("Các hoạt động")->setFields([
+                     $form->image('active_item_image')->setLabel("Hình ảnh"),
+                     $form->text('active_item_caption')->setLabel("Tiêu đề"),
+                ])
+            );
+        echo endBox();
+
+        echo beginBox("lý do chọn TSB Group",true);
+        echo $form->text('reason_title')->setLabel("Tiêu đề");
+         echo $form->row(
+                $form->repeater('reason_item')->setLabel("Các lý do")->setFields([
+                     $form->text('reason_item_title')->setLabel("Tiêu đề"),
+                     $form->editor('reason_item_des')->setLabel("Nội dung"),
+                     $form->image('reason_item_image')->setLabel("Hình ảnh"),
+                ])
+            );
+        echo endBox();
+
+
+     }
+     else if($post->post_type == 'page' && basename(get_page_template())=="contact.php"){
+         remove_post_type_support( 'page', 'editor' );
+
+        $form = tr_form();
+        echo beginBox("Banner Chính",true);
+        echo $form->image('banner_image')->setLabel("Hình banner");
+        echo $form->text('banner_title')->setLabel("Tiêu đề");
+        echo endBox();
+
+        echo beginBox("Bản đồ",true);
+        echo $form->text('ggmap_link')->setLabel("link địa chỉ google map");
+        echo $form->text('ggmap_title')->setLabel("Tiêu đề");
+        echo $form->editor('ggmap_content')->setLabel("Nội dung");
+        echo endBox();
+
+        echo beginBox("Form liên hệ",true);
+        echo $form->text('form_title')->setLabel("Tiêu đề");
+        echo $form->text('form_name')->setLabel("Label fiel họ tên");
+        echo $form->text('form_email')->setLabel("Label fiel email");
+        echo $form->text('form_tel')->setLabel("Label fiel số điện thoại");
+        echo $form->text('form_des')->setLabel("Label fiel nội dung");
+        echo $form->text('form_submit')->setLabel("Label fiel button");
+        echo endBox();
+
+
+     }
     else if($post->post_type == 'page'){
         $form = tr_form();
         echo beginBox("Banner Chính",true);

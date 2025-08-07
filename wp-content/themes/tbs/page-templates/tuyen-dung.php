@@ -13,6 +13,27 @@
 get_header();
 wp_enqueue_style('tuyen-dung', get_template_directory_uri() . '/css/tuyen-dung.css', [], SITE_VERSION, 'all');
 $pageID = get_queried_object_id();
+
+
+$pageID = get_queried_object_id();
+
+// === Banner Chính ===
+$banner_image = wp_get_attachment_url(tr_posts_field('banner_image', $pageID));
+$banner_image_mobile = wp_get_attachment_url(tr_posts_field('banner_image_mobile', $pageID));
+$banner_title = tr_posts_field('banner_title', $pageID);
+
+// === Văn hóa doanh nghiệp ===
+$culture_title = tr_posts_field('culture_title', $pageID);
+$culture_des = tr_posts_field('culture_des', $pageID);
+$culture_image = wp_get_attachment_url(tr_posts_field('culture_image', $pageID));
+
+// === Hoạt động của TSB Group ===
+$active_title = tr_posts_field('active_title', $pageID);
+$active_item = tr_posts_field('active_item', $pageID); // Mỗi item: ['active_item_image', 'active_item_caption']
+
+// === Lý do chọn TSB Group ===
+$reason_title = tr_posts_field('reason_title', $pageID);
+$reason_item = tr_posts_field('reason_item', $pageID); 
 ?>
    <svg width="0" height="0" viewBox="0 0 20 20" class="svg_bg"  >
         <defs>
@@ -32,10 +53,10 @@ $pageID = get_queried_object_id();
       </svg>
     <section class="recruit_hero">
         <div class="recruit_hero_img img_full">
-            <img class="middle" src="<?= get_template_directory_uri(); ?>/img/recruit-hero.webp" alt="">
-            <img class="mobile" src="<?= get_template_directory_uri(); ?>/img/recruit-hero-mobile.png" alt="">
+            <img class="middle" src="<?php echo $banner_image ?>" alt="">
+            <img class="middle" src="<?php echo $banner_image_mobile ?>" alt="">
         </div>
-        <div class="recruit_hero_txt txt_uppercase txt_55">TUYỂN DỤNG</div>
+        <div class="recruit_hero_txt txt_uppercase txt_55"><?= wp_kses_post($banner_title) ?></div>
     </section>
     <section class="recruit_resreach">
         <div class="kl_container">
@@ -78,7 +99,12 @@ $pageID = get_queried_object_id();
                             <a href="#" class="recruit_resreach_list_card_item_link" >
                                 <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
                                 <div class="recruit_resreach_list_card_item_link_img img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_next.svg" alt="">
+                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
+                                            fill="#014129" />
+                                    </svg>
                                 </div>
                             </a>
 
@@ -96,7 +122,12 @@ $pageID = get_queried_object_id();
                             <a href="#" class="recruit_resreach_list_card_item_link" >
                                 <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
                                 <div class="recruit_resreach_list_card_item_link_img img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_next.svg" alt="">
+                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
+                                            fill="#014129" />
+                                    </svg>
                                 </div>
                             </a>
 
@@ -114,7 +145,12 @@ $pageID = get_queried_object_id();
                             <a href="#" class="recruit_resreach_list_card_item_link" >
                                 <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
                                 <div class="recruit_resreach_list_card_item_link_img img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_next.svg" alt="">
+                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
+                                            fill="#014129" />
+                                    </svg>
                                 </div>
                             </a>
 
@@ -132,7 +168,12 @@ $pageID = get_queried_object_id();
                             <a href="#" class="recruit_resreach_list_card_item_link" >
                                 <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
                                 <div class="recruit_resreach_list_card_item_link_img img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_next.svg" alt="">
+                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
+                                            fill="#014129" />
+                                    </svg>
                                 </div>
                             </a>
 
@@ -148,112 +189,96 @@ $pageID = get_queried_object_id();
                     </div>
                 </div>
             </div>
+            <div class="recruit__opportunity__form">
+                <div class="recruit__opportunity__form__inner">
+                    <div class="recruit__opportunity__form__close">x</div>
+                    <div class="recruit__opportunity__form__wrap">
+                    <div class="recruit__opportunity__form__title txt_30">Nộp hồ sơ ứng tuyển</div>
+                    <div class="recruit__opportunity__form__input">
+                        <div class="recruit__opportunity__form__input__left">
+                            <input type="text" placeholder="Họ và tên" required />
+                            <input type="email" placeholder="Email" required />
+                            <input type="tel" placeholder="Số điện thoại" required />
+                        </div>
+                        <div class="recruit__opportunity__form__input__right">
+                        <textarea placeholder="Ghi chú"></textarea>
+                        <div class="recruit__opportunity__form__input__right__select">
+                            <select required>
+                            <option disabled selected>Vị trí ứng tuyển</option>
+                            <option>Nhân viên hành chính</option>
+                            <option>Chuyên viên nhân sự</option>
+                            </select>
+                            <div class="recruit__opportunity__form__input__right__selecticon img_full">
+                                <img src="<?= get_template_directory_uri(); ?>/img/icon_down.svg" alt="">
+                            </div>
+
+                        </div>
+                        </div>
+                        <div class="recruit__opportunity__form__input__cv">
+                        <input type="file" name="file-cv" id="file" />
+                        <label for="file">Gửi Kèm CV</label>
+                        <span class="upload-icon img_full">
+                            <img src="<?= get_template_directory_uri(); ?>/img/icon-attach.svg" alt="">
+                        </span>
+                        </div>
+                        
+                    </div>
+                    <button class="recruit__opportunity__form__submit txt_18" type="submit"><span>ĐĂNG KÝ</span></button>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <section class="recruit_culture">
         <div class="kl_container">
             <div class="recruit_culture_inner kl_grid">
                 <div class="recruit_culture_info">
-                    <div class="recruit_culture_info_title txt_uppercase heading txt_55">Văn hóa Doanh nghiệp</div>
-                    <div class="recruit_culture_info_des txt_17 txt_justify">Văn hóa doanh nghiệp của TBS Group được xây dựng trên nền tảng giá trị cốt lõi. Tại TBS Group, chúng tôi khuyến khích sự sáng tạo và tinh thần chủ động trong mọi công việc, đồng thời luôn cam kết trách nhiệm với nhân viên, đối tác và cộng đồng. Tinh thần hợp tác và chia sẻ là yếu tố then chốt để xây dựng môi trường làm việc gắn kết, nơi mỗi cá nhân đều được phát huy tối đa năng lực của mình. Đặc biệt, TBS Group đặt mục tiêu phát triển bền vững làm kim chỉ nam, không chỉ trong hoạt động kinh doanh mà còn trong việc xây dựng văn hóa doanh nghiệp – nơi hội tụ sự tôn trọng, minh bạch và không ngừng hướng đến những giá trị tốt đẹp cho xã hội.</div>
+                    <div class="recruit_culture_info_title txt_uppercase heading txt_55"><?= wp_kses_post($culture_title) ?></div>
+                    <div class="recruit_culture_info_des txt_17 txt_justify"></div><?= wp_kses_post($culture_des) ?>
                 </div>
                 <div class="recruit_culture_img img_full right_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit1.webp" alt="">
+                    <img src="<?php echo $culture_image ?>" alt="">
                 </div>
             </div>
         </div>
     </section>
     <section class="recruit_active bg_line">
         <div class="kl_container">
-            <div class="recruit_active_title txt_35 heading txt_uppercase txt_center">Một số hình ảnh hoạt động của TBS Group</div>
+            <div class="recruit_active_title txt_35 heading txt_uppercase txt_center"><?= wp_kses_post($active_title) ?></div>
             <div class="recruit_active_inner">
                 <div class="recruit_active_list kl_grid">
+                    <?php if (!empty($active_item)) : ?>
+                    <?php foreach ($active_item as $item): ?>
                     <div class="recruit_active_list_item">
                         <div class="recruit_active_list_item_img img_full">
-                            <img src="<?= get_template_directory_uri(); ?>/img/recruit2.webp" alt="">
+                            <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="">
                         </div>
-                        <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading">Tặng học bổng cho con em CBCNV</div>
+                        <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading"><?= esc_html($item['active_item_caption']) ?></div>
                     </div>
-                    <div class="recruit_active_list_item">
-                        <div class="recruit_active_list_item_img img_full">
-                            <img src="<?= get_template_directory_uri(); ?>/img/recruit3.webp" alt="">
-                        </div>
-                        <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading">Ngày Phụ nữ Việt Nam 20/10</div>
-                    </div>
-                    <div class="recruit_active_list_item">
-                        <div class="recruit_active_list_item_img img_full">
-                            <img src="<?= get_template_directory_uri(); ?>/img/recruit4.webp" alt="">
-                        </div>
-                        <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading">Ngày Quốc tế Phụ nữ 8/3</div>
-                    </div>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </section>
     <section class="recruit_content">
         <div class="kl_container">
-            <div class="recruit_content_title txt_uppercase txt_center heading txt_55">Vì sao bạn nên chọn TBSGroup?</div>
-            <div class="recruit_content_item kl_grid">
-                <div class="recruit_content_item_info left">
-                    <div class="recruit_content_item_info_title heading txt_28 txt_uppercase">1. Triết lý nhân văn</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify"> <span class="txt_bold">Tin tưởng:</span> Chúng tôi luôn đặt niềm tin vào các tài năng, tôn trọng khác biệt, đề cao ý chí cầu tiến và tinh thần đồng đội.</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify"> <span class="txt_bold">Trợ lực:</span> Chúng tôi luôn ủng hộ đam mê và hỗ trợ các tài năng đó phát triển hòa theo sự phát triển của Tập đoàn.</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify"> <span class="txt_bold">Tự chủ:</span> Chúng tôi tạo ra môi trường năng động để mỗi cá nhân có thể phát triển bản thân tài năng cả về tâm và tầm.</div>
+            <div class="recruit_content_title txt_uppercase txt_center heading txt_55"><?= wp_kses_post($reason_title) ?></div>
+            <div class="recruit_content_item_wrap">
+                <?php if (!empty($reason_item)) : ?>
+                <?php foreach ($reason_item as $item): ?>
+                <div class="recruit_content_item kl_grid">
+                    <div class="recruit_content_item_info left">
+                        <div class="recruit_content_item_info_title heading txt_28 txt_uppercase"><?= esc_html($item['reason_item_title']) ?></div>
+                        <div class="recruit_content_item_info_des txt_17 txt_justify"> <?= esc_html($item['reason_item_des']) ?></div>
+                    </div>
+                    <div class="recruit_content_item_img right img_full">
+                        <img src="<?= esc_url(wp_get_attachment_url($item['reason_item_image'])) ?>" alt="">
+                    </div>
+                    
                 </div>
-                <div class="recruit_content_item_img right img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit5.webp" alt="">
-                </div>
-                
-            </div>
-            <div class="recruit_content_item kl_grid">
-                <div class="recruit_content_item_img left img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit6.webp" alt="">
-                </div>
-                <div class="recruit_content_item_info right">
-                    <div class="recruit_content_item_info_title heading txt_28 txt_uppercase">2.  Lộ trình thăng tiến rõ ràng</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify">TBS Group cam kết mang đến cho bạn một lộ trình phát triển sự nghiệp minh bạch và cụ thể. Chúng tôi luôn tạo điều kiện để bạn phát triển kỹ năng, nâng cao năng lực và đạt được những cột mốc quan trọng trong sự nghiệp.</div>
-                </div>
-                
-            </div>
-             <div class="recruit_content_item kl_grid">
-                <div class="recruit_content_item_info left">
-                    <div class="recruit_content_item_info_title heading txt_28 txt_uppercase">3. Chính sách lương, thưởng cạnh tranh</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify"> <span class="txt_bold">Chính sách lương, thưởng của TBS Group được đánh giá là cạnh tranh với thị trường và tương xứng với hiệu quả làm việc. Mỗi vị trí chức danh và nhóm nghề được quy định vai trò, chức năng, nhiệm vụ cụ thể và phân công rõ ràng nhằm đảm bảo đánh giá hiệu quả chính xác và ghi nhận xứng đáng.</div>
-                </div>
-                <div class="recruit_content_item_img right img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit7.webp" alt="">
-                </div>
-                
-            </div>
-            <div class="recruit_content_item kl_grid">
-                <div class="recruit_content_item_img left img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit8.webp" alt="">
-                </div>
-                <div class="recruit_content_item_info right">
-                    <div class="recruit_content_item_info_title heading txt_28 txt_uppercase">4. Chương trình đào tạo chuyên sâu</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify">Đào tạo và phát triển nhân viên là một trong những ưu tiên hàng đầu của chúng tôi. TBS Group thường xuyên hợp tác với các trường Đại học nhằm tổ chức các lớp đào tạo kỹ năng, chuyên môn và hướng đến lộ trình phát triển nghề nghiệp cho từng vị trí.</div>
-                </div>
-                
-            </div>
-             <div class="recruit_content_item kl_grid">
-                <div class="recruit_content_item_info left">
-                    <div class="recruit_content_item_info_title heading txt_28 txt_uppercase">5. Môi trường làm việc chuyên nghiệp</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify"> <span class="txt_bold">TBS Group tự hào về môi trường làm việc thân thiện, chuyên nghiệp, nơi bạn có thể học hỏi và phát triển trong một không gian đầy sáng tạo và năng động. Văn hóa doanh nghiệp của chúng tôi đề cao sự hợp tác, tôn trọng, đoàn kết, khách quan chia sẻ và cùng phát triển. </div>
-                </div>
-                <div class="recruit_content_item_img right img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit9.webp" alt="">
-                </div>
-                
-            </div>
-            <div class="recruit_content_item kl_grid">
-                <div class="recruit_content_item_img left img_full">
-                    <img src="<?= get_template_directory_uri(); ?>/img/recruit10.webp" alt="">
-                </div>
-                <div class="recruit_content_item_info right">
-                    <div class="recruit_content_item_info_title heading txt_28 txt_uppercase">6. Phúc lợi hấp dẫn</div>
-                    <div class="recruit_content_item_info_des txt_17 txt_justify">Ngoài các chính sách lương, thưởng cạnh tranh, TBSGroup còn dành nhiều phúc lợi cho nhân viên nhờ hệ sinh thái đa dạng của chủ đầu tư như: mua nhà với giá ưu đãi, hỗ trợ thuê nhà giá thấp cho công nhân, hỗ trợ xe đưa rước hàng ngày, trợ cấp ăn trưa...</div>
-                </div>
-                
+                <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>

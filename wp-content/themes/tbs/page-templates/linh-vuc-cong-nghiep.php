@@ -85,7 +85,7 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
                   <img src="<?= esc_url(wp_get_attachment_url($item['factory_img'])) ?>" alt="" />
                 </div>
                 <div class="industrial_intro_slide_item_txt txt_20">
-                  <?= esc_html($item['factory_title']) ?>
+                  <?= $item['factory_title'] ?>
                 </div>
               </div>
                <?php endforeach; ?>
@@ -118,10 +118,10 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
           <?php if (!empty($product_text_items)) : ?>
                 <?php foreach ($product_text_items as $item): ?>
             <div class="industrial_product_info_title heading txt_35">
-              <?= esc_html($item['product_subtitle']) ?>
+              <?= $item['product_subtitle'] ?>
             </div>
             <div class="industrial_product_info_des txt_17">
-              <?= esc_html($item['product_des']) ?>
+              <?= $item['product_des'] ?>
             </div>
              <?php endforeach; ?>
               <?php endif; ?>
@@ -137,10 +137,10 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
           <?php if (!empty($product2_text_items)) : ?>
                 <?php foreach ($product2_text_items as $item): ?>
             <div class="industrial_product_info_title heading txt_35">
-              <?= esc_html($item['product2_subtitle']) ?>
+              <?= $item['product2_subtitle'] ?>
             </div>
             <div class="industrial_product_info_des txt_17">
-               <?= esc_html($item['product2_des']) ?>
+               <?= $item['product2_des'] ?>
             </div>
             <?php endforeach; ?>
               <?php endif; ?>
@@ -160,10 +160,10 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
                 <?php foreach ($figure_items as $item): ?>
               <div class="industrial_figure_slide_item swiper-slide">
                 <div class="industrial_figure_slide_item_title txt_center heading tx txt_55">
-                  <?= esc_html($item['figure_title']) ?>
+                  <?= $item['figure_title'] ?>
                 </div>
                 <div class="industrial_figure_slide_item_des txt_center txt_20">
-                  <?= esc_html($item['figure_des']) ?>
+                  <?= $item['figure_des'] ?>
                 </div>
               </div>
                <?php endforeach; ?>
@@ -200,13 +200,13 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
             </div>
           </div>
           <div class="industrial_location_left_content_wrap">
-            <?php if (!empty($figure_items)) : ?>
-                <?php foreach ($figure_items as $item): ?>
+            <?php if (!empty($location_item)) : ?>
+                <?php foreach ($location_item as $item): ?>
             <div class="industrial_location_left_content">
-              <div class="industrial_location_left_content_percent border1 title1 txt_40 heading"> <?= esc_html($item['location_item1_percent']) ?><span class="txt_30">%</span></div>
+              <div class="industrial_location_left_content_percent border1 title1 txt_40 heading"> <?= $item['location_item1_percent'] ?><span class="txt_30">%</span></div>
               <div class="industrial_location_left_content_inner">
-                <div class="industrial_location_left_content_title heading txt_25 title1"> <?= esc_html($item['location_item1_title']) ?></div>
-                <div class="industrial_location_left_content_des txt_17"> <?= esc_html($item['location_item1_des']) ?></div>
+                <div class="industrial_location_left_content_title heading txt_25 title1"> <?= $item['location_item1_title'] ?></div>
+                <div class="industrial_location_left_content_des txt_17"> <?= $item['location_item1_des'] ?></div>
               </div>
             </div>
             <?php endforeach; ?>
@@ -229,7 +229,7 @@ $location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location
                   <div class="industrial_location_right_officer_content_item_img img_full">
                     <img src="<?php echo $location_map_icon ?>" alt="">
                   </div>
-                  <div class="industrial_location_right_officer_content_item_txt heading txt_25"> <?= esc_html($item['location_map_item_name']) ?></div>
+                  <div class="industrial_location_right_officer_content_item_txt heading txt_25"> <?= $item['location_map_item_name'] ?></div>
                 </div>
                  <?php endforeach; ?>
               <?php endif; ?>

@@ -253,7 +253,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                         <div class="recruit_active_list_item_img img_full">
                             <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="">
                         </div>
-                        <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading"><?= esc_html($item['active_item_caption']) ?></div>
+                        <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading"><?= $item['active_item_caption'] ?></div>
                     </div>
                     <?php endforeach; ?>
                     <?php endif; ?>
@@ -269,8 +269,8 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                 <?php foreach ($reason_item as $item): ?>
                 <div class="recruit_content_item kl_grid">
                     <div class="recruit_content_item_info left">
-                        <div class="recruit_content_item_info_title heading txt_28 txt_uppercase"><?= esc_html($item['reason_item_title']) ?></div>
-                        <div class="recruit_content_item_info_des txt_17 txt_justify"> <?= esc_html($item['reason_item_des']) ?></div>
+                        <div class="recruit_content_item_info_title heading txt_28 txt_uppercase"><?= $item['reason_item_title'] ?></div>
+                        <div class="recruit_content_item_info_des txt_17 txt_justify"> <?= $item['reason_item_des'] ?></div>
                     </div>
                     <div class="recruit_content_item_img right img_full">
                         <img src="<?= esc_url(wp_get_attachment_url($item['reason_item_image'])) ?>" alt="">

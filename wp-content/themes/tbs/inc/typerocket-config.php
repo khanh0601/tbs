@@ -44,39 +44,6 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
 
     }
-    else if($post->post_type == 'page' && basename(get_page_template())=="aboutus.php") {
-        remove_post_type_support( 'page', 'editor' );
-
-
-        $form = tr_form();
-        echo beginBox("Banner Chính",true);
-        echo $form->row(
-            $form->image('banner_image')->setLabel("Banner"),
-            $form->image('banner_image_mobile')->setLabel("Banner Mobile")
-        );
-        echo $form->row(
-            $form->text('banner_title')->setLabel("Tiêu đề"),
-            $form->textarea('banner_content')->setLabel("Nội dung")
-        );
-        echo endBox();
-
-        echo beginBox("Tổng quan",true);
-        echo $form->row(
-            $form->image('oveview_bg')->setLabel("Hình ảnh")
-        );
-        echo $form->repeater('oveview_items')->setLabel("Nội dung")->setFields([
-            $form->repeater('group')->setLabel("")->setFields([
-                $form->row(
-                        $form->text('title')->setLabel("Tiêu đề"),
-                        $form->text('content')->setLabel("Mô tả"),
-                        $form->checkbox('highlight')->setLabel("Nổi bật")
-                    )
-            ])
-        ]);
-        echo endBox();
-
-
-    }
 
 
     else if($post->post_type == 'page' && basename(get_page_template())=="thanks.php") {
@@ -187,7 +154,7 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
                 echo $form->row(
                         $form->image('location_map_image')->setLabel("ảnh bản đồ"),
                         $form->text('location_map_title')->setLabel("Tiêu đề"),
-                        $form->text('location_map_icon')->setLabel("Icon Location"),
+                        $form->image('location_map_icon')->setLabel("Icon Location"),
                          $form->repeater('location_map_item')->setLabel("Quốc gia")->setFields([
                             $form->row(
                                 $form->text('location_map_item_name')->setLabel("Tên quốc gia"),                                
@@ -241,12 +208,14 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo beginBox("Bất động sản dân dụng",true);
         echo $form->row(
             $form->editor('residential_title')->setLabel("Tiêu đề"),
-            $form->repeater('residential_item')->setLabel("Mô tả")->setFields([
-                $form->row(
-                    $form->editor('residential_item_des')->setLabel("Mô tả"),                               
-                )
-            ]),
+        );
+        echo $form->row(
+            $form->editor('residential_item_des')->setLabel("Mô tả"),                               
+        );
+        echo $form->row(
             $form->text('residential_subtitle')->setLabel("Dự án tiêu biểu"),                                
+        );
+        echo $form->row(
             $form->repeater('residential_des_item')->setLabel("Mô tả")->setFields([
                 $form->row(
                     $form->text('residential_des_item_des')->setLabel("Tên dự án"),                                
@@ -264,11 +233,7 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         );
         echo $form->row(
             $form->editor('economic_title')->setLabel("Tiêu đề"),
-            $form->repeater('economic_item')->setLabel("Mô tả")->setFields([
-                $form->row(
-                        $form->editor('economic_item_des')->setLabel("Mô tả"),                                
-                    )
-            ])
+            $form->editor('economic_des')->setLabel("Mô tả"),                                
         );
         echo endBox();
 
@@ -278,12 +243,8 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
             $form->repeater('hotel_des')->setLabel("Mô tả")->setFields([
                 $form->row(
                         $form->text('hotel_des_subtitle')->setLabel("tiêu đề phụ"),           
-                        $form->repeater('hotel_des_item')->setLabel("Mô tả")->setFields([
-                            $form->row(
-                                    $form->editor('hotel_des_item_des')->setLabel("Mô tả"),                                
-                                )
-                        ])                     
-                    )
+                        $form->editor('hotel_des_item_des')->setLabel("Mô tả"),                                
+                )
             ])
         );
         echo $form->repeater('hotel_image_item')->setLabel("Ảnh nội dung")->setFields([
@@ -370,11 +331,7 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
             $form->image('project_item_image')->setLabel("Ảnh nội dung"),
             $form->editor('project_item_title')->setLabel("Tiêu đề"),
             $form->row(
-                $form->repeater('project_item_des')->setLabel("Mô tả")->setFields([
-                    $form->row(
-                            $form->editor('project_item_des_item')->setLabel("Mô tả"),                                
-                        )
-                ])
+                $form->editor('project_item_des')->setLabel("Mô tả"),                                
             )
         ]);
 
@@ -492,11 +449,11 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo endBox();
 
          echo beginBox("Giá trị cốt lõi",true);
-        echo $form->image('value_image')->setLabel("Hình ảnh");
         echo $form->text('value_title')->setLabel("Tiêu đề");
         echo $form->text('value_subtitle')->setLabel("Tiêu đề phụ");
          echo $form->row(
              $form->repeater('value_item')->setLabel("Item Value")->setFields([
+                $form->image('value_item_image')->setLabel("Hình ảnh"),
                 $form->text('value_item_title')->setLabel("Tiêu đề"),
                 $form->editor('value_item_des')->setLabel("Mô tả"),                                
             ])
@@ -525,6 +482,7 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
             $form->repeater('story_item')->setLabel("Item Story")->setFields([
                 $form->editor('story_item_des')->setLabel("Nội dung"),                                
                 $form->image('story_item_image')->setLabel("Hình ảnh"),
+                $form->text('story_item_cap')->setLabel("Nội dung ảnh"),
                 ])
             );
         echo endBox();

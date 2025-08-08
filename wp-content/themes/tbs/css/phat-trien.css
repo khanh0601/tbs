@@ -146,6 +146,9 @@
 .development_environment_info_des{
     margin-bottom: 1rem;
 }
+.development_environment_project {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
 .development_environment_project_left{
     grid-column: 1/7;
 }

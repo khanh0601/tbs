@@ -70,7 +70,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
             </div>
             <?php if (!empty($safe_item)) : ?>
                 <?php foreach ($safe_item as $item): ?>
-            <div class="development_safe_info_des txt_justify txt_17"><?= esc_html($item['safe_item_des']) ?></div>
+            <div class="development_safe_info_des txt_justify txt_17"><?= $item['safe_item_des'] ?></div>
              <?php endforeach; ?>
               <?php endif; ?>
           </div>
@@ -91,7 +91,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
           <h2 class="development_environment_title heading txt_title_color txt_uppercase txt_55 txt_center tablet"><?= wp_kses_post($environment_title) ?></h2>
            <?php if (!empty($environment_item)) : ?>
                 <?php foreach ($environment_item as $item): ?>
-            <div class="development_environment_info_des txt_17 txt_justify"><?= esc_html($item['environment_item_des']) ?></div>
+            <div class="development_environment_info_des txt_17 txt_justify"><?= $item['environment_item_des'] ?></div>
             <?php endforeach; ?>
               <?php endif; ?>
             <div class="development_environment_info_logo">
@@ -108,12 +108,8 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
             <div class="development_environment_project_img img_full">
               <img src="<?= esc_url(wp_get_attachment_url($item['project_item_image'])) ?>" alt="">
             </div>
-            <div class="development_environment_project_title title_project txt_uppercase heading txt_28"><?= esc_html($item['project_item_title']) ?></div>
-            <?php if (!empty($project_item_des)) : ?>
-                <?php foreach ($project_item_des as $item1): ?>
-            <div class="development_environment_project_des txt_17"><?= esc_html($item1['project_item_des_item']) ?></div>
-            <?php endforeach; ?>
-              <?php endif; ?>
+            <div class="development_environment_project_title title_project txt_uppercase heading txt_28"><?= $item['project_item_title'] ?></div>
+            <div class="development_environment_project_des txt_17"><?= $item['project_item_des'] ?></div>
           </div>
           <?php endforeach; ?>
               <?php endif; ?>
@@ -127,7 +123,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
             <h2 class="development_response_info_title heading txt_55 txt_title_color txt_uppercase"><?= wp_kses_post($response_title) ?></h2>
             <?php if (!empty($response_item_des)) : ?>
                 <?php foreach ($response_item_des as $item): ?>
-            <div class="development_response_info_des txt_17 txt_justify"><?= esc_html($item['response_item_des_des']) ?></div>
+            <div class="development_response_info_des txt_17 txt_justify"><?= $item['response_item_des_des'] ?></div>
             <?php endforeach; ?>
               <?php endif; ?>
           </div>
@@ -139,8 +135,8 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
              <?php if (!empty($response_item)) : ?>
                 <?php foreach ($response_item as $item): ?>
           <div class="development_response_card_item">
-            <div class="development_response_card_item_title txt_center txt_uppercase txt_24"><?= esc_html($item['response_item_title']) ?></div>
-            <div class="development_response_card_item_des txt_17 txt_center"><?= esc_html($item['response_item_des']) ?></div>
+            <div class="development_response_card_item_title txt_center txt_uppercase txt_24"><?= $item['response_item_title'] ?></div>
+            <div class="development_response_card_item_des txt_17 txt_center"><?= $item['response_item_des'] ?></div>
           </div>
            <?php endforeach; ?>
               <?php endif; ?>

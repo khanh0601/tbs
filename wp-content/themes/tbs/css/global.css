@@ -142,7 +142,10 @@ h1, h2{
   text-align: center;
 }
 .txt_title_color{
-  color: #014129
+  color: #014129;
+  p{
+    margin-bottom:0;
+  }
 }
 .img_radius{
   border-radius: 2rem;

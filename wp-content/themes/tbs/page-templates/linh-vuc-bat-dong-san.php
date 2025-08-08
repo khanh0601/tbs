@@ -31,7 +31,7 @@ $industrial_des_item = tr_posts_field('industrial_des_item', $pageID); // Mỗi 
 
 // === Bất động sản dân dụng ===
 $residential_title = tr_posts_field('residential_title', $pageID);
-$residential_des = tr_posts_field('residential_item', $pageID);
+$residential_des = tr_posts_field('residential_item_des', $pageID);
 $residential_subtitle = tr_posts_field('residential_subtitle', $pageID);
 $residential_des_item = tr_posts_field('residential_des_item', $pageID); // Mỗi item: ['residential_des_item_des']
 $residential_image_item = tr_posts_field('residential_image_item', $pageID);
@@ -39,7 +39,7 @@ $residential_image_item = tr_posts_field('residential_image_item', $pageID);
 // === Thương mại dịch vụ & Văn phòng cho thuê ===
 $economic_image = wp_get_attachment_url(tr_posts_field('economic_image', $pageID));
 $economic_title = tr_posts_field('economic_title', $pageID);
-$economic_item = tr_posts_field('economic_item', $pageID); // Mỗi item: ['economic_item_des']
+$economic_des = tr_posts_field('economic_des', $pageID); // Mỗi item: ['economic_item_des']
 
 // === Nghỉ dưỡng & Khách sạn ===
 $hotel_title = tr_posts_field('hotel_title', $pageID);
@@ -82,7 +82,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
             <h2 class="estate_content_info_title txt_uppercase txt_55 txt_title_color heading"><?= wp_kses_post($industrial_title) ?></h2>
             <?php if (!empty($industrial_des_item)) : ?>
                 <?php foreach ($industrial_des_item as $item): ?>
-            <div class="estate_content_info_des des_spot txt_17 txt_justify"><?= esc_html($item['industrial_des_item_des']) ?></div>
+            <div class="estate_content_info_des des_spot txt_17 txt_justify"><?= $item['industrial_des_item_des'] ?></div>
             <?php endforeach; ?>
               <?php endif; ?>
           </div>
@@ -92,16 +92,12 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
         <div class="estate_content_inner kl_grid">
           <div class="estate_content_info1">
             <h2 class="estate_content_info_title txt_uppercase txt txt_55 txt_title_color heading"><?= wp_kses_post($residential_title) ?></h2>
-            <?php if (!empty($residential_item)) : ?>
-                <?php foreach ($residential_item as $item): ?>
-            <div class="estate_content_info_des txt_17 txt_justify"><?= esc_html($item['residential_item_des']) ?></div>
-            <?php endforeach; ?>
-              <?php endif; ?>
+            <div class="estate_content_info_des txt_17 txt_justify"><?= wp_kses_post($residential_des) ?></div>
 
               <div class="estate_content_info_subtitle txt_uppercase txt_24 heading"><?= wp_kses_post($residential_subtitle) ?></div>
               <?php if (!empty($residential_des_item)) : ?>
                 <?php foreach ($residential_des_item as $item): ?>
-            <div class="estate_content_info_des des_spot txt_17 txt_justify"><?= esc_html($item['residential_des_item_des']) ?></div>
+            <div class="estate_content_info_des des_spot txt_17 txt_justify"><?= $item['residential_des_item_des'] ?></div>
              <?php endforeach; ?>
               <?php endif; ?>
           </div>
@@ -131,15 +127,11 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
       <div class="kl_container">
         <div class="estate_content_inner kl_grid">
           <div class="estate_content_img img_full left_full">
-            <img src="<?php echo $economic_content ?>" alt="">
+            <img src="<?php echo $economic_image ?>" alt="">
           </div>
           <div class="estate_content_info">
             <h2 class="estate_content_info_title txt_uppercase txt_55 txt_title_color heading"><?= wp_kses_post($economic_title) ?></h2>
-            <?php if (!empty($economic_des_item)) : ?>
-                <?php foreach ($economic_des_item as $item): ?>
-            <div class="estate_content_info_des txt_17 txt_justify"><?= esc_html($item['economic_des_item_des']) ?></div>
-            <?php endforeach; ?>
-              <?php endif; ?>
+            <div class="estate_content_info_des txt_17 txt_justify"><?= wp_kses_post($economic_des) ?></div>
           </div>
         </div>
       </div>
@@ -149,12 +141,8 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
             <h2 class="estate_content_info_title txt_uppercase txt txt_55 txt_title_color heading"><?= wp_kses_post($hotel_title) ?></h2>
             <?php if (!empty($hotel_des)) : ?>
                 <?php foreach ($hotel_des as $item): ?>
-            <div class="estate_content_info_subtitle txt_uppercase txt_24 heading"><?= esc_html($item1['hotel_des_subtitle']) ?></div>
-             <?php if (!empty($hotel_des_item)) : ?>
-                <?php foreach ($hotel_des_item as $item1): ?>
-            <div class="estate_content_info_des txt_17 txt_justify"><?= esc_html($item1['hotel_des_item_des']) ?></div>
-             <?php endforeach; ?>
-              <?php endif; ?>
+            <div class="estate_content_info_subtitle txt_uppercase txt_24 heading"><?= $item['hotel_des_subtitle'] ?></div>
+            <div class="estate_content_info_des txt_17 txt_justify"><?= $item['hotel_des_item_des'] ?></div>
               <?php endforeach; ?>
               <?php endif; ?>
           </div>
@@ -191,8 +179,8 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
              <?php if (!empty($logistics_item)) : ?>
                 <?php foreach ($logistics_item as $item): ?>
             <div class="estate_logistics_list_item">
-              <div class="estate_logistics_list_item_title heading txt_35 txt_center"><?= esc_html($item['logistics_item_title']) ?></div>
-              <div class="estate_logistics_list_item_des txt_17 txt_center"><?= esc_html($item['logistics_item_des']) ?></div>
+              <div class="estate_logistics_list_item_title heading txt_35 txt_center"><?= $item['logistics_item_title'] ?></div>
+              <div class="estate_logistics_list_item_des txt_17 txt_center"><?= $item['logistics_item_des'] ?></div>
             </div>
              <?php endforeach; ?>
               <?php endif; ?>
@@ -205,8 +193,8 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
                  <?php if (!empty($logistics_experiance_item)) : ?>
                 <?php foreach ($logistics_experiance_item as $item): ?>
               <div class="estate_logistics_exper_item item1">
-                <div class="estate_logistics_exper_item_title txt_center heading txt_55"><?= esc_html($item['logistics_experiance_item_title']) ?></div>
-                <div class="estate_logistics_exper_item_des txt_20 txt_center"><?= esc_html($item['logistics_experiance_item_des']) ?></div>
+                <div class="estate_logistics_exper_item_title txt_center heading txt_55"><?= $item['logistics_experiance_item_title'] ?></div>
+                <div class="estate_logistics_exper_item_des txt_20 txt_center"><?= $item['logistics_experiance_item_des'] ?></div>
               </div>
               <?php endforeach; ?>
               <?php endif; ?>

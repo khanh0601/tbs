@@ -60,7 +60,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
     <section class="recruit_hero">
         <div class="recruit_hero_img img_full">
             <img class="middle" src="<?php echo $banner_image ?>" alt="">
-            <img class="middle" src="<?php echo $banner_image_mobile ?>" alt="">
+            <img class="mobile" src="<?php echo $banner_image_mobile ?>" alt="">
         </div>
         <div class="recruit_hero_txt txt_uppercase txt_55"><?= wp_kses_post($banner_title) ?></div>
     </section>

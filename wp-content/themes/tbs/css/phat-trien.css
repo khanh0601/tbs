@@ -10,10 +10,14 @@
     z-index: 1;
     color: #fff;
 }
+@media screen and (max-width:991px) {
+    .development_hero_txt{
+        white-space: nowrap;
+    }
+}
 @media screen and (max-width:767px) {
     .development_hero_txt{
         font-size: 2.5rem;
-        white-space: nowrap;
     }
     .development_hero_img{
         aspect-ratio: 440/213;
@@ -107,6 +111,9 @@
     .development_safe {
         padding-block: 5rem ;
     }
+    .development_environment_title{
+        text-align:left !important;
+    }
 }
 @media screen and (max-width:767px) {
     .development_safe{
@@ -148,12 +155,6 @@
 }
 .development_environment_project {
     grid-template-columns: repeat(2, 1fr) !important;
-}
-.development_environment_project_left{
-    grid-column: 1/7;
-}
-.development_environment_project_right{
-    grid-column: 7/13;
 }
 .development_environment_project_img{
     margin-bottom: 4rem;

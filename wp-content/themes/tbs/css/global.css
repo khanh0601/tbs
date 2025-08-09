@@ -4,17 +4,32 @@ html {
 :root {
   --padding-container : 12.4rem;
 }
+a:hover{
+  color:unset;
+}
 @font-face {
   font-family: "TBSGothic";
   font-weight: 400;
   font-style: normal;
-  src: url("../fonts/TBSGothicRegular.ttf");
+  src: url("../fonts/TBSGothicRegular.woff");
 }
 @font-face {
   font-family: "TBSGothic";
   font-weight: 700;
   font-style: normal;
-  src: url("../fonts/TBSGothicBold.ttf");
+  src: url("../fonts/TBSGothicBold.woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-style: normal;
+  src: url("../fonts/Montserrat-Regular.woff");
+}
+@font-face {
+  font-family: "Montserrat";
+  font-weight: 700;
+  font-style: normal;
+  src: url("../fonts/Montserrat-Bold.woff");
 }
 *{
   box-sizing: border-box;
@@ -113,6 +128,10 @@ h1, h2{
   font-size: 5.5rem;
   line-height: 1.25em;
 }
+.txt_60 {
+  font-size: 6rem;
+  line-height:1.1666em;
+}
 .txt_70{
   font-size: 7rem;
   line-height: 1em;
@@ -151,7 +170,7 @@ h1, h2{
   border-radius: 2rem;
 }
 .bg_line{
-  background: #F5F5F5 url('/assets/img/bg_line.png') repeat;
+  background: #F5F5F5 url('../img/bg_line.png') repeat;
   background-size: auto;
 }
 .tablet{
@@ -209,6 +228,9 @@ h1, h2{
 .txt_55 {
   font-size: 4rem;
 }
+.txt_60 {
+  font-size: 4.2rem;
+}
 .txt_70{
   font-size: 5.5rem;
 }
@@ -255,6 +277,9 @@ h1, h2{
 }
 .txt_55 {
   font-size: 2.5rem;
+}
+.txt_60 {
+  font-size: 2.6rem;
 }
 .txt_70{
   font-size: 2.5rem;
@@ -640,6 +665,7 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
 .footer_copyright{
   color: #898181;
   padding-left: 6rem;
+  opacity:.7;
 }
 @media screen and (max-width:991px) {
   .footer_content_contact {
@@ -688,6 +714,7 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
 }
 .footer_copyright{
   padding-left: 2rem;
+  width:35rem;
 }
 .footer_content_contact_form{
   padding: .4rem;

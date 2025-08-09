@@ -119,6 +119,13 @@
     .estate_intro_txt_des{
         margin-inline: 6rem;
     }
+    .nowrapwhite{
+        display:flex;
+        gap:1.5rem;
+        br{
+            display:none;
+        }
+    }
     .estate_content_img{
         margin-right: 0;
         grid-column: 1/13;
@@ -127,6 +134,7 @@
         margin-top: 4rem;
         grid-column: 1/13;
         margin-left: 0;
+
     }
      .estate_content_img1{
         margin-left: 0;
@@ -151,6 +159,15 @@
     }
     .estate_content_inner{
         padding-block: 8.5rem;
+        .estate_content_img:first-child{
+            .estate_content_info .estate_content_info_title{
+                display:flex;
+                gap:1.5rem;
+                br{
+                    display:none;
+                }
+            }
+        }
     }
 .estate_intro_txt_des{
     &::after{
@@ -181,6 +198,17 @@
     .estate_content_inner{
         padding-block: 6rem;
     }
+    .nowrapwhite{
+        gap:.6rem;
+    }
+    .estate_content_info1{
+        .estate_content_info_title {
+            gap:.6rem;
+        }
+    }
+    .estate_content{
+        margin-top:5.5rem;
+    }
 }
 /* logistics */
 .estate_logistics{
@@ -200,6 +228,10 @@
     display: flex;
     margin-inline: auto;
     justify-content: space-between;
+    margin-top: 4rem;
+    margin-bottom: -5rem;
+    position: relative;
+    z-index: 1;
 }
 .estate_logistics_list_item{
     max-width: 39rem;
@@ -208,12 +240,6 @@
     background-color: #A6CE39;
     border-radius: 1rem;
     padding-block: 3rem;
-}
-.estate_logistics_list{
-    margin-top: 4rem;
-    margin-bottom: -6rem;
-    position: relative;
-    z-index: 1;
 }
 .estate_logistics_img{
     margin-bottom: 10rem;
@@ -276,7 +302,7 @@
         flex-direction: column;
     }
     .estate_logistics{
-        padding-top: 10.5rem;
+        padding-top: 2rem;
     }
     .estate_logistics_logo {
         width: 20rem;
@@ -297,5 +323,8 @@
     }    
     .estate_logistics_exper_item {
         padding-block: 2rem 1.5rem;
+    }
+    .estate_logistics_list_item_title {
+        font-size:3.5rem;
     }
 }

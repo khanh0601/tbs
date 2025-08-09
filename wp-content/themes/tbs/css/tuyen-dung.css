@@ -195,6 +195,9 @@
     .recruit_resreach_list_card_item_info{
         margin-bottom: 1.5rem;
     }
+    .recruit_resreach_list{
+        overflow:hidden;
+    }
 }
 /* culture */
 .recruit_culture{

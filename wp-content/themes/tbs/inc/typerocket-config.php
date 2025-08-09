@@ -240,7 +240,8 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo $form->row(
             $form->repeater('logistics_experiance_item')->setLabel("Kinh nghiệm")->setFields([
                 $form->row(
-                        $form->text('logistics_experiance_item_title')->setLabel("Tiêu đề"),                 
+                        $form->text('logistics_experiance_item_num')->setLabel("Số"),                 
+                        $form->text('logistics_experiance_item_type')->setLabel("Đơn vị"),                 
                         $form->editor('logistics_experiance_item_des')->setLabel("Mô tả")                
                 )
             ])

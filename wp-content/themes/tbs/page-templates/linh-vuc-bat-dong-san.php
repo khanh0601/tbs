@@ -9,8 +9,8 @@
  * @subpackage tbs
  * @since tbs 1.0
  */
-wp_enqueue_style('linh-vuc-bat-dong-san-style', get_template_directory_uri() . '/css/linh-vuc-bat-dong-san.css', [], SITE_VERSION, 'all');
 get_header();
+wp_enqueue_style('linh-vuc-bat-dong-san-style', get_template_directory_uri() . '/css/linh-vuc-bat-dong-san.css', [], SITE_VERSION, 'all');
 
 $pageID = get_queried_object_id();
 
@@ -50,7 +50,7 @@ $logistics_logo = wp_get_attachment_url(tr_posts_field('logistics_logo', $pageID
 $logistics_des = tr_posts_field('logistics_des', $pageID);
 $logistics_item = tr_posts_field('logistics_item', $pageID); // Mỗi item: ['logistics_item_title', 'logistics_item_des']
 $logistics_image = wp_get_attachment_url(tr_posts_field('logistics_image', $pageID));
-$logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID); // Mỗi item: ['logistics_experiance_item_title', 'logistics_experiance_item_des']
+$logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID); // Mỗi item: ['logistics_experiance_item_num','logistics_experiance_item_type',  'logistics_experiance_item_des']
 ?>
 <section class="estate_hero">
       <div class="estate_hero_img img_full">
@@ -62,6 +62,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
       </h1>
     </section>
     <section class="estate_content">
+
       <div class="kl_container">
         <div class="estate_intro_txt">
           <div class="estate_intro_txt_logo img_full">
@@ -76,7 +77,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
             <img src="<?php echo $industrial_content ?>" alt="">
           </div>
           <div class="estate_content_info">
-            <h2 class="estate_content_info_title txt_uppercase txt_55 txt_title_color heading"><?= wp_kses_post($industrial_title) ?></h2>
+            <h2 class="estate_content_info_title nowrapwhite txt_uppercase txt_55 txt_title_color heading"><?= wp_kses_post($industrial_title) ?></h2>
             <?php if (!empty($industrial_des_item)) : ?>
                 <?php foreach ($industrial_des_item as $item): ?>
             <div class="estate_content_info_des des_spot txt_17 txt_justify"><?= $item['industrial_des_item_des'] ?></div>
@@ -190,7 +191,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
                  <?php if (!empty($logistics_experiance_item)) : ?>
                 <?php foreach ($logistics_experiance_item as $item): ?>
               <div class="estate_logistics_exper_item item1">
-                <div class="estate_logistics_exper_item_title txt_center heading txt_55"><?= $item['logistics_experiance_item_title'] ?></div>
+                <div class="estate_logistics_exper_item_title txt_center heading txt_55"data-number="<?= $item['logistics_experiance_item_num'] ?>"><span></span><?= $item['logistics_experiance_item_type'] ?></div>
                 <div class="estate_logistics_exper_item_des txt_20 txt_center"><?= $item['logistics_experiance_item_des'] ?></div>
               </div>
               <?php endforeach; ?>

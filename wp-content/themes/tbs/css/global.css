@@ -190,7 +190,7 @@ h1, h2{
   column-gap: 2rem;
 }
   .tablet{
-    display: block;
+    display: block !important;
   }
   .txt_16 {
   font-size: 1.4rem;
@@ -452,7 +452,6 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
   display: none;
   background-color: #fff;
   padding-block: 1rem;
-  /* display: flex; */
   align-items: center;
   position: fixed;
   top: 0;
@@ -460,6 +459,9 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
   right: 0;
   padding-left: 9rem;
   border-bottom: 1px solid #A0CB38;
+  &.active{
+    display: flex;
+  }
 }
 .header_nav_menu{
   display: flex;
@@ -536,12 +538,76 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
 }
 @media screen and (max-width:991px) {
   .header_top_logo {
-    width: 11rem;
+    width: 20rem;
+    margin-bottom: 5rem;
+  }
+  .header_nav {
+    bottom: 0;
+    padding-left: 4rem;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0;
+  }
+  .header_nav_menu{
+    flex-direction: column;
+    gap: 1rem;
+    margin-left: 0;
+    align-items: flex-start;
+  }
+  .header_nav_language{
+    position: absolute;
+    top: 3.2rem;
+    right: 10rem;
+    border: none;
+    gap: 0;
+    .header_nav_language_item:first-child{
+      border-right: 1px solid #014129;
+      padding-right: 1rem;
+      margin-right: 1rem;
+
+    }
+  }
+  .header_nav_menu_item_link_icon{
+    transform: rotate(0);
+    height: 1rem;
+    left: -2rem;
+    top: .5rem;
+  }
+  .header_nav_menu_item_link {
+    font-weight: 700;
+  }
+  .header_top_right_menu_wrap{
+    width: 4rem;
+    height: 4.7rem;
+  }
+  .header_nav_menu_item_child {
+    opacity: 1;
+    pointer-events: all;
+    position: unset;
+    border: none;
+    padding: 0;
+    margin-top: 1.5rem;
+    padding-left: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+  .header_nav_menu_item{
+    flex-direction: column;
+  }
+  .header_nav_menu_item_child {
+    font-weight: 700;
+    a{
+      color: #598527;
+    }
   }
 }
 @media screen and (max-width:767px) {
   .header_top_logo {
-    width: 8.8rem;
+    width: 16rem;
+  }
+  .header_nav_language{
+    top: 1.4rem;
   }
   .header_top{
     padding-top: 1rem;
@@ -561,6 +627,9 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
   }
   .header_top_right_language_item {
     margin-top: 0;
+  }
+  .header_nav_menu_item_link {
+    font-size: 2.2rem;
   }
 }
 /* footer */
@@ -719,4 +788,19 @@ body.menu-open .header_top_right_menu>span:nth-child(3) {
 .footer_content_contact_form{
   padding: .4rem;
 }
+}
+
+/* btn_social */
+.btn_social{
+  position: fixed;
+  right: 5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  z-index: 100;
+  top: 60%;
+}
+.btn_social_icon{
+  display: block;
+  width: 4.8rem;
 }

@@ -91,7 +91,18 @@ $menu_items = wp_get_nav_menu_items(get_nav_menu_locations()['primary'] ?? '');
   <div class="footer_copyright txt_17 txt_bold">© 2025 TBS Group. All Rights Reserved. Maximize Online Power by THEMAX </div>
 </footer>
 <section class="btn_social">
-  
+  <a href="#" class="btn_social_icon">
+    <img src="<?= get_template_directory_uri(); ?>/img/icon_tel.svg" alt="">
+  </a>
+  <a href="#" class="btn_social_icon">
+    <img src="<?= get_template_directory_uri(); ?>/img/icon_ytb.svg" alt="">
+  </a>
+  <a href="#" class="btn_social_icon">
+    <img src="<?= get_template_directory_uri(); ?>/img/icon_zalo.svg" alt="">
+  </a>
+  <a href="#" class="btn_social_icon">
+    <img src="<?= get_template_directory_uri(); ?>/img/icon_fb.svg" alt="">
+  </a>
 </section>
 </body>
 

@@ -5,34 +5,6 @@ $editorSettings = [];
 // Adding Matrix field to existing "page" post type 
 add_action('edit_form_after_title', function($post) use($editorSettings) {
     echo '<div class="typerocket-container">';    
-    if($post->post_type == 'page' && basename(get_page_template())=="homepage.php") {
-        remove_post_type_support( 'page', 'editor' );
-
-        $form = tr_form();
-        echo beginBox("Banner Chính",true);
-        echo $form->text('home_banner_video')->setLabel("Banner Video");
-        echo $form->image('home_banner_video_poster')->setLabel("Banner Video Poster");
-        echo $form->row(
-            $form->text('banner_content')->setLabel("Nội dung"),
-            $form->text('banner_link')->setLabel("Liên kết")
-        );
-        echo endBox();
-        //subdivision
-
-        echo beginBox("Giới thiệu",true);
-        echo $form->text('about_title')->setLabel("Tiêu đề");
-        echo $form->editor('about_description')->setLabel("Mô tả");
-        echo $form->repeater('about_items')->setLabel("Danh sách")->setFields([
-            $form->row(
-                $form->image('image')->setLabel("Logo"),
-                $form->text('title')->setLabel("Tiêu đề"),
-                $form->text('link')->setLabel("Liên kết")
-            )
-
-        ]);
-        echo endBox();
-
-    }
  if($post->post_type == 'page' && basename(get_page_template())=="tin-tuc.php") {
         remove_post_type_support( 'page', 'editor' );
 
@@ -184,7 +156,6 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo beginBox("Giới thiệu",true);
         echo $form->row(
             $form->image('intro_logo')->setLabel("Ảnh Logo desktop"),
-            $form->image('intro_logo_mobile')->setLabel("Ảnh Logo mobile"),
         );
         echo $form->row(
             $form->editor('intro_des')->setLabel("Mô tả"),
@@ -364,6 +335,17 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo $form->text('banner_title')->setLabel("Tiêu đề");
         echo endBox();
 
+        echo beginBox("Tuyển dụng",true);
+        echo $form->text('recruit_search')->setLabel("Label search");
+        echo $form->text('recruit_list')->setLabel("Label Danh sách bộ phận");
+        echo $form->repeater('recruit_item')->setLabel(" Item tuyển dụng")->setFields([
+            $form->text('recruit_item_title')->setLabel("Tiêu đề"),
+            $form->text('recruit_item_location')->setLabel("Địa điểm"),
+            $form->text('recruit_item_time')->setLabel("Thời gian"),
+            $form->text('recruit_item_apply')->setLabel("Ứng tuyển"),                                
+        ]);
+        echo endBox();
+
         echo beginBox("Văn hóa doanh nghiệp",true);
         echo $form->text('culture_title')->setLabel("Tiêu đề");
         echo $form->editor('culture_des')->setLabel("Nội dung");
@@ -500,6 +482,80 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
 
      }
+      else if($post->post_type == 'page' && basename(get_page_template())=="homepage.php"){
+        remove_post_type_support( 'page', 'editor' );
+
+        $form = tr_form();
+        echo beginBox("Video ",true);
+        echo $form->image('video_logo')->setLabel("Ảnh logo");
+        echo $form->image('video_image')->setLabel("Hình ảnh nền");
+        echo $form->text('video_title')->setLabel("Tiêu đề");
+        echo $form->text('video_seemore')->setLabel("Xem thêm");    
+        echo $form->text('video_link')->setLabel("Link xem thêm");
+        echo $form->text('video_ytb')->setLabel("Link youtube");
+        echo endBox();
+
+        echo beginBox("Banner Chính",true);
+        echo $form->image('banner_image')->setLabel("Hình banner");
+        echo $form->text('banner_subtitle1')->setLabel("Tiêu đề phụ");
+        echo $form->text('banner_title')->setLabel("Tiêu đề");
+        echo $form->text('banner_subtitle2')->setLabel("Tiêu đề phụ");
+        echo $form->text('banner_des')->setLabel("Mô tả");
+        echo $form->text('banner_seemore')->setLabel("Xem thêm");
+        echo $form->text('banner_link')->setLabel("Link xem thêm");
+        echo $form->repeater('banner_item')->setLabel("Logo")->setFields([
+            $form->image('banner_item_image')->setLabel("Ảnh logo"),
+        ]);
+        echo endBox();
+
+        echo beginBox("Lĩnh vực hoạt động",true);
+        echo $form->editor('active_title')->setLabel("Tiêu đề");
+        echo $form->repeater('active_item')->setLabel("Logo")->setFields([
+            $form->image('active_item_image')->setLabel("Hình ảnh"),
+            $form->image('active_item_logo')->setLabel("Ảnh logo"),
+            $form->text('active_item_des')->setLabel("Mô tả"),
+            $form->repeater('active_major')->setLabel(" Các nghành")->setFields([
+                $form->text('active_major_des')->setLabel("Tên nghành"),
+                $form->text('active_major_link')->setLabel("Link nghành"),
+            ])
+            
+        ]);
+        echo endBox();
+
+        echo beginBox("Phát triển bền vững",true);
+        echo $form->text('development_title')->setLabel("Tiêu đề");
+        echo $form->text('development_subtitle')->setLabel("Tiêu đề phụ");
+        echo $form->text('development_content_title')->setLabel("Tiêu đề nội dung");
+        echo $form->text('development_content_des')->setLabel("nội dung");
+        echo $form->text('development_content_subtitle')->setLabel("Tiêu đề nội dung phụ");
+        echo $form->repeater('development_item')->setLabel("nội dung")->setFields([
+            $form->text('development_item_des')->setLabel("nội dung"),
+        ]);
+        echo $form->text('development_seemore')->setLabel("Xem thêm");
+        echo $form->text('development_link')->setLabel("Link xem thêm");
+         echo $form->repeater('development_img')->setLabel("slide")->setFields([
+            $form->image('development_img_cap')->setLabel("Hình ảnh"),
+            $form->editor('development_img_des')->setLabel("nội dung"),
+        ]);
+        echo endBox();
+
+        echo beginBox("Giải thưởng",true);
+        echo $form->text('achieve_title')->setLabel("Tiêu đề");
+        echo $form->repeater('achieve_item')->setLabel("nội dung")->setFields([
+            $form->image('achieve_item_img')->setLabel("Hình ảnh"),
+            $form->text('achieve_item_des')->setLabel("nội dung"),
+        ]);
+        echo $form->image('achieve_bg')->setLabel("Ảnh background");
+        echo endBox();
+        
+        echo beginBox("Đối tác",true);
+        echo $form->text('partner_title')->setLabel("Tiêu đề");
+        echo $form->repeater('partner_item')->setLabel("nội dung")->setFields([
+            $form->image('partner_item_img')->setLabel("Hình ảnh logo"),
+        ]);
+        echo endBox();
+
+      }
     else if($post->post_type == 'page'){
         $form = tr_form();
         echo beginBox("Banner Chính",true);

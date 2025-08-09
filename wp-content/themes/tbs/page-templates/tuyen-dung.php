@@ -22,6 +22,12 @@ $banner_image = wp_get_attachment_url(tr_posts_field('banner_image', $pageID));
 $banner_image_mobile = wp_get_attachment_url(tr_posts_field('banner_image_mobile', $pageID));
 $banner_title = tr_posts_field('banner_title', $pageID);
 
+// Labels
+$recruit_search_label = tr_posts_field('recruit_search', $pageID);
+$recruit_list_label   = tr_posts_field('recruit_list', $pageID);
+$recruit_item = tr_posts_field('recruit_item', $pageID); 
+// Mỗi item: recruit_item_title, recruit_item_location, recruit_item_time, recruit_item_apply
+
 // === Văn hóa doanh nghiệp ===
 $culture_title = tr_posts_field('culture_title', $pageID);
 $culture_des = tr_posts_field('culture_des', $pageID);
@@ -62,18 +68,19 @@ $reason_item = tr_posts_field('reason_item', $pageID);
         <div class="kl_container">
             <div class="recruit_resreach_top">
                 <div class="recruit_resreach_top_input">
-                    <input type="text" placeholder="Tìm kiếm việc làm" >
+                    <input type="text" placeholder="<?= wp_kses_post($recruit_search_label) ?>" >
                     <div class="recruit_resreach_top_input_icon img_full">
                         <img src="<?= get_template_directory_uri(); ?>/img/icon_search.svg" alt="">
                     </div>  
                 </div>
                 <div class="recruit_resreach_top_list txt_17">
                     <select>
-                        <option class="txt_17" disabled selected>DANH SÁCH BỘ PHẬN</option>
-                        <option class="txt_17">Phòng Nhân Sự</option>
-                        <option class="txt_17">Phòng Kế Toán</option>
-                        <option class="txt_17">Phòng Kỹ Thuật</option>
-                        <option class="txt_17">Phòng Marketing</option>
+                        <option class="txt_17" disabled selected><?= wp_kses_post($recruit_list_label) ?></option>
+                        <?php if (!empty($recruit_item)) : ?>
+                            <?php foreach ($recruit_item as $item): ?>
+                                <option class="txt_17"><?= $item['recruit_item_title'] ?></option>
+                            <?php endforeach; ?>
+                        <?php endif; ?>       
                     </select>
                     <div class="recruit_resreach_top_list_icon img_full">
                         <img src="<?= get_template_directory_uri(); ?>/img/arrow_down.svg" alt="">
@@ -86,98 +93,33 @@ $reason_item = tr_posts_field('reason_item', $pageID);
             <div class="recruit_resreach_list">
                 <div class="recruit_resreach_list_inner mySwiper">
                     <div class="recruit_resreach_list_card">
-                        <div class="recruit_resreach_list_card_item">
-                            <div class="recruit_resreach_list_card_item_title txt_bold txt_uppercase txt_17">Nhân viên kinh doanh</div>
-                            <div class="recruit_resreach_list_card_item_info">
-                                <div class="recruit_resreach_list_card_item_info_icon img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_location.svg" alt="">
-                                </div>
+                        <?php if (!empty($recruit_item)) : ?>
+                            <?php foreach ($recruit_item as $item): ?>
+                                <div class="recruit_resreach_list_card_item">
+                                    <div class="recruit_resreach_list_card_item_title txt_bold txt_uppercase txt_17"><?= $item['recruit_item_title'] ?></div>
+                                    <div class="recruit_resreach_list_card_item_info">
+                                        <div class="recruit_resreach_list_card_item_info_icon img_full">
+                                            <img src="<?= get_template_directory_uri(); ?>/img/recruit_location.svg" alt="">
+                                        </div>
 
-                                <div class="recruit_resreach_list_card_item_info_location txt_17">Bình Dương</div>
-                                <div class="recruit_resreach_list_card_item_info_time txt_17">30.04.2025</div>
-                            </div>
-                            <a href="#" class="recruit_resreach_list_card_item_link" >
-                                <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
-                                <div class="recruit_resreach_list_card_item_link_img img_full">
-                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
-                                            fill="#014129" />
-                                    </svg>
-                                </div>
-                            </a>
+                                        <div class="recruit_resreach_list_card_item_info_location txt_17"><?= $item['recruit_item_location'] ?></div>
+                                        <div class="recruit_resreach_list_card_item_info_time txt_17"><?= $item['recruit_item_time'] ?></div>
+                                    </div>
+                                    <div class="recruit_resreach_list_card_item_link" >
+                                        <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase"><?= $item['recruit_item_apply'] ?></div>
+                                        <div class="recruit_resreach_list_card_item_link_img img_full">
+                                        <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
+                                                    fill="#014129" />
+                                            </svg>
+                                        </div>
+                                    </div>
 
-                        </div>
-                         <div class="recruit_resreach_list_card_item">
-                            <div class="recruit_resreach_list_card_item_title txt_bold txt_uppercase txt_17">Nhân viên kinh doanh</div>
-                            <div class="recruit_resreach_list_card_item_info">
-                                <div class="recruit_resreach_list_card_item_info_icon img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_location.svg" alt="">
                                 </div>
-
-                                <div class="recruit_resreach_list_card_item_info_location txt_17">Bình Dương</div>
-                                <div class="recruit_resreach_list_card_item_info_time txt_17">30.04.2025</div>
-                            </div>
-                            <a href="#" class="recruit_resreach_list_card_item_link" >
-                                <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
-                                <div class="recruit_resreach_list_card_item_link_img img_full">
-                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
-                                            fill="#014129" />
-                                    </svg>
-                                </div>
-                            </a>
-
-                        </div>
-                         <div class="recruit_resreach_list_card_item">
-                            <div class="recruit_resreach_list_card_item_title txt_bold txt_uppercase txt_17">Nhân viên kinh doanh</div>
-                            <div class="recruit_resreach_list_card_item_info">
-                                <div class="recruit_resreach_list_card_item_info_icon img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_location.svg" alt="">
-                                </div>
-
-                                <div class="recruit_resreach_list_card_item_info_location txt_17">Bình Dương</div>
-                                <div class="recruit_resreach_list_card_item_info_time txt_17">30.04.2025</div>
-                            </div>
-                            <a href="#" class="recruit_resreach_list_card_item_link" >
-                                <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
-                                <div class="recruit_resreach_list_card_item_link_img img_full">
-                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
-                                            fill="#014129" />
-                                    </svg>
-                                </div>
-                            </a>
-
-                        </div>
-                         <div class="recruit_resreach_list_card_item">
-                            <div class="recruit_resreach_list_card_item_title txt_bold txt_uppercase txt_17">Nhân viên kinh doanh</div>
-                            <div class="recruit_resreach_list_card_item_info">
-                                <div class="recruit_resreach_list_card_item_info_icon img_full">
-                                    <img src="<?= get_template_directory_uri(); ?>/img/recruit_location.svg" alt="">
-                                </div>
-
-                                <div class="recruit_resreach_list_card_item_info_location txt_17">Bình Dương</div>
-                                <div class="recruit_resreach_list_card_item_info_time txt_17">30.04.2025</div>
-                            </div>
-                            <a href="#" class="recruit_resreach_list_card_item_link" >
-                                <div class="recruit_resreach_list_card_item_link_txt txt_18 txt_uppercase">Ứng tuyển</div>
-                                <div class="recruit_resreach_list_card_item_link_img img_full">
-                                   <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
-                                            fill="#014129" />
-                                    </svg>
-                                </div>
-                            </a>
-
-                        </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>     
                     </div>
                 </div>
                 <div class="recruit_resreach_button middle">
@@ -234,7 +176,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
             <div class="recruit_culture_inner kl_grid">
                 <div class="recruit_culture_info">
                     <div class="recruit_culture_info_title txt_uppercase heading txt_55"><?= wp_kses_post($culture_title) ?></div>
-                    <div class="recruit_culture_info_des txt_17 txt_justify"></div><?= wp_kses_post($culture_des) ?>
+                    <div class="recruit_culture_info_des txt_17 txt_justify"> <?= wp_kses_post($culture_des) ?></div>
                 </div>
                 <div class="recruit_culture_img img_full right_full">
                     <img src="<?php echo $culture_image ?>" alt="">

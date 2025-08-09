@@ -21,7 +21,6 @@ $banner_title = tr_posts_field('banner_title', $pageID);
 
 // === Giới thiệu ===
 $intro_logo = wp_get_attachment_url(tr_posts_field('intro_logo', $pageID));
-$intro_logo_mobile = wp_get_attachment_url(tr_posts_field('intro_logo_mobile', $pageID));
 $intro_des = tr_posts_field('intro_des', $pageID);
 
 // === Bất động sản công nghiệp ===
@@ -53,7 +52,6 @@ $logistics_item = tr_posts_field('logistics_item', $pageID); // Mỗi item: ['lo
 $logistics_image = wp_get_attachment_url(tr_posts_field('logistics_image', $pageID));
 $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID); // Mỗi item: ['logistics_experiance_item_title', 'logistics_experiance_item_des']
 ?>
-?>
 <section class="estate_hero">
       <div class="estate_hero_img img_full">
         <img class="middle" src="<?php echo $banner_image ?>" alt="" />
@@ -67,8 +65,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
       <div class="kl_container">
         <div class="estate_intro_txt">
           <div class="estate_intro_txt_logo img_full">
-            <img class="middle" src="<?php echo $intro_logo ?>" alt="" />
-            <img class="mobile" src="<?php echo $intro_logo_mobile ?>" alt="" />
+            <img src="<?php echo $intro_logo ?>" alt="" />
           </div>
           <div class="estate_intro_txt_des txt_20 txt_justify">
             <?= wp_kses_post($intro_des) ?>

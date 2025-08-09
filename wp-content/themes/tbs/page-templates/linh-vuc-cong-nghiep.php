@@ -53,7 +53,7 @@ $location_item = tr_posts_field('location_item', $pageID); // ['location_map_ite
 $location_map_image = wp_get_attachment_url(tr_posts_field('location_map_image', $pageID));
 $location_map_title = tr_posts_field('location_map_title', $pageID);
 $location_map_item = tr_posts_field('location_map_item', $pageID); // ['location_map_item_name']
-$location_map_icon = tr_posts_field('location_map_icon', $pageID); // ['location_map_item_name']
+$location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $pageID)); // ['location_map_item_name']
 ?>
 <section class="industrial_hero">
       <div class="industrial_hero_inner">

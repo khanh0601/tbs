@@ -112,7 +112,7 @@
     bottom: 1rem;
   }
   .industrial_intro_txt_des::after{
-    right: -  9.5rem;
+    right: -9.5rem;
   }
 }
 @media screen and (max-width:767px){

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: HomePage
  * Description:
@@ -60,263 +61,280 @@ $partner_title  = tr_posts_field('partner_title', $pageID);
 $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img}]
 
 ?>
-
-
-<section class="home_intro full_screen">
+<svg width="0" height="0" viewBox="0 0 20 20" class="svg_bg">
+    <defs>
+        <clipPath id="hexClipLarge2" clipPathUnits="objectBoundingBox">
+            <path d="M0.0966996 0.0321847C0.0985934 0.0139552 0.115998 0 0.13684 0H0.959689C0.983397 0 1.00198 0.0178825 0.99983 0.0386182L0.9033 0.967815C0.901407 0.986045 0.884002 1 0.86316 1H0.0403107C0.0166034 1 -0.00198408 0.982118 0.000170042 0.961382L0.0966996 0.0321847Z" fill="#D9D9D9" />
+        </clipPath>
+    </defs>
+</svg>
+<section class="home_list df_hide_onload">
+    <a href="#" class="home_list_num txt_16 active">1</a>
+    <a href="#" class="home_list_num txt_16">2</a>
+    <a href="#" class="home_list_num txt_16">3</a>
+    <a href="#" class="home_list_num txt_16">4</a>
+    <a href="#" class="home_list_num txt_16">5</a>
+    <a href="#" class="home_list_num txt_16">6</a>
+    <a href="#" class="home_list_num txt_16">7</a>
+</section>
+<section class="home_intro full_screen" data-section="dark">
     <div class="home_intro_bg img_fullfill">
         <img src="<?php echo $video_image ?>" alt="">
     </div>
-       <iframe class="home_intro_video"
-        src="<?= wp_kses_post($video_ytb) ?>?autoplay=1&mute=1&loop=1&playlist=yqJuRMhvFcU&controls=0&rel=0&modestbranding=1&playsinline=1"
+    <iframe class="home_intro_video df_hide_onload"
+        data-src="<?= wp_kses_post($video_ytb) ?>?autoplay=1&mute=1&loop=1&playlist=yqJuRMhvFcU&controls=0&rel=0&modestbranding=1&playsinline=1"
         frameborder="0"
         allow="autoplay; fullscreen"
         allowfullscreen>
-        </iframe>
-          <div class="home_intro_content">
-            <div class="home_intro_content_logo img_full">
-                <img src="<?php echo $video_logo ?>" alt="">
-            </div>
-            <h1 class="home_intro_content_title txt_uppercase txt_60 heading"><?= wp_kses_post($video_title) ?></h1>
-            <a href="<?= wp_kses_post($video_link) ?>" class="home_intro_seemore txt_20 txt_bold "><?= wp_kses_post($video_seemore) ?></a>
-          </div>
-    </section>
-    <section class="home_hero full_screen">
-        <div class="home_hero_inner">
-            <div class="home_hero_img img_full">
-              <img src="<?php echo $banner_image ?>" alt="">
-            </div>
-            <div class="home_hero_txt">
-              <div class="home_hero_txt_subtitle heading txt_28 txt_center">
-                <?= wp_kses_post($banner_sub1) ?>
-              </div>
-              <h1 class="home_hero_txt_title txt_55 heading txt_center">
-                <?= wp_kses_post($banner_title) ?>
-              </h1>
-              <div class="home_hero_txt_smalltitle heading txt_30 txt_center">
-                <?= wp_kses_post($banner_sub2) ?>
-              </div>
-              <div class="home_hero_txt_des txt_20 font_tbs txt_center">
-                <?= wp_kses_post($banner_des) ?>
-              </div>
-              <a href="<?= wp_kses_post($banner_link) ?>" class="home_hero_txt_link txt_20 txt_bold"><span><?= wp_kses_post($banner_seemore) ?></span></a>
-            </div>
+    </iframe>
+    <div class="home_intro_content">
+        <div class="home_intro_content_logo img_full df_hide_onload">
+            <img src="<?php echo $video_logo ?>" alt="">
         </div>
-        <div class="kl_container">
-            <div class="home_hero_logo_wrap">
-                <div class="home_hero_logo">
-                    <?php if (!empty($banner_item)) : ?>
+        <h1 class="home_intro_content_title txt_uppercase txt_60 heading df_hide_onload"><?= wp_kses_post($video_title) ?></h1>
+        <a href="<?= wp_kses_post($video_link) ?>" class="home_intro_seemore txt_20 txt_bold df_hide_onload "><?= wp_kses_post($video_seemore) ?></a>
+    </div>
+</section>
+<section class="home_hero full_screen" data-section="dark">
+    <div class="home_hero_inner">
+        <div class="home_hero_img img_fullfill">
+            <img src="<?php echo $banner_image ?>" alt="">
+        </div>
+        <div class="home_hero_txt">
+            <div class="home_hero_txt_subtitle heading txt_28 txt_center">
+                <?= wp_kses_post($banner_sub1) ?>
+            </div>
+            <h1 class="home_hero_txt_title txt_55 heading txt_center">
+                <?= wp_kses_post($banner_title) ?>
+            </h1>
+            <div class="home_hero_txt_smalltitle heading txt_30 txt_center">
+                <?= wp_kses_post($banner_sub2) ?>
+            </div>
+            <div class="home_hero_txt_des txt_20 font_tbs txt_center">
+                <?= wp_kses_post($banner_des) ?>
+            </div>
+            <a href="<?= wp_kses_post($banner_link) ?>" class="home_hero_txt_link txt_20 txt_bold"><span><?= wp_kses_post($banner_seemore) ?></span></a>
+        </div>
+    </div>
+    <div class="kl_container">
+        <div class="home_hero_logo_wrap">
+            <div class="home_hero_logo">
+                <?php if (!empty($banner_item)) : ?>
                     <?php foreach ($banner_item as $item): ?>
-                    <div class="home_hero_logo_item">
-                        <img src="<?= esc_url(wp_get_attachment_url($item['banner_item_image'])) ?>" alt="">
-                    </div>
+                        <div class="home_hero_logo_item">
+                            <img src="<?= esc_url(wp_get_attachment_url($item['banner_item_image'])) ?>" alt="">
+                        </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                </div>
             </div>
         </div>
-      </section>
-      <section class="home_active full_screen">
-        <div class="kl_container">
-            <div class="home_active_title txt_title_color heading txt_55 txt_uppercase txt_center"><?= wp_kses_post($active_title) ?></div>
-            <div class="home_active_inner">
-                <?php if (!empty($active_item)) : ?>
+    </div>
+</section>
+<section class="home_active full_screen" data-section="white">
+    <div class="kl_container">
+        <div class="home_active_title txt_title_color heading txt_55 txt_uppercase txt_center"><?= wp_kses_post($active_title) ?></div>
+        <div class="home_active_inner">
+            <?php if (!empty($active_item)) : ?>
                 <?php foreach ($active_item as $item): ?>
-                <div class="home_active_item">
-                    <div class="home_active_item_img img_full">
-                        <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="">
-                    </div>
-                    <div class="home_active_item_txt">
-                        <div class="home_active_item_txt_logo img_full">
-                            <img src="<?= esc_url(wp_get_attachment_url($item['active_item_logo'])) ?>" alt="">
+                    <div class="home_active_item">
+                        <div class="home_active_item_img img_full">
+                            <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="">
                         </div>
-                        <div class="home_active_item_txt_des txt_20"><?= $item['active_item_des'] ?></div>
-                        <div class="home_active_item_txt_inner">
-                             <?php if (!empty($item['active_major'])) : ?>
-                                <?php foreach ($item['active_major'] as $item1): ?>
-                                    <a href="<?= $item1['active_major_link'] ?>" class="home_active_item_txt_item txt_bold txt_uppercase txt_center txt_title_color txt_20"><?= $item1['active_major_des'] ?></a>
+                        <div class="home_active_item_txt">
+                            <div class="home_active_item_txt_logo img_full">
+                                <img src="<?= esc_url(wp_get_attachment_url($item['active_item_logo'])) ?>" alt="">
+                            </div>
+                            <div class="home_active_item_txt_des txt_20"><?= $item['active_item_des'] ?></div>
+                            <div class="home_active_item_txt_inner">
+                                <?php if (!empty($item['active_major'])) : ?>
+                                    <?php foreach ($item['active_major'] as $item1): ?>
+                                        <a href="<?= $item1['active_major_link'] ?>" class="home_active_item_txt_item txt_bold txt_uppercase txt_center txt_title_color txt_20"><?= $item1['active_major_des'] ?></a>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+<section class="home_development full_screen" data-section="white">
+    <div class="kl_container">
+        <div class="home_development_title heading txt_55 txt_uppercase txt_center txt_title_color"><?= wp_kses_post($dev_title) ?></div>
+        <div class="home_development_subtitle txt_bold txt_35 txt_uppercase txt_center"><?= wp_kses_post($dev_subtitle) ?></div>
+        <div class="home_development_inner">
+            <div class="home_development_info">
+                <div class="home_development_info_bg">
+                    <!-- <?php if (!empty($dev_img)) :
+                                $count = 0;
+                            ?>
+                        <?php foreach ($dev_img as $item): ?>
+                            <div class="home_development_info_bg_item img_full <?= $count == 0 ? 'active' : '' ?>">
+                                <img src="<?= esc_url(wp_get_attachment_url($item['development_img_cap'])) ?>" alt="">
+                            </div>
+                            <?php $count++; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?> -->
+                    <div class="home_development_info_bg_item img_full active">
+                        <img src="<?php echo get_template_directory_uri() ?>/img/home-develop-bg.png" alt="">
+                    </div>
+                </div>
+                <div class="home_development_info_title txt_bold txt_30 txt_uppercase">
+                    <?= wp_kses_post($dev_ct_title) ?>
+                </div>
+                <div class="home_development_info_des txt_17"><?= wp_kses_post($dev_ct_des) ?></div>
+                <div class="home_development_info_subtitle txt_17 txt_bold"><?= wp_kses_post($dev_ct_sub) ?></div>
+                <?php if (!empty($dev_item)) : ?>
+                    <?php foreach ($dev_item as $item): ?>
+                        <div class="home_development_info_des home_development_info_des_item txt_17 des_spot"><?= $item['development_item_des'] ?></div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <a href="<?= wp_kses_post($dev_link) ?>" class="home_development_info_link txt_20 txt_uppercase txt_title_color"><?= wp_kses_post($dev_seemore) ?></a>
+            </div>
+            <div class="home_development_slide right_full">
+                <div class="home_development_slide_inner mySwiper swiper">
+                    <div class="home_development_slide_list swiper-wrapper">
+                        <?php if (!empty($dev_img)) : ?>
+                            <?php foreach ($dev_img as $item): ?>
+                                <div class="home_development_slide_list_item swiper-slide img_full">
+                                    <img src="<?= esc_url(wp_get_attachment_url($item['development_img_cap'])) ?>" alt="">
+                                    <div class="home_development_slide_list_item_caption txt_uppercase txt_20 "><?= $item['development_img_des'] ?></div>
+                                </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
-                        </div>
                     </div>
                 </div>
-                <?php endforeach; ?>
-              <?php endif; ?>
             </div>
         </div>
-      </section>
-      <section class="home_development full_screen">
-        <div class="kl_container">
-            <div class="home_development_title heading txt_55 txt_uppercase txt_center txt_title_color"><?= wp_kses_post($dev_title) ?></div>
-            <div class="home_development_subtitle txt_bold txt_35 txt_uppercase txt_center"><?= wp_kses_post($dev_subtitle) ?></div>
-            <div class="home_development_inner">
-                <div class="home_development_info">
-                    <div class="home_development_info_title txt_bold txt_30 txt_uppercase">
-                        <?= wp_kses_post($dev_ct_title) ?>
-                    </div>
-                    <div class="home_development_info_des txt_17"><?= wp_kses_post($dev_ct_des) ?></div>
-                    <div class="home_development_info_subtitle txt_17 txt_bold"><?= wp_kses_post($dev_ct_sub) ?></div>
-                    <?php if (!empty($dev_item)) : ?>
-                        <?php foreach ($dev_item as $item): ?>
-                    <div class="home_development_info_des txt_17 des_spot"><?= $item['development_item_des'] ?></div>
-                         <?php endforeach; ?>
-                    <?php endif; ?>
-                    <a href="<?= wp_kses_post($dev_link) ?>" class="home_development_info_link txt_20 txt_uppercase txt_title_color"><?= wp_kses_post($dev_seemore) ?></a>
-                </div>
-                <div class="home_development_slide right_full">
-                    <div class="home_development_slide_inner mySwiper swiper">
-                        <div class="home_development_slide_list swiper-wrapper">
-                            <?php if (!empty($dev_img)) : ?>
-                                <?php foreach ($dev_img as $item): ?>
-                            <div class="home_development_slide_list_item swiper-slide img_full">
-                                <img src="<?= esc_url(wp_get_attachment_url($item['development_img_cap'])) ?>" alt="">
-                                <div class="home_development_slide_list_item_caption txt_uppercase txt_20 "><?= $item['development_img_des'] ?></div>
+    </div>
+</section>
+<section class="home_achieve full_screen" data-section="white">
+    <div class="kl_container">
+        <div class="home_achieve_inner">
+            <div class="home_achieve_title heading txt_55 txt_uppercase"><?= wp_kses_post($achieve_title) ?></div>
+            <div class="home_achieve_list">
+                <?php if (!empty($award_item)) : ?>
+                    <?php foreach ($award_item as $item): ?>
+                        <div class="home_archive_item">
+                            <div class="home_archive_item_img img_fullfill">
+                                <img src="<?= esc_url(wp_get_attachment_url($item['achieve_item_img'])) ?>" alt="" />
                             </div>
-                             <?php endforeach; ?>
-                            <?php endif; ?>
+                            <div class="home_archive_item_border"></div>
+                            <div
+                                class="home_archive_item_name txt_18 txt_bold txt_center txt_uppercase">
+                                <?= $item['achieve_item_des'] ?>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </section>
-      <section class="home_achieve full_screen">
-        <div class="kl_container">
-            <div class="home_achieve_inner">
-                <div class="home_achieve_title heading txt_55 txt_uppercase"><?= wp_kses_post($achieve_title) ?></div>
-                <div class="home_achieve_list">
-                    <?php if (!empty($award_item)) : ?>
-                <?php foreach ($award_item as $item): ?>
-                    <div class="home_archive_item">
-                        <div class="home_archive_item_img img_fullfill">
-                            <img src="<?= esc_url(wp_get_attachment_url($item['achieve_item_img'])) ?>" alt="" />
-                        </div>
-                        <div class="home_archive_item_border"></div>
-                        <div
-                            class="home_archive_item_name txt_18 txt_bold txt_center txt_uppercase"
-                        >
-                            <?= $item['achieve_item_des'] ?>
-                        </div>
-                    </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                </div>
             </div>
         </div>
-        <div class="home_achieve_bg img_full">
-            <img src="<?php echo $award_bg ?>" alt="">
-        </div>
-      </section>
-      <section class="home_news full_screen">
-        <div class="kl_container">
-            <div class="home_news_title heading txt_title_color txt_55 txt_uppercase txt_center">tin tức</div>
-            <div class="home_news_inner_wrap">
+    </div>
+    <div class="home_achieve_bg img_full">
+        <img src="<?php echo $award_bg ?>" alt="">
+    </div>
+</section>
+<section class="home_news full_screen" data-section="white">
+    <div class="home_news_bg">
+        <img src="<?php echo get_template_directory_uri() ?>/img/home-new-bg.jpg" alt="">
+    </div>
+    <div class="kl_container">
+        <div class="home_news_title heading txt_title_color txt_55 txt_uppercase txt_center">tin tức</div>
+        <div class="home_news_inner_wrap">
+            <?php
+            $news = new WP_Query([
+                'post_type'           => 'post',
+                'posts_per_page'      => 3,
+                'post_status'         => 'publish',
+                'ignore_sticky_posts' => true,
+                'no_found_rows'       => true,
+            ]);
+
+            if ($news->have_posts()): ?>
                 <div class="home_news_inner kl_grid">
-                    <a href="#" class="home_news_content_item">
-                        <div class="home_news_content_item_img img_full">
-                            <img src="<?php echo get_template_directory_uri()?>/img/news_content.webp" alt="">
-                        </div>
-                        <div class="home_news_content_item_time txt_17">09-02-2025</div>
-                        <div class="home_news_content_item_txt">
-                            <div class="home_news_content_item_title txt_bold txt_18 txt_justify">Nhà máy TBS Sông Trà – 10 năm kiến tạo dấu ấn từ quê hương năm tấn</div>
-                            <div class="home_news_content_item_des txt_17 txt_justify">Nhỏ nhắn. Giản dị. Đó là ấn tượng đầu tiên với chị Nguyễn Thị Thu Hà – TGĐ ĐH N. Chuỗi Túi xách – người chèo lái con thuyền hơn 10.000 nhân sự đã làm việc tại nơi này</div>
-                        </div>
-                        <div class="home_news_content_item_detail">
-                            <div class="home_news_content_item_detail_txt txt_17">Chi tiết</div>
-                            <div class="home_news_content_item_detail_img img_full">
-                                <img src="<?php echo get_template_directory_uri()?>/img/icon_next_detail.svg" alt="">
+                    <?php while ($news->have_posts()): $news->the_post();
+                        $title   = get_the_title();
+                        $img_id  = get_post_thumbnail_id();
+                        $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'large') : get_template_directory_uri() . '/img/news_content.webp';
+                        $date    = get_the_date('d-m-Y');
+                        $excerpt = has_excerpt() ? get_the_excerpt() : wp_trim_words(wp_strip_all_tags(get_the_content()), 22);
+                    ?>
+                        <a href="<?php the_permalink(); ?>" class="home_news_content_item">
+                            <div class="home_news_content_item_img img_fullfill">
+                                <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($title); ?>">
                             </div>
-                        </div>
-                    </a>
-                    <a href="#" class="home_news_content_item">
-                        <div class="home_news_content_item_img img_full">
-                            <img src="<?php echo get_template_directory_uri()?>/img/news_content.webp" alt="">
-                        </div>
-                        <div class="home_news_content_item_time txt_17">09-02-2025</div>
-                        <div class="home_news_content_item_txt">
-                            <div class="home_news_content_item_title txt_bold txt_18 txt_justify">Nhà máy TBS Sông Trà – 10 năm kiến tạo dấu ấn từ quê hương năm tấn</div>
-                            <div class="home_news_content_item_des txt_17 txt_justify">Nhỏ nhắn. Giản dị. Đó là ấn tượng đầu tiên với chị Nguyễn Thị Thu Hà – TGĐ ĐH N. Chuỗi Túi xách – người chèo lái con thuyền hơn 10.000 nhân sự đã làm việc tại nơi này</div>
-                        </div>
-                        <div class="home_news_content_item_detail">
-                            <div class="home_news_content_item_detail_txt txt_17">Chi tiết</div>
-                            <div class="home_news_content_item_detail_img img_full">
-                                <img src="<?php echo get_template_directory_uri()?>/img/icon_next_detail.svg" alt="">
+                            <div class="home_news_content_item_time txt_17"><?php echo esc_html($date); ?></div>
+                            <div class="home_news_content_item_txt">
+                                <div class="home_news_content_item_title txt_bold txt_18 txt_justify"><?php echo esc_html($title); ?></div>
+                                <div class="home_news_content_item_des txt_17 txt_justify"><?php echo esc_html($excerpt); ?></div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="#" class="home_news_content_item">
-                        <div class="home_news_content_item_img img_full">
-                            <img src="<?php echo get_template_directory_uri()?>/img/news_content.webp" alt="">
-                        </div>
-                        <div class="home_news_content_item_time txt_17">09-02-2025</div>
-                        <div class="home_news_content_item_txt">
-                            <div class="home_news_content_item_title txt_bold txt_18 txt_justify">Nhà máy TBS Sông Trà – 10 năm kiến tạo dấu ấn từ quê hương năm tấn</div>
-                            <div class="home_news_content_item_des txt_17 txt_justify">Nhỏ nhắn. Giản dị. Đó là ấn tượng đầu tiên với chị Nguyễn Thị Thu Hà – TGĐ ĐH N. Chuỗi Túi xách – người chèo lái con thuyền hơn 10.000 nhân sự đã làm việc tại nơi này</div>
-                        </div>
-                        <div class="home_news_content_item_detail">
-                            <div class="home_news_content_item_detail_txt txt_17">Chi tiết</div>
-                            <div class="home_news_content_item_detail_img img_full">
-                                <img src="<?php echo get_template_directory_uri()?>/img/icon_next_detail.svg" alt="">
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-pagination-news tablet"></div>
-            </div>
-            <a href="" class="home_news_seeall txt_20 txt_uppercase txt_title_color txt_center">
-                Xem tất cả
-                <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
-                                            fill="currentColor" />
-                                    </svg>
-            </a>
-        </div>
-        <div class="home_news_bg img_full">
-            <img src="<?php echo get_template_directory_uri()?>/img/home_news_bg.png" alt="">
-        </div>
-      </section>
-      <section class="home_partner full_screen">
-        <div class="kl_container">
-            <div class="home_partner_title txt_title_color txt_uppercase txt_center txt_55 heading"><?= wp_kses_post($partner_title) ?></div>
-            <div class="home_partner_inner_wrap">
-                <div class="home_partner_inner"> 
-                    <?php if (!empty($partner_item)) : ?>
-                    <?php 
-                            $count = 0;
-                            foreach ($partner_item as $index => $item) :
-    
-                                // Mở thẻ group khi bắt đầu nhóm mới
-                                if ($count === 0) {
-                                    echo '<div class="home_partner_group">';
-                                }
-                        ?>
-                                <div class="home_partner_item img_full">
-                                    <img src="<?= esc_url(wp_get_attachment_url($item['partner_item_img'])) ?>" alt="">
+                            <div class="home_news_content_item_detail">
+                                <div class="home_news_content_item_detail_txt txt_17"><?php esc_html_e('Chi tiết', 'textdomain'); ?></div>
+                                <div class="home_news_content_item_detail_img img_full">
+                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/icon_next_detail.svg'); ?>" alt="">
                                 </div>
-                        <?php
-                                $count++;
-    
-                                // Đủ 6 item hoặc là item cuối -> đóng group
-                                if ($count === 6 || $index === array_key_last($partner_item)) {
-                                    echo '</div>'; // đóng .partner-group
-                                    $count = 0; // reset đếm
-                                }
-    
-                            endforeach;
-                        ?>
-                    <?php endif; ?>
+                            </div>
+                        </a>
+                    <?php endwhile; ?>
                 </div>
-                <div class="swiper-pagination-partner tablet"></div>
+                <?php wp_reset_postdata(); ?>
+            <?php else: ?>
+                <p class="txt_17"><?php esc_html_e('Chưa có bài viết.', 'textdomain'); ?></p>
+            <?php endif; ?>
+
+            <div class="swiper-pagination-news tablet"></div>
+        </div>
+        <a href="/tin-tuc/" class="home_news_seeall txt_20 txt_uppercase txt_title_color txt_center">
+            Xem tất cả
+            <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
+                    fill="currentColor" />
+            </svg>
+        </a>
+    </div>
+</section>
+<section class="home_partner full_screen" data-section="white">
+    <div class="kl_container">
+        <div class="home_partner_title txt_title_color txt_uppercase txt_center txt_55 heading"><?= wp_kses_post($partner_title) ?></div>
+        <div class="home_partner_inner_wrap">
+            <div class="home_partner_inner">
+                <?php if (!empty($partner_item)) : ?>
+                    <?php
+                    $count = 0;
+                    foreach ($partner_item as $index => $item) :
+
+                        // Mở thẻ group khi bắt đầu nhóm mới
+                        if ($count === 0) {
+                            echo '<div class="home_partner_group">';
+                        }
+                    ?>
+                        <div class="home_partner_item img_full">
+                            <img src="<?= esc_url(wp_get_attachment_url($item['partner_item_img'])) ?>" alt="">
+                        </div>
+                    <?php
+                        $count++;
+
+                        // Đủ 6 item hoặc là item cuối -> đóng group
+                        if ($count === 6 || $index === array_key_last($partner_item)) {
+                            echo '</div>'; // đóng .partner-group
+                            $count = 0; // reset đếm
+                        }
+
+                    endforeach;
+                    ?>
+                <?php endif; ?>
             </div>
+            <div class="swiper-pagination-partner tablet"></div>
         </div>
-        <div class="footer_wrap">
+    </div>
+    <div class="footer_wrap">
         <?php
-wp_enqueue_script('home', get_template_directory_uri() . '/js/home.js', array('global-js'), SITE_VERSION, true);
- get_footer(); ?>
-        </div>
-      </section>
-
-
-
-
+        wp_enqueue_script('gsap-observer', get_template_directory_uri() . '/plugin/gsap/Observer.min.js', [], null, true);
+        wp_enqueue_script('gsap-scroll-plugin', get_template_directory_uri() . '/plugin/gsap/ScrollToPlugin.min.js', [], null, true);
+        wp_enqueue_script('home-js', get_template_directory_uri() . '/js/home.js', ['animation-core', 'global-js'], SITE_VERSION, true);
+        get_footer(); ?>
+    </div>
+</section>

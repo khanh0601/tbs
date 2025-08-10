@@ -62,11 +62,11 @@ $reason_item = tr_posts_field('reason_item', $pageID);
             <img class="middle" src="<?php echo $banner_image ?>" alt="">
             <img class="mobile" src="<?php echo $banner_image_mobile ?>" alt="">
         </div>
-        <div class="recruit_hero_txt txt_uppercase txt_55"><?= wp_kses_post($banner_title) ?></div>
+        <div class="recruit_hero_txt txt_uppercase txt_55 df_hide_onload"><?= wp_kses_post($banner_title) ?></div>
     </section>
     <section class="recruit_resreach">
         <div class="kl_container">
-            <div class="recruit_resreach_top">
+            <div class="recruit_resreach_top df_hide_onload">
                 <div class="recruit_resreach_top_input">
                     <input type="text" placeholder="<?= wp_kses_post($recruit_search_label) ?>" >
                     <div class="recruit_resreach_top_input_icon img_full">
@@ -95,7 +95,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                     <div class="recruit_resreach_list_card">
                         <?php if (!empty($recruit_item)) : ?>
                             <?php foreach ($recruit_item as $item): ?>
-                                <div class="recruit_resreach_list_card_item">
+                                <div class="recruit_resreach_list_card_item df_hide_onload">
                                     <div class="recruit_resreach_list_card_item_title txt_bold txt_uppercase txt_17"><?= $item['recruit_item_title'] ?></div>
                                     <div class="recruit_resreach_list_card_item_info">
                                         <div class="recruit_resreach_list_card_item_info_icon img_full">
@@ -112,7 +112,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
                                                     d="M13.1327 14.7425C12.8328 15.0282 12.8212 15.5029 13.1069 15.8029C13.3926 16.1028 13.8673 16.1144 14.1672 15.8287L13.1327 14.7425ZM21.5172 8.82874C21.8172 8.54308 21.8288 8.06835 21.5431 7.7684C21.2574 7.46845 20.7827 7.45687 20.4828 7.74254L21.5172 8.82874ZM20.4828 8.82883C20.7827 9.11449 21.2574 9.10292 21.5431 8.80297C21.8288 8.50302 21.8172 8.02829 21.5172 7.74262L20.4828 8.82883ZM14.1672 0.742618C13.8673 0.456953 13.3926 0.468533 13.1069 0.76848C12.8212 1.06843 12.8328 1.54316 13.1327 1.82882L14.1672 0.742618ZM21 9.03562C21.4142 9.03562 21.75 8.69983 21.75 8.28562C21.75 7.87141 21.4142 7.53562 21 7.53562V9.03562ZM1.39997 7.53562C0.98576 7.53562 0.649973 7.87141 0.649973 8.28562C0.649973 8.69983 0.98576 9.03562 1.39997 9.03562V7.53562ZM14.1672 15.8287L21.5172 8.82874L20.4828 7.74254L13.1327 14.7425L14.1672 15.8287ZM21.5172 7.74262L14.1672 0.742618L13.1327 1.82882L20.4828 8.82883L21.5172 7.74262ZM21 7.53562L1.39997 7.53562V9.03562L21 9.03562V7.53562Z"
-                                                    fill="#014129" />
+                                                    fill="currentColor" />
                                             </svg>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                         <?php endif; ?>     
                     </div>
                 </div>
-                <div class="recruit_resreach_button middle">
+                <div class="recruit_resreach_button middle df_hide_onload">
                      <div class="recruit_resreach_button_prev recruit_resreach_button_item img_full">
                         <img src="<?= get_template_directory_uri(); ?>/img/icon_pre.svg" alt="" />
                     </div>
@@ -178,7 +178,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                     <div class="recruit_culture_info_title txt_uppercase heading txt_55"><?= wp_kses_post($culture_title) ?></div>
                     <div class="recruit_culture_info_des txt_17 txt_justify"> <?= wp_kses_post($culture_des) ?></div>
                 </div>
-                <div class="recruit_culture_img img_full right_full">
+                <div class="recruit_culture_img img_full right_full img_will_hover">
                     <img src="<?php echo $culture_image ?>" alt="">
                 </div>
             </div>
@@ -192,7 +192,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                     <?php if (!empty($active_item)) : ?>
                     <?php foreach ($active_item as $item): ?>
                     <div class="recruit_active_list_item">
-                        <div class="recruit_active_list_item_img img_full">
+                        <div class="recruit_active_list_item_img img_full img_will_hover">
                             <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="">
                         </div>
                         <div class="recruit_active_list_item_txt txt_24 txt_uppercase txt_center heading"><?= $item['active_item_caption'] ?></div>
@@ -214,7 +214,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                         <div class="recruit_content_item_info_title heading txt_28 txt_uppercase"><?= $item['reason_item_title'] ?></div>
                         <div class="recruit_content_item_info_des txt_17 txt_justify"> <?= $item['reason_item_des'] ?></div>
                     </div>
-                    <div class="recruit_content_item_img right img_full">
+                    <div class="recruit_content_item_img right img_full img_will_hover">
                         <img src="<?= esc_url(wp_get_attachment_url($item['reason_item_image'])) ?>" alt="">
                     </div>
                     

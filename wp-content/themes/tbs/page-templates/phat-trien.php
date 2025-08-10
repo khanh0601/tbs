@@ -49,13 +49,13 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
         <div class="development_hero_img img_full">
           <img src="<?php echo $banner_image ?>" alt="">
         </div>
-        <h1 class="development_hero_txt heading txt_55"><?= wp_kses_post($banner_title) ?></h1>
+        <h1 class="development_hero_txt heading txt_55 df_hide_onload"><?= wp_kses_post($banner_title) ?></h1>
     </section>
     <section class="development_sight">
       <div class="kl_container">
-        <h2 class="development_sight_title txt_title_color txt_uppercase heading txt_55 txt_center"><?= wp_kses_post($sight_title) ?></h2>
-        <div class="development_sight_des txt_17"><?= wp_kses_post($sight_des) ?></div>
-        <div class="development_sight_img img_full">
+        <h2 class="development_sight_title txt_title_color txt_uppercase heading txt_55 txt_center df_hide_onload"><?= wp_kses_post($sight_title) ?></h2>
+        <div class="development_sight_des txt_justify txt_17 df_hide_onload"><?= wp_kses_post($sight_des) ?></div>
+        <div class="development_sight_img img_full df_hide_onload img_will_hover">
           <img src="<?php echo $sight_image ?>" alt="">
         </div>
       </div>
@@ -74,7 +74,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
              <?php endforeach; ?>
               <?php endif; ?>
           </div>
-          <div class="development_safe_img img_full right_full">
+          <div class="development_safe_img img_full right_full img_will_hover">
             <img src="<?php echo $safe_image ?>" alt="">
           </div>
         </div>
@@ -84,7 +84,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
       <div class="kl_container">
         <div class="development_environment_content kl_grid">
           <h2 class="development_environment_title desktop heading txt_title_color txt_uppercase txt_55 txt_center"><?= wp_kses_post($environment_title) ?></h2>
-          <div class="development_environment_img img_full left_full">
+          <div class="development_environment_img img_full left_full img_will_hover">
             <img src="<?php echo $environment_image ?>" alt="">
           </div>
           <div class="development_environment_info">
@@ -105,7 +105,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
              <?php if (!empty($project_item)) : ?>
                 <?php foreach ($project_item as $item): ?>
           <div class="development_environment_project_left">
-            <div class="development_environment_project_img img_full">
+            <div class="development_environment_project_img img_full img_will_hover">
               <img src="<?= esc_url(wp_get_attachment_url($item['project_item_image'])) ?>" alt="">
             </div>
             <div class="development_environment_project_title title_project txt_uppercase heading txt_28"><?= $item['project_item_title'] ?></div>
@@ -127,7 +127,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
             <?php endforeach; ?>
               <?php endif; ?>
           </div>
-          <div class="development_response_img img_full right_full">
+          <div class="development_response_img img_full right_full img_will_hover">
             <img src="<?php echo $response_image ?>" alt="">
           </div>
         </div>

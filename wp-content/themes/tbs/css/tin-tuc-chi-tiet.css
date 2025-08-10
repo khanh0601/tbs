@@ -11,6 +11,14 @@
     white-space: nowrap;
     transform: translate(-50%, -50%);
 }
+@media screen and (max-width:767px) {
+    .newsdetail_hero_img {
+        aspect-ratio: 440/213;
+        img{
+            object-fit: unset;
+        }
+    }
+}
 /* content */
 .newsdetail_content{
     padding-top: 5.5rem;
@@ -50,10 +58,13 @@
     }
     img {
         margin-bottom: 1.2rem;
+        width:100%;
     }
     .wp-caption {
         text-align: center;
         margin-block: 4rem;
+        margin-inline:auto;
+        width:100% !important;
         p {
             color: #898181;
         }

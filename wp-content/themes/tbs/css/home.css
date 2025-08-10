@@ -708,8 +708,11 @@
         margin-inline: auto;
         transition: all .3s  ease;
         text-decoration: none;
-        color: #555555;
+        color: #014129;
         position: relative;
+        &:hover{
+            color:#A6CE39;
+        }
         svg{
         transition: all .3s  ease;
             right: -2rem;

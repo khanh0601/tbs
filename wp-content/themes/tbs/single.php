@@ -30,7 +30,7 @@ wp_enqueue_style('tin-tuc-chi-tiet', get_template_directory_uri() . '/css/tin-tu
 <div class="newsdetail_content_share">
                 <a href="#" class="newsdetail_content_share_inner">
                     <div class="newsdetail_content_share_txt txt_17 txt_bold">Chia sẻ bài viết</div>
-                    <div class="newsdetail_content_share_icon img_full">
+                    <div class="newsdetail_content_share_icon img_fullfill">
                         <img src="<?= get_template_directory_uri(); ?>/img/icon_fb.svg" alt="">
                     </div>
                 </a>

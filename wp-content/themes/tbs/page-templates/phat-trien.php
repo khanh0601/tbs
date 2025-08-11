@@ -109,7 +109,7 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
               <img src="<?= esc_url(wp_get_attachment_url($item['project_item_image'])) ?>" alt="">
             </div>
             <div class="development_environment_project_title title_project txt_uppercase heading txt_28"><?= $item['project_item_title'] ?></div>
-            <div class="development_environment_project_des txt_17"><?= $item['project_item_des'] ?></div>
+            <div class="development_environment_project_des txt_justify txt_17"><?= $item['project_item_des'] ?></div>
           </div>
           <?php endforeach; ?>
               <?php endif; ?>

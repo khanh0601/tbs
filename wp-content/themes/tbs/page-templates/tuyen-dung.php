@@ -131,44 +131,6 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                     </div>
                 </div>
             </div>
-            <div class="recruit__opportunity__form">
-                <div class="recruit__opportunity__form__inner">
-                    <div class="recruit__opportunity__form__close">x</div>
-                    <div class="recruit__opportunity__form__wrap">
-                    <div class="recruit__opportunity__form__title txt_30">Nộp hồ sơ ứng tuyển</div>
-                    <div class="recruit__opportunity__form__input">
-                        <div class="recruit__opportunity__form__input__left">
-                            <input type="text" placeholder="Họ và tên" required />
-                            <input type="email" placeholder="Email" required />
-                            <input type="tel" placeholder="Số điện thoại" required />
-                        </div>
-                        <div class="recruit__opportunity__form__input__right">
-                        <textarea placeholder="Ghi chú"></textarea>
-                        <div class="recruit__opportunity__form__input__right__select">
-                            <select required>
-                            <option disabled selected>Vị trí ứng tuyển</option>
-                            <option>Nhân viên hành chính</option>
-                            <option>Chuyên viên nhân sự</option>
-                            </select>
-                            <div class="recruit__opportunity__form__input__right__selecticon img_full">
-                                <img src="<?= get_template_directory_uri(); ?>/img/icon_down.svg" alt="">
-                            </div>
-
-                        </div>
-                        </div>
-                        <div class="recruit__opportunity__form__input__cv">
-                        <input type="file" name="file-cv" id="file" />
-                        <label for="file">Gửi Kèm CV</label>
-                        <span class="upload-icon img_full">
-                            <img src="<?= get_template_directory_uri(); ?>/img/icon-attach.svg" alt="">
-                        </span>
-                        </div>
-                        
-                    </div>
-                    <button class="recruit__opportunity__form__submit txt_18" type="submit"><span>ĐĂNG KÝ</span></button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <section class="recruit_culture">
@@ -211,7 +173,7 @@ $reason_item = tr_posts_field('reason_item', $pageID);
                 <?php foreach ($reason_item as $item): ?>
                 <div class="recruit_content_item kl_grid">
                     <div class="recruit_content_item_info left">
-                        <div class="recruit_content_item_info_title heading txt_28 txt_uppercase"><?= $item['reason_item_title'] ?></div>
+                        <div class="recruit_content_item_info_title heading txt_title_color txt_28 txt_uppercase"><?= $item['reason_item_title'] ?></div>
                         <div class="recruit_content_item_info_des txt_17 txt_justify"> <?= $item['reason_item_des'] ?></div>
                     </div>
                     <div class="recruit_content_item_img right img_full img_will_hover">

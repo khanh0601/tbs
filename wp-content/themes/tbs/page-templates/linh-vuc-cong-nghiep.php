@@ -60,7 +60,7 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
         <div class="industrial_hero_img img_full">
           <img src="<?php echo $banner_image ?>" alt="" />
         </div>
-        <h1 class="industrial_hero_title txt_55 heading">
+        <h1 class="industrial_hero_title txt_55 heading df_hide_onload">
           <?= wp_kses_post($banner_title) ?>
         </h1>
       </div>
@@ -68,10 +68,10 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
     <section class="industrial_intro">
       <div class="kl_container">
         <div class="industrial_intro_txt">
-          <div class="industrial_intro_txt_logo img_full">
+          <div class="industrial_intro_txt_logo img_full df_hide_onload">
             <img src="<?php echo $intro_logo ?>" alt="" />
           </div>
-          <div class="industrial_intro_txt_des txt_20 txt_justify">
+          <div class="industrial_intro_txt_des txt_20 txt_justify df_hide_onload">
             <?= wp_kses_post($intro_des) ?>
           </div>
         </div>
@@ -80,8 +80,8 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
             <div class="industrial_intro_slide swiper-wrapper">
               <?php if (!empty($factory_items)) : ?>
                 <?php foreach ($factory_items as $item): ?>
-              <div class="industrial_intro_slide_item swiper-slide">
-                <div class="industrial_intro_slide_item_img img_full">
+              <div class="industrial_intro_slide_item swiper-slide df_hide_onload">
+                <div class="industrial_intro_slide_item_img img_full img_will_hover">
                   <img src="<?= esc_url(wp_get_attachment_url($item['factory_img'])) ?>" alt="" />
                 </div>
                 <div class="industrial_intro_slide_item_txt txt_20">
@@ -92,6 +92,7 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
               <?php endif; ?>
             </div>
           </div>
+          <?php if (!empty($factory_items) && count($factory_items) > 4): ?>
           <div class="industrial_button">
             <div class="button_swiper_prev button_swiper_item img_full">
               <img src="<?= get_template_directory_uri(); ?>/img/icon_pre.svg" alt="" />
@@ -100,13 +101,14 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
               <img src="<?= get_template_directory_uri(); ?>/img/icon_next.svg" alt="" />
             </div>
           </div>
+          <?php endif; ?>
         </div>
       </div>
     </section>
     <section class="industrial_product">
       <div class="kl_container">
         <div class="industrial_product_inner kl_grid">
-          <div class="industrial_product_img img_full">
+          <div class="industrial_product_img img_full img_will_hover">
             <img src="<?php echo $product_img ?>" alt="" />
           </div>
           <div class="industrial_product_info bg_line">
@@ -136,16 +138,16 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
           </h2>
           <?php if (!empty($product2_text_items)) : ?>
                 <?php foreach ($product2_text_items as $item): ?>
-            <div class="industrial_product_info_title heading txt_35">
+            <div class="industrial_product_info_title heading txt_35 ">
               <?= $item['product2_subtitle'] ?>
             </div>
-            <div class="industrial_product_info_des txt_17">
+            <div class="industrial_product_info_des txt_17 df_hide_onload">
                <?= $item['product2_des'] ?>
             </div>
             <?php endforeach; ?>
               <?php endif; ?>
           </div>
-          <div class="industrial_product_img bag img_full">
+          <div class="industrial_product_img bag img_full img_will_hover">
             <img src="<?php echo $product2_img ?>" alt="" />
           </div>
         </div>

@@ -494,6 +494,7 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo $form->text('video_seemore')->setLabel("Xem thêm");    
         echo $form->text('video_link')->setLabel("Link xem thêm");
         echo $form->text('video_ytb')->setLabel("Link youtube");
+        echo $form->text('video_ytb_id')->setLabel("Id video");
         echo endBox();
 
         echo beginBox("Banner Chính",true);

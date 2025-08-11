@@ -24,6 +24,7 @@ $video_title    = tr_posts_field('video_title', $pageID);
 $video_seemore  = tr_posts_field('video_seemore', $pageID);
 $video_link     = tr_posts_field('video_link', $pageID);
 $video_ytb      = tr_posts_field('video_ytb', $pageID); // URL YouTube (embed)
+$video_ytb_id      = tr_posts_field('video_ytb_id', $pageID);
 
 /** Banner Chính */
 $banner_image   = wp_get_attachment_url(tr_posts_field('banner_image', $pageID));
@@ -82,7 +83,7 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
         <img src="<?php echo $video_image ?>" alt="">
     </div>
     <iframe class="home_intro_video df_hide_onload"
-        data-src="<?= wp_kses_post($video_ytb) ?>?autoplay=1&mute=1&loop=1&playlist=yqJuRMhvFcU&controls=0&rel=0&modestbranding=1&playsinline=1"
+        data-src="<?= wp_kses_post($video_ytb) ?>?autoplay=1&mute=1&loop=1&playlist=<?= wp_kses_post($video_ytb_id) ?>&controls=0&rel=0&modestbranding=1&playsinline=1"
         frameborder="0"
         allow="autoplay; fullscreen"
         allowfullscreen>
@@ -148,7 +149,7 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
                             <div class="home_active_item_txt_inner">
                                 <?php if (!empty($item['active_major'])) : ?>
                                     <?php foreach ($item['active_major'] as $item1): ?>
-                                        <a href="<?= $item1['active_major_link'] ?>" class="home_active_item_txt_item txt_bold txt_uppercase txt_center txt_title_color txt_20"><?= $item1['active_major_des'] ?></a>
+                                        <a href="<?= $item1['active_major_link'] ?>" class="home_active_item_txt_item txt_bold txt_uppercase txt_center txt_title_color txt_18"><?= $item1['active_major_des'] ?></a>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </div>
@@ -212,7 +213,7 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
 <section class="home_achieve full_screen" data-section="white">
     <div class="kl_container">
         <div class="home_achieve_inner">
-            <div class="home_achieve_title heading txt_55 txt_uppercase"><?= wp_kses_post($achieve_title) ?></div>
+            <div class="home_achieve_title heading txt_55 txt_uppercase"><?= wp_kses_post($award_title) ?></div>
             <div class="home_achieve_list">
                 <?php if (!empty($award_item)) : ?>
                     <?php foreach ($award_item as $item): ?>
@@ -338,3 +339,4 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
         get_footer(); ?>
     </div>
 </section>
+<section class="home_copyright txt_17">© 2025 TBS Group. All Rights Reserved. Maximize Online Power by <span class="txt_bold">THEMAX </span> </section>

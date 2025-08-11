@@ -1,8 +1,8 @@
 html {
-  font-size: 0.5787037037vw;
+  font-size: 0.52083333333vw;
 }
 :root {
-  --padding-container : 12.4rem;
+  --padding-container : 22rem;
 }
 a:hover{
   color:unset;
@@ -33,6 +33,9 @@ a:hover{
 }
 *{
   box-sizing: border-box;
+}
+h4{
+  padding-left: 1rem;
 }
 body {
   font-family: 'Arial';
@@ -455,6 +458,7 @@ body.menu-open .header_top_right_menu {
 body.menu-open .header_top_right_menu>span {
     width: 100%;
     height: .2rem;
+    background-color: #86B350;
     transition: 0.3s ease all;
 }
 
@@ -571,12 +575,13 @@ body.menu-open .header_nav {
   border-left: 1px solid #898181;
 }
 @media screen and (max-width:991px) {
-  .header_top_logo {
-    width: 14rem;
+  .header_nav_logo {
+    width: 20rem;
     margin-bottom: 5rem;
   }
   .header_top{
     padding-inline: 4.5rem 10.5rem;
+    align-items: flex-start;
   }
   .header_nav {
     bottom: 0;
@@ -593,8 +598,8 @@ body.menu-open .header_nav {
   }
   .header_nav_language{
     position: absolute;
-    top: 3.2rem;
-    right: 5rem;
+    top: 2.7rem;
+      right: 10rem;
     border: none;
     gap: 0;
     .header_nav_language_item:first-child{
@@ -649,12 +654,17 @@ body.menu-open .header_nav {
   }
   .header_top_logo {
     margin-bottom: 3rem;
+    width: 11rem;
   }
 }
 @media screen and (max-width:767px) {
+  .header_nav_logo{
+    width: 16rem;
+    margin-left: -11rem;
+  }
   .header_top_logo {
-    width: 8rem;
-    margin-bottom: 8rem;
+    width: 8.8rem;
+    margin-bottom: 0rem;
   }
   .header_nav_menu_item_link_icon{
     top: 1rem;
@@ -666,6 +676,7 @@ body.menu-open .header_nav {
   .header_top{
     padding-top: 1rem;
     padding-inline: 2rem 8rem;
+
   }
   .header_top_right_menu_wrap{
     right: 2rem;
@@ -688,7 +699,7 @@ body.menu-open .header_nav {
 }
 /* footer */
 .footer{
- background: #014129 url('../img/bg_line.png') repeat;
+ background: #014129 url('../img/bg_line1.png') repeat;
  position: relative;
  padding-top: 9rem;
  padding-bottom: 4rem;
@@ -740,6 +751,7 @@ body.menu-open .header_nav {
   padding-left: 3rem;
 }
 .footer_content_menu_item_icon{
+  width: 1.1rem;
   position: absolute;
   left: 0.5rem;
   top: 1rem;
@@ -814,6 +826,13 @@ body.menu-open .header_nav {
   }
 }
 @media screen and (max-width:767px) {
+  .footer_content_menu_item_icon{
+    top: .9rem;
+    width: .9rem;
+  }
+  .footer_content_menu_item_link{
+    font-size: 1.8rem;
+  }
   .footer_content_contact {
     max-width: unset;
   }
@@ -842,6 +861,9 @@ body.menu-open .header_nav {
 .footer_content_contact_form{
   padding: .4rem;
 }
+.footer_content_location_icon{
+  width: 2.4rem;
+}
 }
 
 /* btn_social */
@@ -860,6 +882,76 @@ body.menu-open .header_nav {
 }
 @media screen and (max-width:767px ) {
   .btn_social{
-    right: 2rem;
+    right: 1rem !important;
   }
+    .btn_social_icon{
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    border: 1px solid #FFFFFF;
+  }
+}
+/* list */
+.home_list{
+    position: fixed;
+    left: 6rem;
+    top: 50%;
+    z-index: 1000;
+    transform: translateY(-50%);
+    .home_list_num:last-child{
+        margin-bottom: 0;
+        &::before{
+            content: none;
+        }
+    }
+}
+body.on-white .home_list_num{
+    color: #898181;
+    background-color: transparent;
+    border: 1px solid #898181;
+    &.active {
+        color: white ;
+        background-color: #014129;
+        border: 1px solid #014129;
+    }
+    &::before {
+        background-color: #898181;
+    }
+}
+.home_list_num{
+    color: #fff;
+    background-color: transparent;
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #D9D9D9;
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    transition: all .3s ease;
+    &.active{
+        background-color: #fff;
+        color: #014129;
+    }
+    &:hover{
+        background-color: #fff;
+        color: #014129;
+    }
+    &::before{
+        width: 1px;
+        height: 4rem;
+        content: "";
+        position: absolute;
+        background-color: #D9D9D9;
+        top: 2.5rem;
+    }
+}
+@media screen and (max-width:991px) {
+    .home_list{
+        display: none;
+    }
 }

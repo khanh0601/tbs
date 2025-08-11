@@ -36,6 +36,10 @@ const mainScript = () => {
         nextEl: ".button_swiper_next",
         prevEl: ".button_swiper_prev",
       },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
       breakpoints: {
         768: {
           slidesPerView: 3,

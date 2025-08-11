@@ -95,7 +95,7 @@
     position: relative;
     &::before{
         content: "";
-        background: url(/assets/img/icon_txt1.png) no-repeat;
+        background: url(../img/icon_txt1.png) no-repeat;
         background-size: 100% 100%;
         width: 10.2rem;
         height: 8.2rem;
@@ -106,7 +106,7 @@
     }
     &::after{
         content: "";
-        background: url(/assets/img/icon_txt.png) no-repeat;
+        background: url(../img/icon_txt.png) no-repeat;
         background-size: 100% 100%;
         width: 10.2rem;
         height: 8.2rem;
@@ -120,7 +120,7 @@
     grid-column: 9/13;
 }
 .about_content_top_txt_des{
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
 }
 .about_content_sight_txt_title{
     color: #014129;
@@ -238,7 +238,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #a6ce3928;
+    background-color: white;
 }
 .about_value_item{
     display: flex;
@@ -281,6 +281,7 @@
 @media screen and (max-width:767px) {
     .about_value_des {
         width: 100%;
+        padding-bottom: 6rem;
         max-width: 41.4rem;
     }
     .about_value_wrap{
@@ -290,7 +291,8 @@
         overflow: hidden;
     }
     .about_value_des {
-        font-size: 2rem !important;
+        font-size: 1.9rem !important;
+        line-height: 1.5;
          font-weight: 700;
         font-family: "TBSGothic";
     }
@@ -321,6 +323,10 @@
 /* history */
 .about_history{
     margin-top: 10rem;
+    .kl_contaner {
+        position: relative;
+        z-index: 4;
+    }
 }
 .about_history_swiper {
     margin-left: -3.6rem;
@@ -340,7 +346,7 @@
     right: -4rem;
     &::after{
         content:"";
-        background:  url(/assets/img/icon_arrowright1.svg) no-repeat ;
+        background:  url(../img/icon_arrowright1.svg) no-repeat ;
         width: 2.6rem;
         height: 2.6rem;
         background-size: 100% 100%;
@@ -364,7 +370,7 @@
     position: relative;
     height: .4rem;
     display: flex;
-    /* background:url(/assets/img/moc.png) center no-repeat ;
+    /* background:url(../img/moc.png) center no-repeat ;
     background-repeat: repeat-x;
     width: 100%; */
     /* .about_history_content_item__wrap:first-child{
@@ -381,7 +387,9 @@
     } */
     .about_history_content_item__wrap:nth-child(2n) .about_history_content_item{
         top: 0;
-        bottom: unset;
+        bottom: -29rem;
+        display: flex;
+        align-items: flex-end;
         margin-top: 2.1rem;
         padding-bottom: 2rem;
         margin-bottom: 0;
@@ -426,7 +434,7 @@
     width: 10.55rem;
     .about_history_content_item{
         position: absolute;
-        top: -25.7rem;
+        top: -29.7rem;
     }
     &::after{
         content: "";
@@ -469,6 +477,7 @@
 }
 .about_history_content_item_img{
     width:14.7rem;
+    height: 11rem;
     margin-bottom: 2rem;
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.4);
 }
@@ -501,7 +510,7 @@
         position: absolute;
         top: -.8rem;
         right: -.5rem;
-        background: url(/assets/img/icon_arrowright.svg) no-repeat;
+        background: url(../img/icon_arrowright.svg) no-repeat;
         background-size: 100% 100%;
     }
 }
@@ -515,7 +524,7 @@
         content: "";
         left: -1.4rem;
         position: absolute;
-        background: url(/assets/img/history_border.png) top no-repeat;
+        background: url(../img/history_border.png) top no-repeat;
         background-size: 100%;
     }
  }
@@ -635,30 +644,34 @@
         }
         .about_expert_content_img{
             grid-column: 8/13;
-            margin-left: -4rem;
             overflow: hidden;
             position: relative;
             clip-path: url(#hexClipLarge2);
         }
+        &:nth-child(2n + 1) {
+            .about_expert_content_img {
+                margin-left: -4rem;
+            }
+        }
     }
+    
     .about_expert_content:nth-child(2n){
         .about_expert_content_img{
             grid-column: 1/6;
+            grid-row: 1/2;
             margin-right: -3.6rem;
-            display: flex;
             position: relative;
             overflow: hidden;
             clip-path: url(#hexClipLarge);
         }
         .about_expert_content_info{
             grid-column: 7/13;
+            grid-row: 1/2;
             margin-left: -3.5rem;
         }
     }
 }
-.about_expert_content_info_des{
-    margin-bottom: .7rem;
-}
+
 .about_expert_content{
     padding-bottom: 8rem;
 }
@@ -699,8 +712,7 @@
             }
             .about_expert_content_img{
                 grid-column: 1/13;
-                margin-left: 0;
-                margin-right: 0;
+                margin-left: 0 !important;
                 margin-top: 2rem;
                 &::after{
                     content: none;
@@ -711,14 +723,15 @@
             .about_expert_content_img{
                 grid-column: 1/13;
                 margin-top: 2rem;
-                margin-left: 0;
-                margin-right: 0;
+                    margin-left: calc(var(--padding-container) * -1) !important;
+                margin-right: 0 !important;
                 &::after{
                     content: none;
                 }
             }
             .about_expert_content_info{
                 grid-column: 1/13;
+                grid-row: 2/3;
                 margin-left: 0;
                 margin-top: 2rem;
             }
@@ -735,10 +748,24 @@
     }
  }
  @media screen and (max-width:767px) {
+    .about_content_top {
+        padding-bottom: 3rem;
+    }
+    .about_value {
+        padding-top: 6rem;
+    }
+    .about_content_sight {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+        margin-top: 0;
+    }
     .about_expert{
         overflow: hidden;
-        margin-top: 11.4rem;
+        padding-top: 6rem;
+        margin-top: 6rem;
+        padding-bottom: 4rem;
     }
+
     .about_expert_content_info_authen {
         font-size: 1.6rem;
         width: 32.6rem;
@@ -790,7 +817,8 @@
 }
 .button_swiper{
     position: absolute;
-    inset: 0 -2rem;
+    inset: 0 -5rem;
+    padding-bottom: 14rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -843,6 +871,9 @@
     
 }
 @media screen and (max-width:767px){
+        .about_archive {
+        padding-block: 6rem;
+    }
     .mySwiper_wrap{
         margin-inline: 2rem;
         margin-top: 4rem;
@@ -855,5 +886,8 @@
     font-weight: 400;
     font-size: 1.4rem;
     padding: .5rem;
+}
+.button_swiper {
+    padding-bottom: 0;
 }
 }

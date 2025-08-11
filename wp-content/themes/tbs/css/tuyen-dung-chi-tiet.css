@@ -1,0 +1,373 @@
+.recruitdetail_hero{
+    position: relative;
+}
+
+.recruitdetail_hero_txt{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+/* recruitdetail_resreach */  
+.recruitdetail_resreach{
+    margin-top: 10rem;
+}
+.recruitdetail_resreach_top{
+    border-bottom: 1px solid #A6CE39;
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+}
+.recruitdetail_resreach_top_input, .recruitdetail_resreach_top_list{
+    width: calc(50% - 1rem);
+    position: relative;
+}
+.recruitdetail_resreach_top_list{
+    margin-left: 9rem;
+    padding-left: 1rem;
+    select{
+        padding-block: 1rem;
+        padding-left: 1rem;
+        width: 100%;
+        font-weight: bold;
+        color: #014129;
+        border: none;
+         appearance: none;
+    }
+}
+.recruitdetail_resreach_top_input{
+    input{
+        border: none;
+        width: 100%;
+        padding-block: 1rem;
+        &::placeholder{
+            font-size: 1.7rem;
+        }
+    }
+}
+.recruitdetail_resreach_top_list_icon{
+    position: absolute;
+    width: 2.2rem;
+    pointer-events: none;
+    right: 0;
+    bottom: 1.1rem;
+}
+.recruitdetail_resreach_top_input_icon{
+    right: 1rem;
+    bottom: .5rem;
+    position: absolute;
+    pointer-events: none;
+    width: 3rem;
+}
+.recruitdetail_resreach_top_list_icon2{
+    position: absolute;
+    pointer-events: none;
+    width: 6.6rem;
+    left: -6rem;
+    bottom: -.5rem;
+}
+@media screen and (max-width:991px) {
+    .recruitdetail_resreach{
+        margin-top: 6rem;
+    }
+    .recruitdetail_resreach_top{
+        flex-direction: column;
+    }
+    .recruitdetail_resreach_top_input, .recruitdetail_resreach_top_list{
+        width: 100%;
+    }
+    .recruitdetail_resreach_top_list{
+        padding-left: 4rem;
+        margin-left: 0;
+    }
+    .recruitdetail_resreach_top_list_icon2 {
+        width: 5.6rem;
+        left: -1rem;
+    }
+    .recruitdetail_resreach_top_input_icon  {
+        width: 2.5rem;
+    }
+    .recruitdetail_resreach_top{
+        border: none;
+    }
+    .recruitdetail_resreach_top_input{
+        border-bottom: 1px solid #A6CE39;
+    }
+}
+@media screen and (max-width:767px) {
+    .recruitdetail_resreach_top_input_icon  {
+        width: 3rem;
+    }
+    .recruitdetail_resreach_top_list{
+        padding-left: 5rem;
+    }
+}
+/* content  */
+.recruitdetail_content{
+    margin-top: 3.6rem;
+    margin-bottom: 5.6rem;
+}
+.recruitdetail_content_item{
+    border-bottom: 2px solid #DFECC1;
+}
+.recruitdetail_content_title{
+    border-bottom: 2px solid #DFECC1;
+    padding-bottom: 2.5rem;
+    color: #598527;
+
+}
+.recruitdetail_content_item_title{
+    color: #86B350;
+}
+.recruitdetail_content_inner{
+    margin-top: 1.5rem;
+    .recruitdetail_content_item:last-child{
+        border-bottom: none;
+    }
+}
+
+/* form */
+.recruitdetail_form_title{
+    color: #598527;
+    margin-bottom: 3.5rem;
+}
+.recruitdetail_form_inner{
+    .recruitdetail_form_item:first-child{
+        grid-column: 2/7;
+        margin-left: -4.5rem;
+    }
+    .recruitdetail_form_item:last-child{
+        grid-column: 7/12;
+        margin-right: -4.5rem;
+    }
+}
+.recruitdetail_form_item{
+    input{
+        margin-bottom: 2rem;
+        font-size: 1.7rem;
+        padding: 1.6rem 0 .8rem 2.2rem;
+        background-color: #F5F5F5;
+        border: 1px solid #B0B0B0;
+        width: 100%;
+        border-radius: 1rem;
+        &::placeholder{
+            font-size: 1.7rem;
+        }
+    }
+    select{
+        background-color: #F5F5F5;
+        border: 1px solid #B0B0B0;
+        width: 100%;
+        font-size: 1.7rem;
+        padding: 1.6rem 0 .8rem 2.2rem;
+        border-radius: 1rem;
+        color: #555;
+        appearance: none;
+    }
+    .recruitdetail_form_item_iconselect{
+        position: absolute;
+        width: 1.3rem;
+        right: 2rem;
+        top: 2rem;
+    }
+    .recruitdetail_form_item_cv{
+        width: 100%;
+        border-radius: 1rem;
+        max-height: 4.6rem;
+        position: relative;
+        background-color: #F5F5F5;
+        border: 1px solid #B0B0B0;
+        font-size: 1.7rem;
+        cursor: pointer;
+        label{
+            padding: 1.4rem 0 1rem 2.2rem;
+            font-size: 1.7rem;
+            width: 100%;
+            display: block;
+            cursor: pointer;
+        }
+        input{
+            display: none;
+        }
+    }
+}
+.recruitdetail_form_item_select{
+    position: relative;
+}
+.upload_icon{
+    position: absolute;
+    width: 1.75rem;
+    right: 1.5rem;
+    top: 1.5rem;
+    pointer-events: none;
+}
+.recruitdetail_form_submit{
+    color: #fff;
+    margin-top: 4.5rem;
+    padding: 1.5rem 4rem;
+    background-color: #A6CE39;
+    border: none;
+    border-radius: 1rem;
+    width: max-content;
+    margin-inline: auto;
+    cursor: pointer;
+    display: block;
+}
+@media screen and (max-width:767px) {
+    .recruitdetail_form_item{
+        grid-column: 1/13 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    .recruitdetail_form_inner{
+        row-gap: 2rem;
+    }
+    .recruitdetail_form_item{
+    input{
+        padding: 1.2rem 0 1.2rem 2.2rem;
+        font-size: 1.4rem;
+        &::placeholder{
+            font-size: 1.4rem;
+        }
+    }
+    select{
+        padding: 1.2rem 0 1.2rem 2.2rem;
+        font-size: 1.4rem;
+    }
+    .recruitdetail_form_item_cv{
+        max-height: 4.2rem;
+        label{
+            padding: .8rem 0 1.2rem 2.2rem;
+            font-size: 1.4rem;
+        }
+    }
+}
+.recruitdetail_form_submit {
+    padding: 1rem 3rem;
+}
+}
+/* other */
+.recruitdetail_other{
+    padding-bottom: 7.5rem;
+}
+.recruitdetail_other{
+    margin-top: 6.5rem;
+}
+.recruitdetail_other_card_item_info_icon{
+    width: 1.75rem;
+}
+.recruitdetail_other_card_item_link_img{
+    width: 1.96rem;
+    height: 1.4rem;
+}
+.recruitdetail_other_card_item_info{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.recruitdetail_other_card_item_info_icon{
+    position: absolute;
+}
+.recruitdetail_other_card_item{
+    padding: 3rem 4rem;
+    background-color: #F4F4F4;
+    border-radius: 1.5rem;
+    border: 1px solid #D8DFC5;
+    cursor: pointer;
+}
+.recruitdetail_other_card_item_info_location{
+    padding-left: 3.1rem;
+}
+.recruitdetail_other_card_item_link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #555;
+    .recruitdetail_other_card_item_link_img{
+        margin-left: 1.5rem;
+    }
+}
+.recruitdetail_other_inner_wrap{
+    margin-top: 5.5rem;
+    position: relative;
+}
+.recruitdetail_other_button{
+    position: absolute;
+    inset: 0 -3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+.recruitdetail_other_button_item{
+    pointer-events: auto;
+     width: 1rem;
+     height: 2rem;
+     cursor: pointer;
+     transition: opacity .4s ease;
+     &.swiper-button-disabled{
+        opacity: .4;
+        cursor: unset;
+     }
+}
+.recruitdetail_other_card_item_title {
+    margin-bottom: 1.5rem;
+}
+.recruitdetail_other_card_item_info{
+    margin-bottom: 2.5rem;
+}
+.recruitdetail_other_button{
+    position: absolute;
+    inset: 0 -3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+.recruitdetail_other_button_item{
+    pointer-events: auto;
+     width: 1rem;
+     height: 2rem;
+     cursor: pointer;
+     transition: opacity .4s ease;
+     &.swiper-button-disabled{
+        opacity: .4;
+        cursor: unset;
+     }
+}
+.recruitdetail_other_card_item_link{
+    transition: all .3s ease;
+    .recruitdetail_other_card_item_link_img{
+    transition: all .3s ease;
+
+    }
+    &:hover{
+        color:#86B350;
+        .recruitdetail_other_card_item_link_img {
+            margin-left: 2.5rem;
+        }
+    }
+}
+@media screen and (max-width:991px) {
+    .recruitdetail_other_card_item_info_location {
+        padding-left: 2rem;
+    }
+    .recruitdetail_other_button{
+        inset: 0 -2rem;
+    }
+}
+@media screen and (max-width:767px) {
+    .recruitdetail_other_card_item{
+        padding: 2.5rem 3.5rem;
+    }
+    .recruitdetail_other_card_item_title {
+        margin-bottom: 1rem;
+    }
+    .recruitdetail_other_card_item_info{
+        margin-bottom: 1.5rem;
+    }
+    .recruitdetail_other_button{
+        inset: 0 -1.5rem;
+    }
+}

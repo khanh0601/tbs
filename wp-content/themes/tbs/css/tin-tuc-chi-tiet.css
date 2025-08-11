@@ -263,7 +263,7 @@
     padding-block: .2rem;
     border-radius: .6rem;
     background-color: #F5F5F5;
-    top: 48.5%;
+    top: 22.5rem;
     left: 1.1rem;
     color: #A6CE39;
     z-index: 10;
@@ -301,7 +301,7 @@
         margin-bottom: 1rem;
     }
     .newsdetail_other_item_time {
-        top: 30.5%;
+        top: 15.5rem;
     }
     .newsdetail_other_item_detail{
         width: 10.5rem;
@@ -357,6 +357,6 @@
         left: 3rem;
     }
     .newsdetail_other_item_time{
-        top: 50%;
+        top: 19.2rem;
     }
 }

@@ -117,7 +117,7 @@
 }
 @media screen and (max-width:767px) {
     .development_safe{
-        padding-block: 7rem;
+        padding-block: 7rem 6rem;
     }
 }
 /* environment */
@@ -193,7 +193,6 @@
     .development_environment_img{
         grid-column: 1/13;
         margin-left: 0;
-        border-radius: 2rem;
         margin-right: 0;
         margin-bottom: 3rem;
     }
@@ -224,6 +223,9 @@
     }
     .development_environment_title {
         text-align: left;
+    }
+    .development_environment{
+        padding-top:6.5rem;
     }
 }
 /* response */

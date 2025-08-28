@@ -32,6 +32,7 @@
         width: 100%;
         font-weight: bold;
         color: #014129;
+        background-color: transparent;
         border: none;
          appearance: none;
          option{
@@ -103,6 +104,9 @@
     background-color: #F4F4F4;
     border-radius: 1.5rem;
     border: 1px solid #D8DFC5;
+    display:block;
+    text-decoration: none;
+    color: #555;
     cursor: pointer;
 }
 .recruit_resreach_list_card_item_info_location{
@@ -349,6 +353,7 @@
     &.right{
         grid-column: 1/13 !important;
         margin-left: 0 !important;
+        margin-right: 0 !important;
     }
     &.left{
         grid-column: 1/13 !important;

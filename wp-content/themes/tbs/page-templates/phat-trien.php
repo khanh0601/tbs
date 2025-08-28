@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Phát triển
  * Description:
@@ -41,69 +42,69 @@ $project_item = tr_posts_field('project_item', $pageID);
 
 // === Trách nhiệm xã hội ===
 $response_title = tr_posts_field('response_title', $pageID);
-$response_item_des = tr_posts_field('response_item_des', $pageID); // Array of ['response_item_des_des']
+$response_des = tr_posts_field('response_des', $pageID); // Array of ['response_item_des_des']
 $response_image = wp_get_attachment_url(tr_posts_field('response_image', $pageID));
 $response_item = tr_posts_field('response_item', $pageID); // Array of ['response_item_title', 'response_item_des']
 ?>
- <section class="development_hero">
-        <div class="development_hero_img img_full">
-          <img src="<?php echo $banner_image ?>" alt="">
+<section class="development_hero">
+  <div class="development_hero_img img_full">
+    <img src="<?php echo $banner_image ?>" alt="">
+  </div>
+  <h1 class="development_hero_txt heading txt_55 df_hide_onload"><?= wp_kses_post($banner_title) ?></h1>
+</section>
+<section class="development_sight" id="sight">
+  <div class="kl_container">
+    <h2 class="development_sight_title txt_title_color txt_uppercase heading txt_55 txt_center df_hide_onload"><?= wp_kses_post($sight_title) ?></h2>
+    <div class="development_sight_des txt_justify txt_17 df_hide_onload"><?= wp_kses_post($sight_des) ?></div>
+    <div class="development_sight_img img_full df_hide_onload img_will_hover">
+      <img src="<?php echo $sight_image ?>" alt="">
+    </div>
+  </div>
+</section>
+<section class="development_safe bg_line" id="safe" >
+  <div class="kl_container">
+    <div class="development_safe_inner kl_grid">
+      <div class="development_safe_info">
+        <div class="development_safe_info_title_wrap">
+          <h2 class="development_safe_info_title heading txt_title_color txt_uppercase txt_55"><?= wp_kses_post($safe_title1) ?></h2>
+          <h2 class="development_safe_info_title right heading txt_title_color txt_uppercase txt_55"><?= wp_kses_post($safe_title2) ?> </h2>
         </div>
-        <h1 class="development_hero_txt heading txt_55 df_hide_onload"><?= wp_kses_post($banner_title) ?></h1>
-    </section>
-    <section class="development_sight">
-      <div class="kl_container">
-        <h2 class="development_sight_title txt_title_color txt_uppercase heading txt_55 txt_center df_hide_onload"><?= wp_kses_post($sight_title) ?></h2>
-        <div class="development_sight_des txt_justify txt_17 df_hide_onload"><?= wp_kses_post($sight_des) ?></div>
-        <div class="development_sight_img img_full df_hide_onload img_will_hover">
-          <img src="<?php echo $sight_image ?>" alt="">
-        </div>
-      </div>
-    </section>
-    <section class="development_safe bg_line">
-      <div class="kl_container">
-        <div class="development_safe_inner kl_grid">
-          <div class="development_safe_info">
-            <div class="development_safe_info_title_wrap">
-              <h2 class="development_safe_info_title heading txt_title_color txt_uppercase txt_55"><?= wp_kses_post($safe_title1) ?></h2>
-              <h2 class="development_safe_info_title right heading txt_title_color txt_uppercase txt_55"><?= wp_kses_post($safe_title2) ?> </h2>
-            </div>
-            <?php if (!empty($safe_item)) : ?>
-                <?php foreach ($safe_item as $item): ?>
+        <?php if (!empty($safe_item)) : ?>
+          <?php foreach ($safe_item as $item): ?>
             <div class="development_safe_info_des txt_justify txt_17"><?= $item['safe_item_des'] ?></div>
-             <?php endforeach; ?>
-              <?php endif; ?>
-          </div>
-          <div class="development_safe_img img_full right_full img_will_hover">
-            <img src="<?php echo $safe_image ?>" alt="">
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </div>
+      <div class="development_safe_img img_full right_full img_will_hover">
+        <img src="<?php echo $safe_image ?>" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="development_environment" id="environment" >
+  <div class="kl_container">
+    <div class="development_environment_content kl_grid">
+      <h2 class="development_environment_title desktop heading txt_title_color txt_uppercase txt_55 txt_center"><?= wp_kses_post($environment_title) ?></h2>
+      <div class="development_environment_img img_full left_full img_will_hover">
+        <img src="<?php echo $environment_image ?>" alt="">
+      </div>
+      <div class="development_environment_info">
+        <h2 class="development_environment_title heading txt_title_color txt_uppercase txt_55 txt_center tablet"><?= wp_kses_post($environment_title) ?></h2>
+        <?php if (!empty($environment_item)) : ?>
+          <?php foreach ($environment_item as $item): ?>
+            <div class="development_environment_info_des txt_17 txt_justify"><?= $item['environment_item_des'] ?></div>
+          <?php endforeach; ?>
+        <?php endif; ?>
+        <div class="development_environment_info_logo">
+          <div class="development_environment_info_logo_inner img_full">
+            <img src="<?php echo $environment_image_logo ?>" alt="">
           </div>
         </div>
       </div>
-    </section>
-    <section class="development_environment">
-      <div class="kl_container">
-        <div class="development_environment_content kl_grid">
-          <h2 class="development_environment_title desktop heading txt_title_color txt_uppercase txt_55 txt_center"><?= wp_kses_post($environment_title) ?></h2>
-          <div class="development_environment_img img_full left_full img_will_hover">
-            <img src="<?php echo $environment_image ?>" alt="">
-          </div>
-          <div class="development_environment_info">
-          <h2 class="development_environment_title heading txt_title_color txt_uppercase txt_55 txt_center tablet"><?= wp_kses_post($environment_title) ?></h2>
-           <?php if (!empty($environment_item)) : ?>
-                <?php foreach ($environment_item as $item): ?>
-            <div class="development_environment_info_des txt_17 txt_justify"><?= $item['environment_item_des'] ?></div>
-            <?php endforeach; ?>
-              <?php endif; ?>
-            <div class="development_environment_info_logo">
-              <div class="development_environment_info_logo_inner img_full">
-                <img src="<?php echo $environment_image_logo ?>" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="development_environment_project kl_grid">
-             <?php if (!empty($project_item)) : ?>
-                <?php foreach ($project_item as $item): ?>
+    </div>
+    <div class="development_environment_project kl_grid">
+      <?php if (!empty($project_item)) : ?>
+        <?php foreach ($project_item as $item): ?>
           <div class="development_environment_project_left">
             <div class="development_environment_project_img img_full img_will_hover">
               <img src="<?= esc_url(wp_get_attachment_url($item['project_item_image'])) ?>" alt="">
@@ -111,40 +112,46 @@ $response_item = tr_posts_field('response_item', $pageID); // Array of ['respons
             <div class="development_environment_project_title title_project txt_uppercase heading txt_28"><?= $item['project_item_title'] ?></div>
             <div class="development_environment_project_des txt_justify txt_17"><?= $item['project_item_des'] ?></div>
           </div>
-          <?php endforeach; ?>
-              <?php endif; ?>
-        </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+<section class="development_response bg_line" id="response" >
+  <div class="kl_container">
+    <div class="development_response_inner kl_grid">
+      <div class="development_response_info">
+        <h2 class="development_response_info_title heading txt_55 txt_title_color txt_uppercase"><?= wp_kses_post($response_title) ?></h2>
+            <div class="development_response_info_des txt_17 txt_justify"><?= wp_kses_post($response_des) ?></div>
       </div>
-    </section>
-    <section class="development_response bg_line">
-      <div class="kl_container">
-        <div class="development_response_inner kl_grid">
-          <div class="development_response_info">
-            <h2 class="development_response_info_title heading txt_55 txt_title_color txt_uppercase"><?= wp_kses_post($response_title) ?></h2>
-            <?php if (!empty($response_item_des)) : ?>
-                <?php foreach ($response_item_des as $item): ?>
-            <div class="development_response_info_des txt_17 txt_justify"><?= $item['response_item_des_des'] ?></div>
-            <?php endforeach; ?>
-              <?php endif; ?>
-          </div>
-          <div class="development_response_img img_full right_full img_will_hover">
-            <img src="<?php echo $response_image ?>" alt="">
-          </div>
-        </div>
-        <div class="development_response_card kl_grid">
-             <?php if (!empty($response_item)) : ?>
-                <?php foreach ($response_item as $item): ?>
+      <div class="development_response_img img_full right_full img_will_hover">
+        <img src="<?php echo $response_image ?>" alt="">
+      </div>
+    </div>
+    <div class="development_response_card kl_grid">
+      <?php if (!empty($response_item)) : ?>
+        <?php foreach ($response_item as $item): ?>
           <div class="development_response_card_item">
             <div class="development_response_card_item_title txt_center txt_uppercase txt_24"><?= $item['response_item_title'] ?></div>
-            <div class="development_response_card_item_des txt_17 txt_center"><?= $item['response_item_des'] ?></div>
-          </div>
-           <?php endforeach; ?>
+            <div class="development_response_card_item_des_wrap">
+             <?php if (!empty($item['response_item_des'])) : 
+              $count = 0;
+              ?>
+              
+                <?php foreach ($item['response_item_des'] as $item1): ?>
+              <div class="development_response_card_item_des txt_17 txt_center <?php echo $count==0?'active':'' ?>"><?= $item1['des'] ?></div>
+              
+              <?php $count++; endforeach; ?>
               <?php endif; ?>
-        </div>
-      </div>
-    </section>
-<?php 
-wp_enqueue_script('phat-trien', get_template_directory_uri() . '/js/phat-trien.js',array('global-js'),SITE_VERSION,true);
-get_footer(); 
+            </div>
+          </div>
+        <?php endforeach; ?>
+      <?php endif; ?>
+    </div>
+  </div>
+</section>
+<?php
+wp_enqueue_script('phat-trien', get_template_directory_uri() . '/js/phat-trien.js', array('global-js'), SITE_VERSION, true);
+get_footer();
 
 ?>

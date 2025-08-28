@@ -9,6 +9,10 @@ const mainScript = () => {
         nextEl: ".button_swiper_next",
         prevEl: ".button_swiper_prev",
       },
+      pagination: {
+        el: ".swiper-pagination-factory",
+        clickable: true,
+      }, 
        autoplay: {
         delay: 2500,
         disableOnInteraction: false,
@@ -35,7 +39,7 @@ const mainScript = () => {
       navigation: {
         nextEl: ".button_swiper_next",
         prevEl: ".button_swiper_prev",
-      },
+      }, 
       autoplay: {
         delay: 2500,
         disableOnInteraction: false,

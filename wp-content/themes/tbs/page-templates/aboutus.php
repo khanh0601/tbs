@@ -57,7 +57,6 @@ $achieve_title = tr_posts_field('achieve_title', $pageID);
 $achieve_subtitle = tr_posts_field('achieve_subtitle', $pageID);
 $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_item_des', 'achieve_item_image']
 ?>
-?>
 <svg width="0" height="0" viewBox="0 0 20 20" class="svg_bg">
   <defs>
     <clipPath id="hexClipLarge" clipPathUnits="objectBoundingBox">
@@ -77,16 +76,16 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
     <img src="<?php echo $banner_image ?>" alt="">
   </div>
   <div class="about_hero_txt">
-    <div class="about_hero_txt_subtitle heading txt_28 txt_center">
+    <div class="about_hero_txt_subtitle heading txt_28 txt_center df_hide_onload">
       <?= wp_kses_post($banner_subtitle1) ?>
     </div>
-    <h1 class="about_hero_txt_title txt_55 heading txt_center">
+    <h1 class="about_hero_txt_title txt_55 heading txt_center df_hide_onload">
       <?= wp_kses_post($banner_title) ?>
     </h1>
-    <div class="about_hero_txt_smalltitle heading txt_30 txt_center">
+    <div class="about_hero_txt_smalltitle heading txt_30 txt_center df_hide_onload">
       <?= wp_kses_post($banner_subtitle2) ?>
     </div>
-    <div class="about_hero_txt_des txt_20 font_tbs txt_center">
+    <div class="about_hero_txt_des txt_20 font_tbs txt_center df_hide_onload">
       <?= wp_kses_post($banner_des) ?>
     </div>
   </div>
@@ -95,15 +94,16 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
   <div class="about_content_top">
     <div class="kl_container kl_grid">
       <div class="about_content_top_txt">
-        <div class="about_content_top_txt_des txt_justify txt_20">
-          <?= wp_kses_post($intro_des) ?>
+        <div class="about_content_top_txt_des txt_justify txt_20 df_hide_onload">
+          <?=  $intro_des ?>
         </div>
       </div>
-      <div class="about_content_top_img img_full">
-        <img
-          class="img_radius"
+      <div class="about_content_top_img">
+        <div class="about_content_top_img_inner img_full img_radius df_hide_onload img_will_hover">
+          <img
           src="<?php echo $intro_image ?>"
           alt="" />
+        </div>
       </div>
     </div>
   </div>
@@ -112,20 +112,22 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
       <div class="about_content_sight_txt_title heading txt_55 txt_center_mb mobile">
         <?= wp_kses_post($sight_title) ?>
       </div>
-      <div class="about_content_sight_img img_full">
-        <img class="img_radius" src="<?php echo $sight_image ?>" alt="" />
+      <div class="about_content_sight_img ">
+        <div class="about_content_sight_img_inner img_full img_radius img_will_hover">
+          <img class="" src="<?php echo $sight_image ?>" alt="" />
+        </div>
       </div>
       <div class="about_content_sight_txt">
         <h2 class="about_content_sight_txt_title heading txt_55 middle">
           <?= wp_kses_post($sight_title) ?>
         </h2>
-        <div class="about_content_sight_txt_des txt_17">
+        <div class="about_content_sight_txt_des txt_17 txt_justify">
           <?= wp_kses_post($sight_des) ?>
         </div>
       </div>
     </div>
   </div>
-  <div class="about_content_sight">
+  <div class="about_content_sight about_content_assign">
     <div class="kl_container kl_grid">
       <div class="about_content_assign_txt">
         <h2
@@ -136,8 +138,8 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
           <?= wp_kses_post($assign_des) ?>
         </div>
       </div>
-      <div class="about_content_assign_img img_full">
-        <img class="img_radius" src="<?php echo $assign_image ?>" alt="" />
+      <div class="about_content_assign_img img_full img_will_hover img_radius">
+        <img class="" src="<?php echo $assign_image ?>" alt="" />
       </div>
     </div>
   </div>
@@ -155,29 +157,29 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
     <div class="value_swiper">
       <div class="about_value_wrap">
         <?php if (!empty($value_item)) : ?>
-            <?php foreach ($value_item as $item): ?>
-        <div class="about_value_item">
-          <div class="about_value_item_img__wrap">
-            <div class="about_value_item_img img_full">
-              <img
-                class="img_radius"
-                src="<?= esc_url(wp_get_attachment_url($item['value_item_image'])) ?>"
-                alt="" />
+          <?php foreach ($value_item as $item): ?>
+            <div class="about_value_item">
+              <div class="about_value_item_img__wrap">
+                <div class="about_value_item_img img_full">
+                  <img
+                    class="img_radius"
+                    src="<?= esc_url(wp_get_attachment_url($item['value_item_image'])) ?>"
+                    alt="" />
+                </div>
+              </div>
+              <div class="about_value_item_title txt_bold txt_28 txt_center">
+                <?= $item['value_item_title'] ?>
+              </div>
+              <div class="about_value_item_des txt_17 txt_center">
+                <?= $item['value_item_des'] ?>
+              </div>
             </div>
-          </div>
-          <div class="about_value_item_title txt_bold txt_20 txt_center">
-            <?= $item['value_item_title'] ?>
-          </div>
-          <div class="about_value_item_des txt_17 txt_center">
-            <?= $item['value_item_des'] ?>
-          </div>
-        </div>
-        <?php endforeach; ?>
-          <?php endif; ?>
+          <?php endforeach; ?>
+        <?php endif; ?>
       </div>
       <div class="swiper-pagination-value mobile"></div>
     </div>
-    <div class="about_value_des heading txt_uppercase txt_20 txt_center txt_title_color">
+    <div class="about_value_des heading txt_uppercase txt_28 txt_center txt_title_color">
       <?= wp_kses_post($value_des) ?>
     </div>
   </div>
@@ -200,28 +202,32 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
         <!-- <div class="about_history_content_wrap"> -->
         <div class="about_history_content swiper-wrapper">
           <?php if (!empty($history_item)) : ?>
-                <?php foreach ($history_item as $item): ?>
-          <div class="about_history_content_item__wrap swiper-slide">
-            <div class="about_history_content_item">
-              <div class="about_history_content_item_year txt_24 heading">
-                 <?= $item['history_item_year'] ?>
+            <?php $count = 0 ?>
+            <?php foreach ($history_item as $item): ?>
+              <div class="about_history_content_item__wrap swiper-slide">
+                <div class="about_history_content_item">
+                  <div class="about_history_content_item_year txt_24 heading">
+                    <?= $item['history_item_year'] ?>
+                  </div>
+                  <div class="about_history_content_item_inner">
+                    <?php if ($count  == 0) : ?>
+                      <div
+                        class="about_history_content_item_title txt_17 txt_bold">
+                        Khởi nghiệp
+                      </div>
+                    <?php endif ?>
+                    <div class="about_history_content_item_img img_fullfill">
+                      <img src="<?= esc_url(wp_get_attachment_url($item['history_item_image'])) ?>" alt="" />
+                    </div>
+                    <div class="about_history_content_item_des txt_17">
+                      <?= $item['history_item_des'] ?>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="about_history_content_item_inner">
-                <div
-                  class="about_history_content_item_title txt_17 txt_bold">
-                  Khởi nghiệp
-                </div>
-                <div class="about_history_content_item_img img_full">
-                  <img src="<?= esc_url(wp_get_attachment_url($item['history_item_image'])) ?>" alt="" />
-                </div>
-                <div class="about_history_content_item_des txt_17">
-                   <?= $item['history_item_des'] ?>
-                </div>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
-              <?php endif; ?>
+              <?php $count++ ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
           <!-- <div class="about_history_content_item__wrap swiper-slide">
                                 <div class="about_history_content_item">
                                 </div>
@@ -246,25 +252,28 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
     </div>
     <div class="about_expert_content_wrap">
       <?php if (!empty($story_item)) : ?>
-            <?php foreach ($story_item as $item): ?>
-      <div class="about_expert_content kl_grid">
-        <div class="about_expert_content_info">
-          <div class="about_expert_content_info_des txt_justify txt_17">
-            <?= $item['story_item_des'] ?>
+        <?php $count = 0; ?>
+        <?php foreach ($story_item as $item): ?>
+          <?php $position_class = $count % 2 == 0 ? "right_full" : "left_full"; ?>
+          <div class="about_expert_content kl_grid">
+            <div class="about_expert_content_info">
+              <div class="about_expert_content_info_des txt_justify txt_17">
+                <?= $item['story_item_des'] ?>
+              </div>
+            </div>
+            <div class="about_expert_content_img <?= $position_class ?>">
+              <div class="about_expert_content_img_inner img_full">
+                <img src="<?= esc_url(wp_get_attachment_url($item['story_item_image'])) ?>" alt="" />
+              </div>
+              <div
+                class="about_expert_content_info_authen txt_center txt_title_color txt_24 txt_uppercase heading">
+                <?= $item['story_item_cap'] ?>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="about_expert_content_img right_full">
-          <div class="about_expert_content_img_inner img_full">
-            <img src="<?= esc_url(wp_get_attachment_url($item['story_item_image'])) ?>" alt="" />
-          </div>
-          <div
-            class="about_expert_content_info_authen txt_center txt_title_color txt_24 txt_uppercase heading">
-             <?= $item['story_item_cap'] ?>
-          </div>
-        </div>
-      </div>
-      <?php endforeach; ?>
-          <?php endif; ?>
+          <?php $count++; ?>
+        <?php endforeach; ?>
+      <?php endif; ?>
     </div>
   </div>
 </section>
@@ -276,7 +285,7 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
         <?= wp_kses_post($achieve_title) ?>
       </div>
       <div class="about_archive_des txt_17 txt_center">
-         <?= wp_kses_post($achieve_subtitle) ?>
+        <?= wp_kses_post($achieve_subtitle) ?>
       </div>
     </div>
     <div class="mySwiper_wrap">
@@ -284,19 +293,20 @@ $achieve_item = tr_posts_field('achieve_item', $pageID); // Repeater: ['achieve_
         <div class="about_archive_wrap swiper-wrapper">
           <?php if (!empty($achieve_item)) : ?>
             <?php foreach ($achieve_item as $item): ?>
-          <div class="about_archive_item swiper-slide">
-            <div class="about_archive_item_img img_fullfill">
-              <img src="<?= esc_url(wp_get_attachment_url($item['value_item_image'])) ?>" alt="" />
-            </div>
-            <div class="about_archive_item_border"></div>
-            <div
-              class="about_archive_item_name txt_17 txt_bold txt_center">
-               <?= $item['value_item_title'] ?>
-            </div>
-          </div>
-          <?php endforeach; ?>
+              <div class="about_archive_item swiper-slide">
+                <div class="about_archive_item_img img_fullfill">
+                  <img src="<?= esc_url(wp_get_attachment_url($item['achieve_item_image'])) ?>" alt="" />
+                </div>
+                <div class="about_archive_item_border"></div>
+                <div
+                  class="about_archive_item_name txt_17 txt_bold txt_center">
+                  <?= $item['achieve_item_des'] ?>
+                </div>
+              </div>
+            <?php endforeach; ?>
           <?php endif; ?>
         </div>
+        <div class="swiper-pagination-archive tablet"></div>
       </div>
       <div class="button_swiper">
         <div class="button_swiper_prev button_swiper_item img_full">

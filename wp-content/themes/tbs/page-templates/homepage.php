@@ -50,12 +50,18 @@ $dev_ct_sub     = tr_posts_field('development_content_subtitle', $pageID);
 $dev_item       = tr_posts_field('development_item', $pageID); // [{development_item_des}]
 $dev_seemore    = tr_posts_field('development_seemore', $pageID);
 $dev_link       = tr_posts_field('development_link', $pageID);
-$dev_img        = tr_posts_field('development_img', $pageID); // [{development_img_cap, development_img_des}]
+$dev_img        = tr_posts_field('development_img', $pageID); // [{development_img_cap, development_img_bg, development_img_des}]
 
 /** Giải thưởng (⚠️ key đang là 'achiieve_*') */
 $award_title    = tr_posts_field('achieve_title', $pageID);
 $award_item     = tr_posts_field('achieve_item', $pageID); // [{achieve_item_img, achieve_item_des}]
 $award_bg       = wp_get_attachment_url(tr_posts_field('achieve_bg', $pageID));
+
+// Tin tức 
+$new_title    = tr_posts_field('new_title', $pageID);
+$new_detail_title    = tr_posts_field('new_detail_title', $pageID);
+$new_detail_all    = tr_posts_field('new_detail_all', $pageID);
+$new_detail_link_all    = tr_posts_field('new_detail_link_all', $pageID);
 
 /** Đối tác */
 $partner_title  = tr_posts_field('partner_title', $pageID);
@@ -99,7 +105,7 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
 <section class="home_hero full_screen" data-section="dark">
     <div class="home_hero_inner">
         <div class="home_hero_img img_fullfill">
-            <img src="<?php echo $banner_image ?>" alt="">
+            <img src="<?php echo $banner_image ?>" alt="" loading="lazy">
         </div>
         <div class="home_hero_txt">
             <div class="home_hero_txt_subtitle heading txt_28 txt_center">
@@ -122,41 +128,45 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
             <div class="home_hero_logo">
                 <?php if (!empty($banner_item)) : ?>
                     <?php foreach ($banner_item as $item): ?>
-                        <div class="home_hero_logo_item">
+                        <a href="<?= $item['banner_item_link'] ?>" class="home_hero_logo_item">
                             <img src="<?= esc_url(wp_get_attachment_url($item['banner_item_image'])) ?>" alt="">
-                        </div>
+                        </a>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
+            <div class="swiper-pagination-logo tablet"></div>
         </div>
     </div>
 </section>
 <section class="home_active full_screen" data-section="white">
     <div class="kl_container">
         <div class="home_active_title txt_title_color heading txt_55 txt_uppercase txt_center"><?= wp_kses_post($active_title) ?></div>
-        <div class="home_active_inner">
-            <?php if (!empty($active_item)) : ?>
-                <?php foreach ($active_item as $item): ?>
-                    <div class="home_active_item">
-                        <div class="home_active_item_img img_full">
-                            <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="">
-                        </div>
-                        <div class="home_active_item_txt">
-                            <div class="home_active_item_txt_logo img_full">
-                                <img src="<?= esc_url(wp_get_attachment_url($item['active_item_logo'])) ?>" alt="">
+        <div class="home_active_inner swiper">
+            <div class="home_active_group swiper-wrapper">
+                <?php if (!empty($active_item)) : ?>
+                    <?php foreach ($active_item as $item): ?>
+                        <div class="home_active_item swiper-slide">
+                            <div class="home_active_item_img img_fullfill">
+                                <img src="<?= esc_url(wp_get_attachment_url($item['active_item_image'])) ?>" alt="" loading="lazy">
                             </div>
-                            <div class="home_active_item_txt_des txt_20"><?= $item['active_item_des'] ?></div>
-                            <div class="home_active_item_txt_inner">
-                                <?php if (!empty($item['active_major'])) : ?>
-                                    <?php foreach ($item['active_major'] as $item1): ?>
-                                        <a href="<?= $item1['active_major_link'] ?>" class="home_active_item_txt_item txt_bold txt_uppercase txt_center txt_title_color txt_18"><?= $item1['active_major_des'] ?></a>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
+                            <div class="home_active_item_txt">
+                                <div class="home_active_item_txt_logo img_full">
+                                    <img src="<?= esc_url(wp_get_attachment_url($item['active_item_logo'])) ?>" alt="" loading="lazy">
+                                </div>
+                                <div class="home_active_item_txt_des txt_20"><?= $item['active_item_des'] ?></div>
+                                <div class="home_active_item_txt_inner">
+                                    <?php if (!empty($item['active_major'])) : ?>
+                                        <?php foreach ($item['active_major'] as $item1): ?>
+                                            <a href="<?= $item1['active_major_link'] ?>" class="home_active_item_txt_item txt_bold txt_uppercase txt_center txt_title_color txt_18"><?= $item1['active_major_des'] ?></a>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <div class="swiper-pagination-active"></div>
         </div>
     </div>
 </section>
@@ -167,31 +177,36 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
         <div class="home_development_inner">
             <div class="home_development_info">
                 <div class="home_development_info_bg">
-                    <!-- <?php if (!empty($dev_img)) :
-                                $count = 0;
-                            ?>
+                    <?php if (!empty($dev_img)) :
+                        $count = 0;
+                    ?>
                         <?php foreach ($dev_img as $item): ?>
                             <div class="home_development_info_bg_item img_full <?= $count == 0 ? 'active' : '' ?>">
-                                <img src="<?= esc_url(wp_get_attachment_url($item['development_img_cap'])) ?>" alt="">
+                                <img src="<?= esc_url(wp_get_attachment_url($item['development_img_bg'])) ?>" alt="" loading="lazy">
                             </div>
                             <?php $count++; ?>
                         <?php endforeach; ?>
-                    <?php endif; ?> -->
-                    <div class="home_development_info_bg_item img_full active">
-                        <img src="<?php echo get_template_directory_uri() ?>/img/home-develop-bg.png" alt="">
-                    </div>
+                    <?php endif; ?>
                 </div>
-                <div class="home_development_info_title txt_bold txt_30 txt_uppercase">
-                    <?= wp_kses_post($dev_ct_title) ?>
+                <div class="home_development_info_inner">
+                    <?php if (!empty($dev_img)) :
+                        $count_item = 0;
+                    ?>
+                        <?php foreach ($dev_img as $item_dev): ?>
+                            <div class="home_development_info_item <?php echo $count_item === 0 ? 'active' : '' ?>">
+                                <div class="home_development_info_title txt_bold txt_30 txt_uppercase">
+                                    <?= wp_kses_post($item_dev['development_img_des']) ?>
+                                </div>
+                                <div class="home_development_info_des txt_17"><? print_r($item_dev['development_img_sub']) ?></div>
+                                <a href="<?= esc_url($item_dev['development_img_link']) ?>" class="home_development_info_link txt_20 txt_uppercase txt_title_color"><?= wp_kses_post($item_dev['development_img_seemore']) ?></a>
+                            </div>
+
+                        <?php
+                            $count_item++;
+                        endforeach; ?>
+                    <?php endif; ?>
                 </div>
-                <div class="home_development_info_des txt_17"><?= wp_kses_post($dev_ct_des) ?></div>
-                <div class="home_development_info_subtitle txt_17 txt_bold"><?= wp_kses_post($dev_ct_sub) ?></div>
-                <?php if (!empty($dev_item)) : ?>
-                    <?php foreach ($dev_item as $item): ?>
-                        <div class="home_development_info_des home_development_info_des_item txt_17 des_spot"><?= $item['development_item_des'] ?></div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-                <a href="<?= wp_kses_post($dev_link) ?>" class="home_development_info_link txt_20 txt_uppercase txt_title_color"><?= wp_kses_post($dev_seemore) ?></a>
+
             </div>
             <div class="home_development_slide right_full">
                 <div class="home_development_slide_inner mySwiper swiper">
@@ -199,7 +214,8 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
                         <?php if (!empty($dev_img)) : ?>
                             <?php foreach ($dev_img as $item): ?>
                                 <div class="home_development_slide_list_item swiper-slide img_full">
-                                    <img src="<?= esc_url(wp_get_attachment_url($item['development_img_cap'])) ?>" alt="">
+                                    <div class="home_development_slide_list_overlay"></div>
+                                    <img src="<?= esc_url(wp_get_attachment_url($item['development_img_cap'])) ?>" alt="" loading="lazy">
                                     <div class="home_development_slide_list_item_caption txt_uppercase txt_20 "><?= $item['development_img_des'] ?></div>
                                 </div>
                             <?php endforeach; ?>
@@ -214,34 +230,37 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
     <div class="kl_container">
         <div class="home_achieve_inner">
             <div class="home_achieve_title heading txt_55 txt_uppercase"><?= wp_kses_post($award_title) ?></div>
-            <div class="home_achieve_list">
-                <?php if (!empty($award_item)) : ?>
-                    <?php foreach ($award_item as $item): ?>
-                        <div class="home_archive_item">
-                            <div class="home_archive_item_img img_fullfill">
-                                <img src="<?= esc_url(wp_get_attachment_url($item['achieve_item_img'])) ?>" alt="" />
+            <div class="home_achieve_list_wrap">
+                <div class="home_achieve_list">
+                    <?php if (!empty($award_item)) : ?>
+                        <?php foreach ($award_item as $item): ?>
+                            <div class="home_archive_item">
+                                <div class="home_archive_item_img img_fullfill">
+                                    <img src="<?= esc_url(wp_get_attachment_url($item['achieve_item_img'])) ?>" alt="" loading="lazy" />
+                                </div>
+                                <div class="home_archive_item_border"></div>
+                                <div
+                                    class="home_archive_item_name txt_18 txt_bold txt_center txt_uppercase">
+                                    <?= $item['achieve_item_des'] ?>
+                                </div>
                             </div>
-                            <div class="home_archive_item_border"></div>
-                            <div
-                                class="home_archive_item_name txt_18 txt_bold txt_center txt_uppercase">
-                                <?= $item['achieve_item_des'] ?>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="swiper-pagination-achieve tablet"></div>
             </div>
         </div>
     </div>
     <div class="home_achieve_bg img_full">
-        <img src="<?php echo $award_bg ?>" alt="">
+        <img src="<?php echo $award_bg ?>" alt="" loading="lazy">
     </div>
 </section>
 <section class="home_news full_screen" data-section="white">
     <div class="home_news_bg">
-        <img src="<?php echo get_template_directory_uri() ?>/img/home-new-bg.jpg" alt="">
+        <img src="<?php echo get_template_directory_uri() ?>/img/home-new-bg.jpg" alt="" loading="lazy">
     </div>
     <div class="kl_container">
-        <div class="home_news_title heading txt_title_color txt_55 txt_uppercase txt_center">tin tức</div>
+        <div class="home_news_title heading txt_title_color txt_55 txt_uppercase txt_center"><?= wp_kses_post($new_title) ?></div>
         <div class="home_news_inner_wrap">
             <?php
             $news = new WP_Query([
@@ -250,7 +269,15 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
                 'post_status'         => 'publish',
                 'ignore_sticky_posts' => true,
                 'no_found_rows'       => true,
+                'meta_query'          => [
+                    [
+                        'key'     => '_is_featured',
+                        'value'   => ['1', 'true', 'on', 'yes'],       // hoặc true tùy cách bạn lưu
+                        'compare' => '='
+                    ]
+                ],
             ]);
+
 
             if ($news->have_posts()): ?>
                 <div class="home_news_inner kl_grid">
@@ -271,9 +298,9 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
                                 <div class="home_news_content_item_des txt_17 txt_justify"><?php echo esc_html($excerpt); ?></div>
                             </div>
                             <div class="home_news_content_item_detail">
-                                <div class="home_news_content_item_detail_txt txt_17"><?php esc_html_e('Chi tiết', 'textdomain'); ?></div>
+                                <div class="home_news_content_item_detail_txt txt_17"><?= wp_kses_post($new_detail_title) ?></div>
                                 <div class="home_news_content_item_detail_img img_full">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/icon_next_detail.svg'); ?>" alt="">
+                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/img/icon_next_detail.svg'); ?>" alt="" loading="lazy">
                                 </div>
                             </div>
                         </a>
@@ -286,8 +313,8 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
 
             <div class="swiper-pagination-news tablet"></div>
         </div>
-        <a href="/tin-tuc/" class="home_news_seeall txt_20 txt_uppercase txt_title_color txt_center">
-            Xem tất cả
+        <a href="<?= wp_kses_post($new_detail_link_all) ?>" class="home_news_seeall txt_20 txt_uppercase txt_title_color txt_center">
+            <?= wp_kses_post($new_detail_all) ?>
             <svg width="22" height="17" viewBox="0 0 22 17" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -300,35 +327,46 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
 <section class="home_partner full_screen" data-section="white">
     <div class="kl_container">
         <div class="home_partner_title txt_title_color txt_uppercase txt_center txt_55 heading"><?= wp_kses_post($partner_title) ?></div>
-        <div class="home_partner_inner_wrap">
-            <div class="home_partner_inner">
-                <?php if (!empty($partner_item)) : ?>
-                    <?php
-                    $count = 0;
-                    foreach ($partner_item as $index => $item) :
+        <?php
+        if (!empty($partner_item)) {
+            // Tính số phần tử cho nhóm 1
+            $length = ceil(count($partner_item) / 2);
 
-                        // Mở thẻ group khi bắt đầu nhóm mới
-                        if ($count === 0) {
-                            echo '<div class="home_partner_group">';
-                        }
+            // Nhóm 1
+            $first_group = array_slice($partner_item, 0, $length);
+
+            // Nhóm 2
+            $second_group = array_slice($partner_item, $length);
+
+            $groups = [$first_group, $second_group];
+        } ?>
+        <div class="home_partner_inner_wrap home_partner_swiper1">
+            <div class="home_partner_inner">
+                <?php if (!empty($first_group)) : ?>
+                    <?php
+                    foreach ($first_group as $index => $item) :
                     ?>
                         <div class="home_partner_item img_full">
-                            <img src="<?= esc_url(wp_get_attachment_url($item['partner_item_img'])) ?>" alt="">
+                            <img src="<?= esc_url(wp_get_attachment_url($item['partner_item_img'])) ?>" alt="" loading="lazy">
                         </div>
-                    <?php
-                        $count++;
-
-                        // Đủ 6 item hoặc là item cuối -> đóng group
-                        if ($count === 6 || $index === array_key_last($partner_item)) {
-                            echo '</div>'; // đóng .partner-group
-                            $count = 0; // reset đếm
-                        }
-
-                    endforeach;
-                    ?>
+                    <?php endforeach; ?>
                 <?php endif; ?>
             </div>
-            <div class="swiper-pagination-partner tablet"></div>
+            <!-- <div class="swiper-pagination-partner tablet"></div> -->
+        </div>
+        <div class="home_partner_inner_wrap home_partner_swiper2">
+            <div class="home_partner_inner">
+                <?php if (!empty($second_group)) : ?>
+                    <?php
+                    foreach ($second_group as $index => $item) :
+                    ?>
+                        <div class="home_partner_item img_full">
+                            <img src="<?= esc_url(wp_get_attachment_url($item['partner_item_img'])) ?>" alt="" loading="lazy">
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <!-- <div class="swiper-pagination-partner tablet"></div> -->
         </div>
     </div>
     <div class="footer_wrap">
@@ -339,4 +377,4 @@ $partner_item   = tr_posts_field('partner_item', $pageID); // [{partner_item_img
         get_footer(); ?>
     </div>
 </section>
-<section class="home_copyright txt_17">© 2025 TBS Group. All Rights Reserved. Maximize Online Power by <span class="txt_bold">THEMAX </span> </section>
+<section class="home_copyright txt_17 middle">© 2025 TBS Group. All Rights Reserved. Maximize Online Power by <span class="txt_bold">THEMAX </span> </section>

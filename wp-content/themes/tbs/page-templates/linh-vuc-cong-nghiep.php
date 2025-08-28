@@ -84,13 +84,15 @@ $location_map_icon = wp_get_attachment_url(tr_posts_field('location_map_icon', $
                 <div class="industrial_intro_slide_item_img img_full img_will_hover">
                   <img src="<?= esc_url(wp_get_attachment_url($item['factory_img'])) ?>" alt="" />
                 </div>
-                <div class="industrial_intro_slide_item_txt txt_20">
+                <div class="industrial_intro_slide_item_overlay tablet"></div>
+                <div class="industrial_intro_slide_item_txt txt_bold txt_20">
                   <?= $item['factory_title'] ?>
                 </div>
               </div>
                <?php endforeach; ?>
               <?php endif; ?>
             </div>
+            <div class="swiper-pagination-factory tablet"></div>
           </div>
           <?php if (!empty($factory_items) && count($factory_items) > 4): ?>
           <div class="industrial_button">

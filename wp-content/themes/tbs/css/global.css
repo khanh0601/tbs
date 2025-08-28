@@ -11,15 +11,15 @@ a:hover{
   font-family: "TBSGothic";
   font-weight: 400;
   font-style: normal;
-  src: url("../fonts/TBSGothicRegular.woff");
+  src: url("../fonts/TBSGothicRegular.woff2");
 }
 @font-face {
   font-family: "TBSGothic";
   font-weight: 700;
   font-style: normal;
-  src: url("../fonts/TBSGothicBold.woff");
+  src: url("../fonts/TBSGothicBold.woff2");
 }
-@font-face {
+/* @font-face {
   font-family: "Montserrat";
   font-weight: 400;
   font-style: normal;
@@ -30,7 +30,7 @@ a:hover{
   font-weight: 700;
   font-style: normal;
   src: url("../fonts/Montserrat-Bold.woff");
-}
+} */
 *{
   box-sizing: border-box;
 }
@@ -40,6 +40,7 @@ h4{
 body {
   font-family: 'Arial';
   color: #555;
+  margin: 0 !important;
 }
 .kl_container {
   width: 100%;
@@ -71,6 +72,9 @@ body {
 }
 h1, h2{
   margin: 0;
+}
+select:focus-visible, input:focus-visible {
+    outline: none !important;
 }
 @media only screen and (max-width: 991px) {
   :root {
@@ -200,7 +204,7 @@ h1, h2{
   overflow: hidden;
 }
 .bg_line{
-  background: #F5F5F5 url('../img/bg_line.png') repeat;
+  background: #F5F5F5 url('../img/bg_line.webp') repeat;
   background-size: auto;
 }
 .tablet{
@@ -699,7 +703,7 @@ body.menu-open .header_nav {
 }
 /* footer */
 .footer{
- background: #014129 url('../img/bg_line1.png') repeat;
+ background: #014129 url('../img/line-th.png') repeat;
  position: relative;
  padding-top: 9rem;
  padding-bottom: 4rem;
@@ -719,7 +723,7 @@ body.menu-open .header_nav {
   width: 3rem;
   position: absolute;
   top: 0;
-  left: 0rem;
+  left: -.3rem;
 }
 .footer_content_location_inner{
   margin-bottom: 1rem;
@@ -857,6 +861,7 @@ body.menu-open .header_nav {
 .footer_copyright{
   padding-left: 2rem;
   width:35rem;
+  padding-bottom: 3rem;
 }
 .footer_content_contact_form{
   padding: .4rem;
@@ -869,7 +874,7 @@ body.menu-open .header_nav {
 /* btn_social */
 .btn_social{
   position: fixed;
-  right: 5rem;
+  right: 3.5rem;
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
@@ -881,8 +886,22 @@ body.menu-open .header_nav {
   width: 4.8rem;
 }
 @media screen and (max-width:767px ) {
-  .btn_social{
+  .btn_social.social{
     right: 1rem !important;
+    flex-direction: row !important;
+    top: unset !important;
+    bottom: 0 !important;
+    left: 0;
+    right: 0 !important;
+    background-color: #014129 ;
+    padding-block: 1rem;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem !important;
+  }
+  .btn_social_des {
+    color: #818181;
+    font-size: 1.5rem;
   }
     .btn_social_icon{
     width: 3.5rem;
@@ -890,6 +909,7 @@ body.menu-open .header_nav {
     border-radius: 50%;
     border: 1px solid #FFFFFF;
   }
+
 }
 /* list */
 .home_list{

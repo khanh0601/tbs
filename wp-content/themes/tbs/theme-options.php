@@ -37,9 +37,11 @@ $form->setGroup( $this->getName() );
 
     
 
-    $social = $form->text('Facebook');
-    $social .= $form->text('Tiktok');
-    $social .= $form->text('Youtube');
+    $social = $form->text('telephone')->setLabel('Telephone');
+    $social.= $form->text('youtube')->setLabel('Youtube');
+    $social.= $form->text('zalo')->setLabel('Zalo');
+    $social.= $form->text('facebook')->setLabel('Facebook');
+    $social.= $form->text('social_des')->setLabel('Mô tả');
 
     // popup
     $popup = $form->checkbox('enable_popup')->setLabel('Hiển thị');
@@ -50,7 +52,16 @@ $form->setGroup( $this->getName() );
     $script .= $form->textarea('script_body')->setLabel('Body');
     $script .= $form->textarea('script_footer')->setLabel('Footer');
 
-
+    // footer
+    $footer = $form->text('footer_title')->setLabel('Tiêu đề');
+    $footer.= $form->text('footer_title_en')->setLabel('Tiêu đề (Tiếng anh)');
+    $footer.= $form->text('footer_location')->setLabel('Địa chỉ');
+    $footer.= $form->text('footer_location_en')->setLabel('Địa chỉ (tiếng anh)');
+    $footer.= $form->text('footer_tel1')->setLabel('Số điện thoại');
+    $footer.= $form->text('footer_tel2')->setLabel('Số điện thoại');
+    $footer.= $form->text('footer_mail')->setLabel('Email');
+    $footer.= $form->text('footer_title_mail')->setLabel('Tiêu đề email');
+    $footer.= $form->text('footer_title_mail_en')->setLabel('Tiêu đề email (tiếng anh)');
 
     // save
     $save = $form->submit( 'Lưu' );
@@ -63,6 +74,7 @@ $form->setGroup( $this->getName() );
     ->addTab( 'Mạng xã hội', $social )
     ->addTab( 'Script', $script )
     ->addTab( 'Popup', $popup )
+    ->addTab( 'Footer', $footer )
     ->render( 'box' );
     echo $form->close();
     ?>

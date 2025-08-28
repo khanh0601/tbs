@@ -231,7 +231,8 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo $form->row(
             $form->repeater('logistics_item')->setLabel("item")->setFields([
                 $form->row(
-                        $form->text('logistics_item_title')->setLabel("Tiêu đề"),                 
+                        $form->text('logistics_item_title')->setLabel("Số"),                 
+                        $form->text('logistics_item_type')->setLabel("Đơn vị"),                 
                         $form->editor('logistics_item_des')->setLabel("Mô tả")                
                 )
             ])
@@ -311,17 +312,13 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
 
         echo beginBox("Trách nhiệm xã hội",true);
         echo $form->editor('response_title')->setLabel("Tiêu đề");
-        echo $form->row(
-                $form->repeater('response_item_des')->setLabel("Mô tả")->setFields([
-                    $form->row(
-                        $form->editor('response_item_des_des')->setLabel("Mô tả"),                                
-                    )
-                ])
-                    );
+        echo $form->editor('response_des')->setLabel("Mô tả");
         echo $form->image('response_image')->setLabel("Ảnh nội dung");
         echo $form->repeater('response_item')->setLabel("Trách nhiệm")->setFields([
             $form->text('response_item_title')->setLabel("Tiêu đề"),
-            $form->editor('response_item_des')->setLabel("Mô tả"),                                
+            $form->repeater('response_item_des')->setLabel("Nội dung")->setFields([
+                $form->text('des')->setLabel("Mô tả"), 
+            ]),    
         ]);
 
         echo endBox();
@@ -339,12 +336,6 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo beginBox("Tuyển dụng",true);
         echo $form->text('recruit_search')->setLabel("Label search");
         echo $form->text('recruit_list')->setLabel("Label Danh sách bộ phận");
-        echo $form->repeater('recruit_item')->setLabel(" Item tuyển dụng")->setFields([
-            $form->text('recruit_item_title')->setLabel("Tiêu đề"),
-            $form->text('recruit_item_location')->setLabel("Địa điểm"),
-            $form->text('recruit_item_time')->setLabel("Thời gian"),
-            $form->text('recruit_item_apply')->setLabel("Ứng tuyển"),                                
-        ]);
         echo endBox();
 
         echo beginBox("Văn hóa doanh nghiệp",true);
@@ -507,6 +498,7 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo $form->text('banner_link')->setLabel("Link xem thêm");
         echo $form->repeater('banner_item')->setLabel("Logo")->setFields([
             $form->image('banner_item_image')->setLabel("Ảnh logo"),
+            $form->text('banner_item_link')->setLabel("Link logo"),
         ]);
         echo endBox();
 
@@ -527,17 +519,13 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
         echo beginBox("Phát triển bền vững",true);
         echo $form->text('development_title')->setLabel("Tiêu đề");
         echo $form->text('development_subtitle')->setLabel("Tiêu đề phụ");
-        echo $form->text('development_content_title')->setLabel("Tiêu đề nội dung");
-        echo $form->text('development_content_des')->setLabel("nội dung");
-        echo $form->text('development_content_subtitle')->setLabel("Tiêu đề nội dung phụ");
-        echo $form->repeater('development_item')->setLabel("nội dung")->setFields([
-            $form->text('development_item_des')->setLabel("nội dung"),
-        ]);
-        echo $form->text('development_seemore')->setLabel("Xem thêm");
-        echo $form->text('development_link')->setLabel("Link xem thêm");
-         echo $form->repeater('development_img')->setLabel("slide")->setFields([
+         echo $form->repeater('development_img')->setLabel("Slide")->setFields([
             $form->image('development_img_cap')->setLabel("Hình ảnh"),
-            $form->editor('development_img_des')->setLabel("nội dung"),
+            $form->image('development_img_bg')->setLabel("Hình ảnh background"),
+            $form->editor('development_img_des')->setLabel("Tiêu đề"),
+            $form->editor('development_img_sub')->setLabel("Nội dung"),
+            $form->text('development_img_seemore')->setLabel("Text Xem thêm"),
+            $form->text('development_img_link')->setLabel("Link xem thêm"),
         ]);
         echo endBox();
 
@@ -548,6 +536,12 @@ add_action('edit_form_after_title', function($post) use($editorSettings) {
             $form->text('achieve_item_des')->setLabel("nội dung"),
         ]);
         echo $form->image('achieve_bg')->setLabel("Ảnh background");
+        echo endBox();
+        echo beginBox("Tin tức",true);
+        echo $form->text('new_title')->setLabel("Tiêu đề");
+        echo $form->text('new_detail_title')->setLabel("Text button xem thêm");
+        echo $form->text('new_detail_all')->setLabel("Text button xem tất cả");
+        echo $form->text('new_detail_link_all')->setLabel("Link button xem tất cả");
         echo endBox();
         
         echo beginBox("Đối tác",true);

@@ -7,41 +7,57 @@ $address_nam = tr_options_field('tr_theme_options.address_nam');
 $address_main_en = tr_options_field('tr_theme_options.address_main_en');
 $address_nam_en = tr_options_field('tr_theme_options.address_nam_en');
 $address_japan_en = tr_options_field('tr_theme_options.address_japan_en');
-$phone = tr_options_field('tr_theme_options.phone');
 $email = tr_options_field('tr_theme_options.email');
 $linkedin = tr_options_field('tr_theme_options.linkedin');
-$facebook = tr_options_field('tr_theme_options.facebook');
+
+$telephone = tr_options_field('tr_theme_options.telephone'); 
+$youtube   = tr_options_field('tr_theme_options.youtube');
+$zalo      = tr_options_field('tr_theme_options.zalo');
+$facebook  = tr_options_field('tr_theme_options.facebook');
+$social_des  = tr_options_field('tr_theme_options.social_des');
 $menu_items = wp_get_nav_menu_items(get_nav_menu_locations()['primary'] ?? '');
 
+$footer_title = tr_options_field('tr_theme_options.footer_title'); 
+$footer_title_en = tr_options_field('tr_theme_options.footer_title_en'); 
+$footer_location   = tr_options_field('tr_theme_options.footer_location');
+$footer_location_en   = tr_options_field('tr_theme_options.footer_location_en');
+$footer_tel1  = tr_options_field('tr_theme_options.footer_tel1');
+$footer_tel2  = tr_options_field('tr_theme_options.footer_tel2');
+$footer_mail      = tr_options_field('tr_theme_options.footer_mail');
+$footer_title_mail      = tr_options_field('tr_theme_options.footer_title_mail');
+$footer_title_mail_en      = tr_options_field('tr_theme_options.footer_title_mail_en');
+$footer_title_display  = ($lang === 'en') ? $footer_title_en : $footer_title;
+$$footer_location_display   = ($lang === 'en') ? $footer_location_en : $footer_location;
+$footer_title_mail_display = ($lang === 'en') ? $footer_title_mail_en : $footer_title_mail;
 ?>
 <footer class="footer">
   <div class="kl_container">
     <div class="footer_content">
       <div class="footer_content_location">
-        <div class="footer_content_location_title txt_20 txt_bold txt_uppercase">Văn phòng trụ sở chính</div>
+        <div class="footer_content_location_title txt_20 txt_bold txt_uppercase"><?= wp_kses_post($footer_title_display) ?></div>
         <div class="footer_content_location_inner">
           <div class="footer_content_location_icon img_full">
             <img src="<?= get_template_directory_uri(); ?>/img/footer_icon_location.svg" alt="">
           </div>
-          <div class="footer_content_location_txt txt_18">5A Xa lộ Xuyên Á, P. An Bình, TP. Dĩ An, Tỉnh Bình Dương</div>
+          <div class="footer_content_location_txt txt_18"><?= wp_kses_post($footer_location_display) ?></div>
         </div>
         <div class="footer_content_location_inner">
           <div class="footer_content_location_icon img_full">
             <img src="<?= get_template_directory_uri(); ?>/img/footer_icon_tel.svg" alt="">
           </div>
-          <div class="footer_content_location_txt txt_18">(84 28) 37 241 241</div>
+          <div class="footer_content_location_txt txt_18"><?= wp_kses_post($footer_tel1) ?></div>
         </div>
         <div class="footer_content_location_inner">
           <div class="footer_content_location_icon img_full">
             <img src="<?= get_template_directory_uri(); ?>/img/footer_icon_list.svg" alt="">
           </div>
-          <div class="footer_content_location_txt txt_18">(84 28) 38 960 223</div>
+          <div class="footer_content_location_txt txt_18"><?= wp_kses_post($footer_tel2) ?></div>
         </div>
         <div class="footer_content_location_inner">
           <div class="footer_content_location_icon img_full">
             <img src="<?= get_template_directory_uri(); ?>/img/footer_icon_mail.svg" alt="">
           </div>
-          <div class="footer_content_location_txt txt_18">info@tbsgroup.vn</div>
+          <div class="footer_content_location_txt txt_18"><?= wp_kses_post($footer_mail) ?></div>
         </div>
       </div>
       <?php
@@ -101,11 +117,14 @@ if ($menu_id) {
 ?>
 
       <div class="footer_content_contact">
-        <div class="footer_content_contact_title txt_20 txt_bold txt_uppercase">Nhận thông tin từ chúng tôi</div>
-        <div class="footer_content_contact_form">
-          <input type="email" name="email" placeholder="Email" required>
-          <button class="footer_content_contact_form_submit txt_20 txt_bold txt_uppercase" type="submit">gửi</button>
-        </div>
+        <div class="footer_content_contact_title txt_20 txt_bold txt_uppercase"><?= wp_kses_post($footer_title_mail_display) ?></div>
+        <?php
+        if ( function_exists('pll_current_language') && pll_current_language('slug') === 'en' ) {
+          echo do_shortcode('[contact-form-7 id="80adf9f" title="Form Footer(Tiếng Anh)"]');
+        } else {
+          echo do_shortcode('[contact-form-7 id="2fcfffc" title="Form Footer(Tiếng Việt)"]');
+        }
+        ?>
       </div>
     </div>
   </div>
@@ -114,17 +133,18 @@ if ($menu_id) {
   </div>
   <div class="footer_copyright txt_17">© 2025 TBS Group. All Rights Reserved. Maximize Online Power by <span class="txt_bold"> THEMAX </span></div>
 </footer>
-<section class="btn_social">
-  <a href="#" class="btn_social_icon img_full">
+<section class="btn_social social">
+  <div class="btn_social_des mobile"><?= wp_kses_post($social_des) ?></div>
+  <a href="<?= wp_kses_post($telephone) ?>" target="_blank" class="btn_social_icon img_full">
     <img src="<?= get_template_directory_uri(); ?>/img/icon_tel.svg" alt="">
   </a>
-  <a href="#" class="btn_social_icon img_full">
+  <a href="<?= wp_kses_post($youtube) ?>" target="_blank" class="btn_social_icon img_full">
     <img src="<?= get_template_directory_uri(); ?>/img/icon_yt.svg" alt="">
   </a>
-  <a href="#" class="btn_social_icon img_full">
+  <a href="<?= wp_kses_post($zalo) ?>" target="_blank" class="btn_social_icon img_full">
     <img src="<?= get_template_directory_uri(); ?>/img/icon_zalo.svg" alt="">
   </a>
-  <a href="#" class="btn_social_icon img_full">
+  <a href="<?= wp_kses_post($facebook) ?>" target="_blank" class="btn_social_icon img_full">
     <img src="<?= get_template_directory_uri(); ?>/img/icon_facebook.svg" alt="">
   </a>
 </section>

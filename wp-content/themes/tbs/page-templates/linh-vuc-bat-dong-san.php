@@ -57,7 +57,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
         <img class="middle" src="<?php echo $banner_image ?>" alt="" />
         <img class="mobile" src="<?php echo $banner_image_mobile ?>" alt="" />
       </div>
-      <h1 class="estate_hero_txt txt_uppercase heading txt_55">
+      <h1 class="estate_hero_txt txt_uppercase heading txt_55 df_hide_onload">
        <?= wp_kses_post($banner_title) ?>
       </h1>
     </section>
@@ -65,19 +65,19 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
 
       <div class="kl_container">
         <div class="estate_intro_txt">
-          <div class="estate_intro_txt_logo img_full">
+          <div class="estate_intro_txt_logo img_full df_hide_onload">
             <img src="<?php echo $intro_logo ?>" alt="" />
           </div>
-          <div class="estate_intro_txt_des txt_20 txt_justify">
+          <div class="estate_intro_txt_des txt_20 txt_justify df_hide_onload">
             <?= wp_kses_post($intro_des) ?>
           </div>
         </div>
-        <div class="estate_content_inner kl_grid">
+        <div class="estate_content_inner kl_grid  eatate_content_cn df_hide_onload">
           <div class="estate_content_img img_full left_full">
             <img src="<?php echo $industrial_content ?>" alt="">
           </div>
           <div class="estate_content_info">
-            <h2 class="estate_content_info_title nowrapwhite txt_uppercase txt_55 txt_title_color heading"><?= wp_kses_post($industrial_title) ?></h2>
+            <h2 class="estate_content_info_title nowrapwhite txt_uppercase txt_55 txt_title_color heading "><?= wp_kses_post($industrial_title) ?></h2>
             <?php if (!empty($industrial_des_item)) : ?>
                 <?php foreach ($industrial_des_item as $item): ?>
             <div class="estate_content_info_des des_spot txt_17 txt_justify"><?= $item['industrial_des_item_des'] ?></div>
@@ -87,7 +87,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
         </div>
       </div>
       <div class="kl_container bg_line">
-        <div class="estate_content_inner kl_grid">
+        <div class="estate_content_inner kl_grid eatate_content_dd">
           <div class="estate_content_info1">
             <h2 class="estate_content_info_title txt_uppercase txt txt_55 txt_title_color heading"><?= wp_kses_post($residential_title) ?></h2>
             <div class="estate_content_info_des txt_17 txt_justify"><?= wp_kses_post($residential_des) ?></div>
@@ -123,7 +123,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
         </div>
       </div>
       <div class="kl_container">
-        <div class="estate_content_inner kl_grid">
+        <div class="estate_content_inner estate_content_tm kl_grid">
           <div class="estate_content_img img_full left_full">
             <img src="<?php echo $economic_image ?>" alt="">
           </div>
@@ -134,7 +134,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
         </div>
       </div>
       <div class="kl_container bg_line">
-        <div class="estate_content_inner kl_grid">
+        <div class="estate_content_inner estate_content_resort kl_grid">
           <div class="estate_content_info1 gap">
             <h2 class="estate_content_info_title txt_uppercase txt txt_55 txt_title_color heading"><?= wp_kses_post($hotel_title) ?></h2>
             <?php if (!empty($hotel_des)) : ?>
@@ -177,7 +177,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
              <?php if (!empty($logistics_item)) : ?>
                 <?php foreach ($logistics_item as $item): ?>
             <div class="estate_logistics_list_item">
-              <div class="estate_logistics_list_item_title heading txt_35 txt_center"><?= $item['logistics_item_title'] ?></div>
+                <div class="estate_logistics_list_item_title heading txt_35 txt_center" data-number = "<?= $item['logistics_item_title'] ?>"><span class="rate_number"><?= $item['logistics_item_title'] ?></span><?= $item['logistics_item_type'] ?></div>
               <div class="estate_logistics_list_item_des txt_17 txt_center"><?= $item['logistics_item_des'] ?></div>
             </div>
              <?php endforeach; ?>
@@ -191,7 +191,7 @@ $logistics_experiance_item = tr_posts_field('logistics_experiance_item', $pageID
                  <?php if (!empty($logistics_experiance_item)) : ?>
                 <?php foreach ($logistics_experiance_item as $item): ?>
               <div class="estate_logistics_exper_item item1">
-                <div class="estate_logistics_exper_item_title txt_center heading txt_55"data-number="<?= $item['logistics_experiance_item_num'] ?>"><span></span><?= $item['logistics_experiance_item_type'] ?></div>
+                <div class="estate_logistics_exper_item_title txt_center heading txt_55" data-number = "<?= $item['logistics_experiance_item_num'] ?>"><span class="rate_number">0</span><?= $item['logistics_experiance_item_type'] ?></div>
                 <div class="estate_logistics_exper_item_des txt_20 txt_center"><?= $item['logistics_experiance_item_des'] ?></div>
               </div>
               <?php endforeach; ?>

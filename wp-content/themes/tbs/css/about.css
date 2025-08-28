@@ -112,7 +112,7 @@
         height: 8.2rem;
         position: absolute;
         right: -9.5rem;
-        bottom: 3rem;
+        bottom: 1rem;
         opacity: .2;
     }
 }
@@ -165,7 +165,7 @@
              height: 6.2rem;
         }
         &::after{
-            bottom: -1rem;
+            bottom: -3rem;
             right: -1rem;
             width: 7.2rem;
              height: 6.2rem;
@@ -214,6 +214,7 @@
     }
     .about_content_assign_txt {
         margin-top: 0;
+        padding-top: 0;
     }
     .about_content_assign_txt_des {
         margin-bottom: 1rem;
@@ -238,7 +239,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: #fcfff6;
 }
 .about_value_item{
     display: flex;
@@ -261,7 +262,7 @@
 }
 .about_value_des{
     color: #A6CE39;
-    width: 86.2rem;
+    width: 122.8rem;
     margin-inline: auto;
     margin-top: 4.5rem;
     padding-bottom: 8rem;
@@ -333,7 +334,7 @@
     padding-left: 3rem;
 }
 .about_history_swiper_wrap{
-    margin-right: 16.3rem;
+    margin-right: 5.3rem;
     position: relative;
 }
 .about_history_swiper_wrap_bg{
@@ -370,6 +371,7 @@
     position: relative;
     height: .4rem;
     display: flex;
+    cursor: pointer;
     /* background:url(../img/moc.png) center no-repeat ;
     background-repeat: repeat-x;
     width: 100%; */
@@ -749,7 +751,7 @@
  }
  @media screen and (max-width:767px) {
     .about_content_top {
-        padding-bottom: 3rem;
+        padding-bottom: 10rem;
     }
     .about_value {
         padding-top: 6rem;
@@ -879,7 +881,7 @@
         margin-top: 4rem;
     }
     .button_swiper{
-    inset: 0 -1rem;
+    inset: 0 -2.5rem;
     top:-13rem;
 }
 .about_archive_item_name {
